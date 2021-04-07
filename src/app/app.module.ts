@@ -1,25 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { SharedModule } from './modules/shared/shared.module';
-import { OrderModule } from './modules/order/order.module';
-import { PaymentModule } from './modules/payment/payment.module';
-import { HomeComponent } from './home/home.component';
-import { PagesModule } from './modules/pages/pages.module';
+import { AppComponent } from './app/app.component';
+import { AppComponents } from './barrels/app-components';
+import { AppModules } from './barrels/app-modules';
+import { MainPanelComponent } from './modules/shared/main-panel/main-panel.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent
+    ...AppComponents,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    SharedModule,
-    OrderModule,
-    PaymentModule,
-    PagesModule
+    ...AppModules,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

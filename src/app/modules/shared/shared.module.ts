@@ -9,9 +9,6 @@ import { ConfirmComponent } from './confirm/confirm.component';
 
 @NgModule({
   declarations: [
-    HeaderComponent,
-    FooterComponent,
-    MainPanelComponent,
     ConfirmComponent
   ],
   imports: [
