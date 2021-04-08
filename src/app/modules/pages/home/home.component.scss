@@ -1,12 +1,32 @@
-.background-img {
+.home-wrap {
+  display: grid;
+  height: 180vh;
+  grid-template:
+    [img-start] "img img img" 50vh [img-end]
+    [buttons-start] ". buttons ." 40vh [buttons-end]
+    [store_img-start] "store_img store_img store_img" 40vh [store_img-end]
+    [quote-start] ". quote ." 3vh [quote-end]
+    [profile-start] ". profile ." 45vh [profile-end]
+    / 2vw 96vw 2vw;
+}
+
+.background-img-area {
   height: 50vh;
-  width: 50vw;
   padding: 0;
-  margin-left: -15px;
+  grid-area: img;
+  border-bottom: 2px solid #444444;
+}
+
+.splash-img {
+  height: 100%;
+  width: 100vw;
+  display: block;
+  object-fit: cover;
 }
 
 .button-holder {
   display: grid;
+  grid-area: buttons;
   grid-template:
     [row1-start] ". " 2vh [row1-end]
     [row2-start] " button1 " 8vh [row2-end]
@@ -18,22 +38,6 @@
     [row8-start] " button4 " 8vh [row8-end]
     [row9-start] "." 2vh [row9-end]
     / 100%;
-}
-
-.splash-img {
-  height: 100%;
-  width: 100vw;
-  display: block;
-  object-fit: cover;
-}
-
-// button {
-//   border: 2px solid black;
-//   font-weight: bold;
-// }
-
-.home-wrap {
-  display: grid;
 }
 
 .menu-btn {
@@ -50,4 +54,56 @@
 
 .location-btn {
   grid-area: button4;
+}
+
+.store-bg-img-area {
+  display: flex;
+  grid-area: store_img;
+  justify-content: center;
+  align-content: center;
+}
+
+.store-img {
+  display: block;
+  border: 1rem solid white;
+  height: 40vh;
+  object-fit: scale-down;
+}
+
+.quote {
+  grid-area: quote;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile {
+  display: grid;
+  border: 1px solid black;
+  background-color: darkgrey;
+  grid-area: profile;
+  grid-template:
+    [profile-start] "profile_img profile_copy" 45vh [profile-end]
+    / 55% 45%;
+}
+
+.profile-img-area {
+  grid-area: profile_img;
+  padding: 1rem;
+  display: flex;
+}
+
+.profile-img {
+  border: 2px solid rgb(67, 66, 66);
+  object-fit: scale-down;
+  height: 100%;
+}
+
+.profile-copy {
+  grid-area: profile_copy;
+  margin: 1rem 1rem 1rem 0;
+  padding: 1rem;
+  background-color: whitesmoke;
+  display: flex;
+  flex-flow: column wrap;
 }
