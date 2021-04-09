@@ -16,8 +16,8 @@
   grid-area: salad;
   grid-template:
     [r1-s] ". . . . ." 18vh [r1-e]
-    [r1-st] ". sal1 . sal2 ." 6vh [r1-s]
-    [r1-s] ". . . . ." 2vh [r1-s]
+    [r1-st] ". btn1 . btn2 ." 6vh [r1-e]
+    [r1-s] ". . . . ." 2vh [r1-e]
     / 2vw 44vw 4vw 44vw 2vw;
 }
 
@@ -26,7 +26,7 @@
   grid-area: sandwich;
   grid-template:
     [img-start] ". . . . ." 18vh [img-end]
-    [img-start] ". sand1 . sand2 ." 6vh [img-end]
+    [img-start] ". btn1 . btn2 ." 6vh [img-end]
     [spc-start] ". . . . ." 2vh [spc-end]
     / 2vw 44vw 4vw 44vw 2vw;
 }
@@ -36,11 +36,11 @@
   grid-area: other;
   grid-template:
     [img-start] ". . ." 2vh [img-end]
-    [img-start] ". other1 ." 6vh [img-end]
+    [img-start] ". btn1 ." 6vh [img-end]
     [spc-start] ". . ." 2vh [spc-end]
-    [img-start] ". other2 ." 6vh [img-end]
+    [img-start] ". btn2 ." 6vh [img-end]
     [spc-start] ". . ." 2vh [spc-end]
-    [img-start] ". other3 ." 6vh [img-end]
+    [img-start] ". btn3 ." 6vh [img-end]
     [spc-start] ". . ." 2vh [spc-end]
     / 50vw 44vw 2vw;
 }
@@ -71,31 +71,31 @@ img {
 }
 
 .salad-specialty {
-  grid-area: sal1;
+  grid-area: btn1;
 }
 
 .salad-byo {
-  grid-area: sal2;
+  grid-area: btn2;
 }
 
 .sandwich-specialty {
-  grid-area: sand1;
+  grid-area: btn1;
 }
 
 .sandwich-byo {
-  grid-area: sand2;
+  grid-area: btn2;
 }
 
 .sides {
-  grid-area: other1;
+  grid-area: btn1;
 }
 
 .desserts {
-  grid-area: other2;
+  grid-area: btn2;
 }
 
 .drinks {
-  grid-area: other3;
+  grid-area: btn3;
 }
 
 button {

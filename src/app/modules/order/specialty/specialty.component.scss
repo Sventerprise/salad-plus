@@ -1,0 +1,47 @@
+.specialty-wrapper {
+  display: grid;
+  grid-template:
+    [s1] ". . ." 2vh [e1]
+    [s2] ". item-wrap ." 26vh [e2]
+    [s3] ". . ." 2vh [e3]
+    / 2vw 96vw 2vw;
+}
+
+.recipe-wrap {
+  display: grid;
+  grid-area: item-wrap;
+  grid-template:
+    [s1] ". . . . ." 2fr [e1]
+    [s2] ". . . description ." 20fr [e2]
+    [s3] ". btn . description ." 6fr [e3]
+    [s4] ". . . . ." 2fr [e4]
+    / 3fr 44fr 6fr 44fr 3fr;
+}
+
+.description {
+  grid-area: description;
+  padding: 0.5rem;
+  z-index: 1;
+  background-color: rgba($color: #fff, $alpha: 0.8);
+}
+
+.fill {
+  grid-area: 1 / 1 / 5 / 6;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid darkgreen;
+}
+
+.fill img {
+  flex-shrink: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: 0;
+}
+
+button {
+  grid-area: btn;
+  z-index: 2;
+}

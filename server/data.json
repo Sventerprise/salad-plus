@@ -1,0 +1,12 @@
+{
+  "staticData": {
+    "recipes": [
+      {
+        "id": "ham_sourdough",
+        "name": "Ham on Sourdough",
+        "img": "",
+        "type": "sandwich"
+      }
+    ]
+  }
+}
