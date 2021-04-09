@@ -8,6 +8,10 @@ import { IngredientSelectorComponent } from './ingredient-selector/ingredient-se
 import { OrderListComponent } from './order-list/order-list.component';
 import { OrderFormComponent } from './order-form/order-form.component';
 import { SpecialtyComponent } from './specialty/specialty.component';
+import { OrderComponent } from './order.component';
+import { RouterModule } from '@angular/router';
+import { OrderRoutingModule } from './order-routing.module';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 
@@ -20,10 +24,13 @@ import { SpecialtyComponent } from './specialty/specialty.component';
     IngredientSelectorComponent,
     OrderListComponent,
     OrderFormComponent,
-    SpecialtyComponent
+    SpecialtyComponent,
+    OrderComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    OrderRoutingModule,
+    RouterModule
   ]
 })
 export class OrderModule { }
