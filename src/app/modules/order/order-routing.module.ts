@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { BuilderComponent } from "./builder/builder.component";
+import { IngredientListComponent } from "./ingredient-list/ingredient-list.component";
 import { OrderListComponent } from "./order-list/order-list.component";
 import { OrderComponent } from "./order.component";
 import { SpecialtyComponent } from "./specialty/specialty.component";
@@ -14,9 +15,15 @@ const routes: Routes = [
       { path: 'specialty', component: SpecialtyComponent },
       { path: 'builder', component: BuilderComponent },
       { path: 'my-items', component: OrderListComponent },
-      { path: '', redirectTo: 'ss-selector', pathMatch: 'full' }
+      { path: 'ingredient-list', component: IngredientListComponent },
+      { path: '', redirectTo: 'ss-selector', pathMatch: 'full' },
     ]
   },
+  // {
+  //   path: 'ingredient-list',
+  //   component: IngredientListComponent,
+  //   outlet: 'ingredientList'
+  // }
 ];
 
 @NgModule({

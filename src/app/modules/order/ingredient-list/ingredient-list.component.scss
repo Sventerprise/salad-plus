@@ -1,0 +1,35 @@
+.popup-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 96%;
+  overflow: hidden;
+  margin: auto;
+}
+
+.ingredients-wrap {
+  display: grid;
+  grid-template:
+    [s-s] ". . ." 2px [e-s]
+    [s-s] ". item ." 6vh [e-s]
+    [e-s] ". . ." 2px [e-s]
+    / 2fr 96fr 2fr;
+  overflow-y: scroll;
+}
+
+button {
+  grid-area: item;
+  display: flex;
+  text-align: start;
+  background-color: lightblue;
+  border-radius: 4px;
+  border: 0.5px solid darkblue;
+  align-items: center;
+  justify-content: center;
+  margin: 1px 2px;
+  padding: 0.5rem;
+  font-weight: bold;
+}
+
+button.close {
+  margin: 1vh auto;
+}

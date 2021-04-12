@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-builder',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BuilderComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
   }
+
+  // addIngredients() {
+  //   this.router.navigate('ingredient-list'
+  //     // [{ outlets: { ingredientList: ['ingredient-list'] } }]
+  //     )
+  // }
 
 }

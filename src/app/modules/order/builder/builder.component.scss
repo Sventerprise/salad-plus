@@ -1,0 +1,88 @@
+.builder-wrap {
+  display: grid;
+  grid-template:
+    [img-s] ". img ." 15vh [img-e]
+    [spc1-s] ". . ." 2vh [spc1-e]
+    [builder-s] ". builder ." 35vh [builder-e]
+    [spc2-s] ". . ." 2vh [spc2-e]
+    [done-s] ". done_btn ." 6vh [done-e]
+    [spc3-s] ". divider1 ." 3vh [spc3-e]
+    [cancel-s] ". cancel_btn ." 6vh [cancel-e]
+    [spc4-s] ". divider2 ." 3vh [spc4-e]
+    [add-s] ". add_btn ." 6vh [add-e]
+    [spc5-s] ". . ." 2vh [spc5-e]
+    / 2vw 96vw 2vw;
+}
+
+.fill {
+  grid-area: img;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid darkgreen;
+  overflow: hidden;
+}
+
+.fill img {
+  min-height: 100%;
+  min-width: 100%;
+  flex-shrink: 0;
+  object-fit: scale-down;
+}
+
+button {
+  display: flex;
+  margin: 1px;
+  justify-content: center;
+  align-content: center;
+  font-weight: bolder;
+  padding: 0;
+}
+
+.done {
+  grid-area: done_btn;
+  border: 1px solid darkgreen;
+}
+
+.cancel {
+  grid-area: cancel_btn;
+  border: 1px solid darkred;
+}
+
+.add-ingredients {
+  grid-area: add_btn;
+  border: 1px solid darkblue;
+}
+
+hr {
+  margin: 1.5vh 5vw 0 5vw;
+  border: 1px solid darkgray;
+  // TODO: fix shadow
+  box-shadow: 0 0px 0px -10px dimgray;
+}
+
+hr.divider1 {
+  grid-area: divider1;
+}
+
+.divider2 {
+  grid-area: divider2;
+}
+
+.builder {
+  grid-area: builder;
+  background-color: rgba(169, 169, 169, 0.707);
+  padding: 0.25rem;
+  border-radius: 3px;
+  overflow-y: scroll;
+}
+
+.holder {
+  grid-area: divider1;
+  padding: 1rem;
+}
+
+.popup {
+  display: grid;
+  grid-area: 2 / 2 / 6 / 3;
+}

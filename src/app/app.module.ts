@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app/app.component';
 import { AppComponents } from './barrels/app-components';
 import { AppModules } from './barrels/app-modules';
-import { MainPanelComponent } from './modules/shared/main-panel/main-panel.component';
 
 @NgModule({
   declarations: [

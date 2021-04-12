@@ -1,1 +1,10 @@
-<p>builder-form works!</p>
+<form>
+  <ng-container *ngFor="let ingredient of ingredients">
+    <div class="control-wrap">
+      <button class="add btn btn-success">+</button>
+      <label class="ingredient">{{ingredient.name}}</label>
+
+      <button class="remove btn btn-danger">-</button>
+    </div>
+  </ng-container>
+</form>

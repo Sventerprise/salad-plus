@@ -1,1 +1,21 @@
-<p>ingredient-list works!</p>
+<div class="popup-wrap">
+
+  <ng-container *ngIf="typeSelect">
+    <ng-container *ngFor="let type of ingredientTypes">
+      <div class="ingredients-wrap">
+        <button (click)="typeSelected(type)"> {{ type }}</button>
+      </div>
+    </ng-container>
+  </ng-container> <!-- type -->
+
+  <ng-container *ngIf="!typeSelect">
+    <ng-container *ngFor="let ingredient of ingredients">
+      <div class="ingredients-wrap">
+        <button (click)="ingredientSelected(ingredient.name)">{{ ingredient.name }}</button>
+      </div>
+    </ng-container>
+  </ng-container> <!-- select -->
+
+  <button class="btn btn-primary close" routerLink="../builder">Close</button>
+
+</div>
