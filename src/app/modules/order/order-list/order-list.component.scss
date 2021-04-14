@@ -1,0 +1,54 @@
+.order-list-wrap {
+  display: grid;
+  grid-template:
+    [s1-s] ". . . . ." 2vh [s1-e]
+    [total-s] ". . . total ." 6vh [total-e]
+    [s2-s] ". . . . ." 1vh [s2-e]
+    [order-s] ". order order order ." 53vh [order-e]
+    [s4-s] ". . . . ." 2vh [s4-e]
+    [pay-s] ". pay pay pay ." 6vh [pay-e]
+    [divider-s] ". divider divider divider ." 3vh [divider-e]
+    [cancel-s] ". cancel cancel cancel ." 6vh [cancel-e]
+    [s5-s] ". . . . ." 2vh [s5-e]
+    / 2vw 32vw 32vw 32vw 2vw;
+}
+
+.total {
+  grid-area: total;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  background-color: white;
+}
+
+.order-form {
+  grid-area: order;
+  overflow-y: scroll;
+}
+
+.add {
+  grid-area: add;
+}
+
+.pay {
+  grid-area: pay;
+}
+
+.divider {
+  grid-area: divider;
+  display: flex;
+}
+
+.cancel {
+  grid-area: cancel;
+}
+
+hr {
+  margin: auto 5vw;
+  width: 95vw;
+}
+
+label {
+  margin-bottom: 0;
+}

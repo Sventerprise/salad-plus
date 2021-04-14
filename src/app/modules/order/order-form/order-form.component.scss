@@ -1,1 +1,116 @@
+.order-form-wrap {
+}
 
+.item-list {
+  display: grid;
+  grid-template:
+    [spc1-s] ". . ." 0.5vh [spc1-e]
+    [item-s] "item item item" 4vh [item-e]
+    [detail-s] "ingredient ingredient ingredient" auto [detail-e]
+    [spc2-s] ". . ." 1vh [spc2-e]
+    [mods-s] "mods mods mods" 4vh [mods-e]
+    [btns-s] "edit view remove" 4vh [btns-e]
+    [spc3-s] ". . ." 0.5vh [spc3-e]
+    / 1fr 1fr 1fr;
+  background-color: lightgray;
+  border-radius: 5px;
+  padding: 1vw;
+  margin: 1px;
+}
+
+.item {
+  grid-area: item;
+  background-color: rgb(243, 219, 188);
+  font-weight: bold;
+}
+
+.ingredient-list {
+  grid-area: ingredient;
+  display: inline-block;
+}
+
+.ingredient {
+  margin: 0 0 0 2%;
+  padding: 0.25rem 0.5rem;
+  height: 1.5rem;
+  line-height: 1;
+  width: 98%;
+  // TODO: base background color on category
+  background-color: rgb(242, 236, 201);
+}
+
+.edit {
+  grid-area: edit;
+}
+
+.view {
+  grid-area: view;
+}
+
+.remove {
+  grid-area: remove;
+}
+
+.mods {
+  grid-area: mods;
+  display: grid;
+  grid-template:
+    [s-s] "qty_lbl qty price_lbl price subtotal_lbl subtotal" 4vh [s-e]
+    / 2fr 3fr 3fr 3fr 4fr 3fr;
+}
+
+.mod {
+  display: grid;
+  place-self: center right;
+  font-size: 1rem;
+  margin-inline: 0.25rem;
+}
+
+.qty-lbl {
+  grid-area: qty_lbl;
+}
+.qty {
+  grid-area: qty;
+}
+
+.price-lbl {
+  grid-area: price_lbl;
+}
+
+.price {
+  grid-area: price;
+}
+
+.subtotal-lbl {
+  grid-area: subtotal_lbl;
+}
+
+.subtotal {
+  grid-area: subtotal;
+}
+
+.add-more {
+  margin: 1px auto;
+}
+
+button {
+  font-weight: bold;
+  margin: 1px 2vw;
+  padding: 1px 2vw;
+}
+
+button.item-list {
+  padding: 0.5rem 2vw;
+}
+
+.sm {
+  margin: 0;
+  padding: 0.25rem 0.5rem;
+  height: 1.5rem;
+  line-height: 1;
+}
+
+div.mods > input,
+div.mods > label {
+  text-align: center;
+}

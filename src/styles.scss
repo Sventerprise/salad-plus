@@ -19,3 +19,27 @@
 .bord-5 {
   border: 1px solid orange;
 }
+
+.btn-success {
+  border-color: rgb(49, 118, 35);
+  color: rgb(48, 48, 48);
+  background-color: #37e860;
+}
+
+.btn-danger {
+  background-color: #f05f72;
+  color: rgb(48, 48, 48);
+  border-color: brown;
+}
+
+.btn-warning {
+  border-color: rgb(199, 159, 29);
+  background-color: #f5ca5f;
+  color: rgb(48, 48, 48);
+}
+
+.btn-primary {
+  border-color: rgb(40, 25, 169);
+  background-color: #5f69f0;
+  color: rgb(48, 48, 48);
+}

@@ -1,1 +1,44 @@
-<p> order-form works!</p>
+<div class="order-form-wrap">
+
+  <!-- repeating item container -->
+  <ng-container *ngFor="let item of items">
+    <div class="item-list">
+      <label class="item form-control sm">{{item.name}}</label>
+
+      <!-- repeating item detail container-->
+      <ng-container *ngIf="view1">
+        <div class="ingredient-list">
+            <ng-container *ngFor="let recipe of item.recipe">
+              <label class="form-control ingredient">
+                {{recipe.name}} - ${{recipe.price}}
+              </label>
+            </ng-container>
+        </div>
+      </ng-container> <!-- /item detail -->
+
+       <!-- qty, price, subtotal -->
+      <div class="mods">
+        <div class="qty-lbl mod">Qty:</div>
+        <input type="number" class="qty form-control sm" placeholder="{{item.quantity}}">
+
+        <div class="price-lbl mod">Price:</div>
+        <label class="price form-control sm">${{item.price}}</label>
+
+        <div class="subtotal-lbl mod">Subtotal:</div>
+        <label class="subtotal form-control sm">${{item.subtotal}}</label>
+        <!-- /qty, price, subtotal -->
+      </div>
+      <!-- item buttons -->
+      <button class="edit btn btn-primary">Edit</button>
+      <ng-container *ngIf="!view1">
+        <button class="view btn btn-warning" (click)="viewDetail()">View</button>
+      </ng-container>
+      <ng-container *ngIf="view1">
+        <button class="view btn btn-warning" (click)="hideDetail()">Collapse</button>
+      </ng-container>
+      <button class="remove btn btn-danger">Remove</button>
+       <!-- /item buttons -->
+    </div>
+  </ng-container>  <!-- /item -->
+  <button class="add-more btn btn-success">+ More Items</button>
+</div>
