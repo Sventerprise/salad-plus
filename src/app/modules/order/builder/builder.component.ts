@@ -7,6 +7,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./builder.component.scss']
 })
 export class BuilderComponent implements OnInit {
+  categoryFlag: boolean = false
+  selectorFlag: boolean = false
+  confirmFlag: boolean = false
 
   constructor(
     private router: Router,
@@ -16,10 +19,22 @@ export class BuilderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // addIngredients() {
-  //   this.router.navigate('ingredient-list'
-  //     // [{ outlets: { ingredientList: ['ingredient-list'] } }]
-  //     )
-  // }
+  addIngredients() {
+    this.categoryFlag = true
+  }
+
+  categorySelected() {
+    this.categoryFlag = false
+    this.selectorFlag = true
+  }
+
+  public confirmCancel() {
+    this.confirmFlag = true
+  }
+
+  public exitCancel() {
+    this.confirmFlag = false
+  }
+
 
 }

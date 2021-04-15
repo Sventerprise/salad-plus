@@ -21,15 +21,15 @@
 }
 
 .btn-success {
-  border-color: rgb(49, 118, 35);
+  border-color: green;
   color: rgb(48, 48, 48);
-  background-color: #37e860;
+  background-color: lightgreen;
 }
 
 .btn-danger {
-  background-color: #f05f72;
+  background-color: rgb(255, 168, 168);
   color: rgb(48, 48, 48);
-  border-color: brown;
+  border-color: rgb(255, 0, 0);
 }
 
 .btn-warning {
@@ -39,7 +39,7 @@
 }
 
 .btn-primary {
-  border-color: rgb(40, 25, 169);
-  background-color: #5f69f0;
+  border-color: darkblue;
+  background-color: lightblue;
   color: rgb(48, 48, 48);
 }

@@ -3,13 +3,11 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainPanelComponent } from './main-panel/main-panel.component';
-import { ConfirmComponent } from './confirm/confirm.component';
 
 
 
 @NgModule({
   declarations: [
-    ConfirmComponent
   ],
   imports: [
     CommonModule

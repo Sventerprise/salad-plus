@@ -3,7 +3,7 @@
   grid-template:
     [img-s] ". img ." 15vh [img-e]
     [spc1-s] ". . ." 2vh [spc1-e]
-    [builder-s] ". builder ." 35vh [builder-e]
+    [builder-s] ". builder ." 45vh [builder-e]
     [spc2-s] ". . ." 2vh [spc2-e]
     [done-s] ". done_btn ." 6vh [done-e]
     [spc3-s] ". divider1 ." 3vh [spc3-e]
@@ -49,9 +49,8 @@ button {
   border: 1px solid darkred;
 }
 
-.add-ingredients {
+.add-ingredients-btn {
   grid-area: add_btn;
-  border: 1px solid darkblue;
 }
 
 hr {
@@ -82,7 +81,56 @@ hr.divider1 {
   padding: 1rem;
 }
 
-.popup {
+.confirm-popup {
+  display: flex;
+  grid-area: 1 / 1 / 11 / 4;
+  border: 2px solid black;
+  background-color: rgba(169, 169, 169, 0.667);
+
+  align-items: center;
+  justify-content: center;
+
+  padding: auto 2vw;
+}
+
+.confirm-cancel {
   display: grid;
-  grid-area: 2 / 2 / 6 / 3;
+  grid-template:
+    [s-s] ". . ." 5fr [s-e]
+    [msg-s] ". msg ." 25fr [msg-e]
+    [spc1-s] ". . ." 5fr [spc1-e]
+    [yes-s] ". remove_btn ." 5fr [yes-e]
+    [spc2-s] ". . ." 5fr [spc2-e]
+    [close-s] ". close ." 5fr [close-e]
+    [e-s] ". . ." 5fr [e-e]
+    / 2fr 96fr 2fr;
+  background-color: rgb(228, 228, 228);
+  margin: auto;
+}
+
+.really {
+  font-style: italic;
+}
+
+.remove {
+  text-align: center;
+}
+
+.msg {
+  grid-area: msg;
+  display: flex;
+  flex-flow: column;
+  // place-self: center;
+  justify-items: center;
+  align-items: center;
+  background-color: whitesmoke;
+  padding: 0.5rem;
+}
+
+.remove-btn {
+  grid-area: remove_btn;
+}
+
+.close-btn {
+  grid-area: close;
 }

@@ -19,7 +19,7 @@ const routes: Routes = [
       { path: 'pay', component: PaymentModule },
       { path: 'post-pay', component: PostPayComponent }
     ]
-  }
+  },
 ];
 
 @NgModule({
