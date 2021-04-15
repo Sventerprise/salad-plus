@@ -1,1 +1,43 @@
-<p>pay works!</p>
+<div class="paywrap">
+  <button type="button" class="edit btn btn-primary btn-lg">Edit Order</button>
+  <label class="total form-control" >$total</label>
+  <form class="form">
+    <input type="text" placeholder="Name" class="form-control">
+    <input type="number" placeholder="Credit Card #"class="form-control">
+    <input type="number" placeholder="3-Digit Security Code" class="form-control">
+    <input type="date" placeholder="Exp Date"class="form-control">
+  </form>
+  <button type="button" class="submit btn btn-success btn-lg"
+  routerLink="../post-pay">Submit</button>
+  <hr>
+  <button type="button" class="cancel btn btn-danger btn-lg" (click)="openCancelConfirm()">Cancel</button>
+
+
+  <!-- POPUPS -->
+
+  <div class="popup-screen-cover" *ngIf="popupFlag">
+    <div class="popup-window">
+
+      <!-- POPUP: CONFIRM -->
+      <ng-container *ngIf="confirmFlag">
+        <div class="popup-contents">
+          <div class="msg">
+            <div class="remove">Do you <span class="really">really</span> want to cancel this transaction?</div>
+          </div>
+        </div>
+        <button type="button" class="remove-btn btn btn-danger btn-lg"
+        (click)="confirmCancel()"
+        routerLink="../../order/order-list">
+          Cancel Payment
+        </button>
+      </ng-container> <!-- confirm popup -->
+
+
+      <!-- COMMON CLOSE BUTTON-->
+      <button (click)="closePopup()" class="btn btn-primary close-btn btn-lg">
+        Close
+      </button><!-- POPUP: CLOSE BUTTON -->
+    </div> <!-- popup window -->
+  </div> <!-- popup cover -->
+
+</div>

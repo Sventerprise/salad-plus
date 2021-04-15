@@ -91,34 +91,6 @@ hr.divider1 {
   padding: 1rem;
 }
 
-.really {
-  font-style: italic;
-}
-
-.remove {
-  text-align: center;
-  font-size: 2rem;
-}
-
-.msg {
-  grid-area: msg;
-  display: flex;
-  flex-flow: column;
-  // place-self: center;
-  justify-items: center;
-  align-items: center;
-  background-color: whitesmoke;
-  padding: 0.5rem;
-}
-
-.remove-btn {
-  grid-area: remove_btn;
-}
-
-.close-btn {
-  grid-area: close;
-}
-
 // POPUPS
 
 // SCREEN COVER (prevents unwanted button presses)
@@ -129,7 +101,7 @@ hr.divider1 {
   width: 100vw;
   height: 90vh;
   border: 2px solid rgb(39, 39, 39);
-  background-color: rgba(201, 201, 201, 0.871);
+  background-color: rgb(248, 248, 248);
   padding: 3vh 3vw;
 }
 
@@ -156,9 +128,26 @@ hr.divider1 {
   justify-content: center;
   align-items: center;
   padding: 3vh 3vw;
-  background-color: rgb(228, 228, 228);
+  background-color: rgb(248, 248, 248);
   overflow: scroll;
   flex-direction: column;
+}
+
+.msg {
+  grid-area: msg;
+  display: flex;
+  flex-flow: column;
+  // place-self: center;
+  justify-items: center;
+  align-items: center;
+  background-color: whitesmoke;
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+
+.remove {
+  text-align: center;
+  font-size: 2rem;
 }
 
 // ingredient types
@@ -180,12 +169,17 @@ hr.divider1 {
   overflow-y: scroll;
 }
 
-button.close {
-  margin: 1vh auto;
-}
-
 .ingredient {
   width: 100%;
   margin: 1vh 2vw;
   font-weight: bold;
+}
+
+.remove-btn {
+  grid-area: remove_btn;
+}
+
+.close-btn {
+  grid-area: close;
+  margin: 1vh auto;
 }

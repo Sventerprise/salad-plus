@@ -46,7 +46,7 @@ export class BuilderComponent implements OnInit {
     this.confirmFlag = true
   }
 
-  confirmCancel() {
+  public confirmCancel() {
 
   }
 
