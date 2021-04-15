@@ -1,14 +1,13 @@
 .ssselector-wrap {
   display: grid;
+  gap: 2%;
   grid-template:
-    [spacer1-start] ". . ." 3vh [spacer1-end]
-    [salad-start] ". salad ." 26vh [salad-end]
-    [spacer2-start] ". . ." 3vh [spacer2-end]
-    [sandwich-start] ". sandwich ." 26vh [sandwich-end]
-    [spacer3-start] ". . ." 3vh [spacer3-end]
-    [other-start] ". other ." 26vh [other-end]
-    [spacer4-start] ". . ." 3vh [spacer4-end]
-    / 2vw 96vw 2vw;
+    [salad-start] "salad" 26fr [salad-end]
+    [sandwich-start] "sandwich" 26fr [sandwich-end]
+    [other-start] "other" 26fr [other-end]
+    / 96vw;
+  height: 100%;
+  margin-inline: 2%;
 }
 
 .salad {
@@ -100,4 +99,6 @@ img {
 
 button {
   z-index: 2;
+  font-size: 4vw;
+  line-height: 1;
 }

@@ -5,7 +5,8 @@
         <img class="fill" src="{{ recipe.img }}" alt="">
       </div>
       <button class="btn btn-success"
-      type="button" (click)="loadSpecialty(recipe.id)"> {{ recipe.name }}</button>
+      type="button" (click)="loadSpecialty(recipe.id)"
+      routerLink="../builder"> {{ recipe.name }}</button>
       <div class="description bord-3">
         <h3>{{ recipe.name }}</h3>
         {{ recipe.description }}

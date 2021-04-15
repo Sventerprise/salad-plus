@@ -1,3 +1,29 @@
+// GLOBAL
+hr {
+  margin: 1.5vh 5vw 0 5vw;
+  border: 1px solid darkgray;
+  // TODO: fix shadow
+  box-shadow: 0 0px 0px -10px dimgray;
+}
+
+button {
+  //   grid-area: item;
+  display: flex;
+  //   text-align: start;
+  //   background-color: lightblue;
+  //   border-radius: 4px;
+  //   border: 0.5px solid darkblue;
+  align-items: center;
+  justify-content: center;
+  //   margin: 1px 2px;
+  //   padding: 0.5rem;
+  //   font-weight: bold;
+
+  //   margin: 1px;
+  //   font-weight: bolder;
+  //   padding: 0;
+}
+
 .builder-wrap {
   display: grid;
   grid-template:
@@ -30,15 +56,6 @@
   object-fit: scale-down;
 }
 
-button {
-  display: flex;
-  margin: 1px;
-  justify-content: center;
-  align-content: center;
-  font-weight: bolder;
-  padding: 0;
-}
-
 .done {
   grid-area: done_btn;
   border: 1px solid darkgreen;
@@ -51,13 +68,6 @@ button {
 
 .add-ingredients-btn {
   grid-area: add_btn;
-}
-
-hr {
-  margin: 1.5vh 5vw 0 5vw;
-  border: 1px solid darkgray;
-  // TODO: fix shadow
-  box-shadow: 0 0px 0px -10px dimgray;
 }
 
 hr.divider1 {
@@ -81,39 +91,13 @@ hr.divider1 {
   padding: 1rem;
 }
 
-.confirm-popup {
-  display: flex;
-  grid-area: 1 / 1 / 11 / 4;
-  border: 2px solid black;
-  background-color: rgba(169, 169, 169, 0.667);
-
-  align-items: center;
-  justify-content: center;
-
-  padding: auto 2vw;
-}
-
-.confirm-cancel {
-  display: grid;
-  grid-template:
-    [s-s] ". . ." 5fr [s-e]
-    [msg-s] ". msg ." 25fr [msg-e]
-    [spc1-s] ". . ." 5fr [spc1-e]
-    [yes-s] ". remove_btn ." 5fr [yes-e]
-    [spc2-s] ". . ." 5fr [spc2-e]
-    [close-s] ". close ." 5fr [close-e]
-    [e-s] ". . ." 5fr [e-e]
-    / 2fr 96fr 2fr;
-  background-color: rgb(228, 228, 228);
-  margin: auto;
-}
-
 .really {
   font-style: italic;
 }
 
 .remove {
   text-align: center;
+  font-size: 2rem;
 }
 
 .msg {
@@ -133,4 +117,75 @@ hr.divider1 {
 
 .close-btn {
   grid-area: close;
+}
+
+// POPUPS
+
+// SCREEN COVER (prevents unwanted button presses)
+.popup-screen-cover {
+  grid-area: 1 / 1 / 11 / 4;
+  display: flex;
+  position: relative;
+  width: 100vw;
+  height: 90vh;
+  border: 2px solid rgb(39, 39, 39);
+  background-color: rgba(201, 201, 201, 0.871);
+  padding: 3vh 3vw;
+}
+
+.popup-window {
+  display: grid;
+  grid-template:
+    [s-s] ". . ." 2fr [s-e]
+    [msg-s] ". contents ." 60fr [msg-e]
+    [spc1-s] ". . ." 2fr [spc1-e]
+    [yes-s] ". remove_btn ." 6fr [yes-e]
+    [spc2-s] ". . ." 6fr [spc2-e]
+    [close-s] ". close ." 6fr [close-e]
+    [e-s] ". . ." 6fr [e-e]
+    / 2fr 96fr 2fr;
+  place-self: center stretch;
+  width: 100%;
+  height: 90vh;
+}
+
+// CONFIRM CANCEL
+.popup-contents {
+  grid-area: contents;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3vh 3vw;
+  background-color: rgb(228, 228, 228);
+  overflow: scroll;
+  flex-direction: column;
+}
+
+// ingredient types
+.popup-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 96%;
+  overflow: hidden;
+  margin: auto;
+}
+
+.ingredients-popup {
+  display: grid;
+  grid-template:
+    [s-s] ". . ." 2px [e-s]
+    [s-s] ". item ." 6vh [e-s]
+    [e-s] ". . ." 2px [e-s]
+    / 2fr 96fr 2fr;
+  overflow-y: scroll;
+}
+
+button.close {
+  margin: 1vh auto;
+}
+
+.ingredient {
+  width: 100%;
+  margin: 1vh 2vw;
+  font-weight: bold;
 }

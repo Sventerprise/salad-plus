@@ -22,7 +22,7 @@ const routes: Routes = [
           }
         ]
       },
-      { path: 'my-items', component: OrderListComponent },
+      { path: 'order-list', component: OrderListComponent },
       { path: 'ingredient-list', component: IngredientListComponent },
       { path: '', redirectTo: 'ss-selector', pathMatch: 'full' },
     ]
