@@ -14,12 +14,17 @@
 }
 
 .total {
+  // TODO: needs work for viewports (vert center)
   grid-area: total;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
   border: 1px solid black;
   background-color: white;
+  padding: 0.5rem;
+  font-size: 6vw;
+  font-weight: bold;
+  height: 6vh;
+  vertical-align: middle;
+  line-height: 1;
 }
 
 .order-form {

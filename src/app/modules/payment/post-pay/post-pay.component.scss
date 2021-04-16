@@ -1,0 +1,99 @@
+.post-pay-wrap {
+  display: grid;
+  grid-template:
+    [r1-s] "result result" 15vh [r1-e]
+    [r2-s] "order_form order_form" auto [r2-e]
+    [r3-s] ". total" 6vh [r3-e]
+    [r4-s] "post_msg post_msg" 12vh [r4-e]
+    [r5-s] ". ." 6vh [r5-e]
+    [r6-s] "btn1 btn1" 6vh [r6-e]
+    [r7-s] ". ." 2vh [r7-e]
+    [r8-s] "btn2 btn2" 6vh [r8-e]
+    [r9-s] ". ." 2vh [r9-e]
+    / 1fr 1fr;
+  gap: 2%;
+  margin: 2vh 2vw;
+}
+
+.result {
+  grid-area: result;
+  overflow: hidden;
+}
+
+img {
+  object-fit: fill;
+}
+
+// ORDER FORM
+
+.total {
+  grid-area: total;
+  margin-bottom: 0;
+  height: 6vh;
+  font-size: 1.55rem;
+  font-weight: bold;
+  line-height: 1.5;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.5rem;
+}
+
+.order-form {
+  grid-area: order_form;
+  display: flex;
+  width: 100%;
+  flex-flow: column nowrap;
+}
+
+.order-meta {
+  width: 100%;
+}
+
+label {
+  display: inline-block;
+  width: auto;
+}
+
+.date {
+  float: right;
+}
+
+.qty-price {
+  width: 23vw;
+}
+
+.description {
+  width: 58vw;
+}
+
+.subtotal {
+  width: 15vw;
+  text-align: right;
+}
+// order form
+
+.post-msg {
+  grid-area: post_msg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center; // required for multi line
+  font-size: 4vw;
+  border-radius: 0.5rem;
+  background-color: whitesmoke;
+}
+
+.btn1 {
+  grid-area: btn1;
+}
+
+.btn2 {
+  grid-area: btn2;
+}
+
+.failed {
+  background-color: rgb(252, 183, 183);
+  color: darkred;
+  font-weight: bold;
+  size: 8vw;
+}

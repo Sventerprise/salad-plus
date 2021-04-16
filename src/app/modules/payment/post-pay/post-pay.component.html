@@ -1,1 +1,66 @@
-<p>post-pay works!</p>
+<div class="post-pay-wrap">
+  <!-- SUCCESS -->
+  <ng-container *ngIf="paySuccessFlag">
+    <div class="result">
+      <img src="./assets/images/thanks.png" alt="">
+    </div>
+    <div class="order-form">
+      <div class="order-meta">
+        <label class="order-num form-control">Order#: #####</label>
+        <label class="date form-control">Date: dd/mm/yyyy</label>
+      </div>
+      <div>
+        <ng-container *ngFor="let item of items">
+          <div>
+            <label class="form-control qty-price">{{item.qty}} @ ${{item.price}}</label>
+            <label class="form-control description">{{item.description}}</label>
+              <label class="form-control subtotal">
+                ${{item.subtotal}}
+                </label>
+            </div>
+        </ng-container>
+      </div>
+
+    </div> <!-- order form -->
+    <label class="total form-control">$total</label>
+    <label class="post-msg">Pick it up around: <br>
+    now + 10m</label>
+    <button type="button" class="btn1 btn btn-primary btn-lg">Email me my receipt</button>
+    <button type="button" class="btn2 btn btn-success btn-lg"
+    routerLink="/">Done</button>
+  </ng-container> <!-- /success-->
+
+  <!-- FAIL -->
+  <ng-container *ngIf="!paySuccessFlag">
+    <div class="result">
+      <img src="./assets/images/transaction_fail.png" alt="">
+    </div>
+    <div class="order-form">
+      <div class="order-meta">
+        <label class="order-num form-control">Order#: #####</label>
+        <label class="date form-control">Date: dd/mm/yyyy</label>
+      </div>
+      <div>
+        <ng-container *ngFor="let item of items">
+          <div>
+            <label class="form-control qty-price">{{item.qty}} @ ${{item.price}}</label>
+            <label class="form-control description">{{item.description}}</label>
+              <label class="form-control subtotal">
+                ${{item.subtotal}}
+                </label>
+            </div>
+        </ng-container>
+      </div>
+    </div> <!-- order form -->
+    <label class="total form-control">$total</label>
+    <label class="post-msg failed">Payment Incomplete!</label>
+    <button type="button" class="btn1 btn btn-success btn-lg"
+    routerLink="../pay">Try Again</button>
+    <button type="button" class="btn2 btn btn-danger btn-lg"
+    routerLink="/order/order-list">Cancel</button>
+  </ng-container>
+  <!-- /fail -->
+
+
+
+</div>
