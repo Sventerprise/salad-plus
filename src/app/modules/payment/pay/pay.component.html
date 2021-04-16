@@ -23,18 +23,18 @@
       <ng-container *ngIf="confirmFlag">
         <div class="popup-contents">
           <div class="msg">
-            <div class="remove">Do you <span class="really">really</span> want to cancel this transaction?</div>
+            <div class="cancel">Do you <span class="really">really</span> want to cancel this transaction?</div>
           </div>
         </div>
-        <button type="button" class="remove-btn btn btn-danger btn-lg"
+        <button type="button" class="cancel-btn btn btn-danger btn-lg"
         (click)="confirmCancel()"
-        routerLink="../../order/order-list">
+        routerLink="/order/order-list">
           Cancel Payment
         </button>
       </ng-container> <!-- confirm popup -->
 
 
-      <!-- COMMON CLOSE BUTTON-->
+      <!-- CLOSE BUTTON-->
       <button (click)="closePopup()" class="btn btn-primary close-btn btn-lg">
         Close
       </button><!-- POPUP: CLOSE BUTTON -->

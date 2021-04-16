@@ -98,10 +98,6 @@ form > input {
   flex-direction: column;
 }
 
-button.close {
-  margin: 1vh auto;
-}
-
 .msg {
   grid-area: msg;
   display: flex;
@@ -114,12 +110,12 @@ button.close {
   border-radius: 1rem;
 }
 
-.remove {
+.cancel {
   text-align: center;
   font-size: 2rem;
 }
 
-.remove-btn {
+.cancel-btn {
   grid-area: remove_btn;
 }
 

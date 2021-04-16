@@ -57,9 +57,34 @@
     <button type="button" class="btn1 btn btn-success btn-lg"
     routerLink="../pay">Try Again</button>
     <button type="button" class="btn2 btn btn-danger btn-lg"
-    routerLink="/order/order-list">Cancel</button>
+    (click)="openCancelConfirm()">Cancel</button>
   </ng-container>
   <!-- /fail -->
+
+  <!-- CANCEL POPUP -->
+  <div class="popup-screen-cover" *ngIf="popupFlag">
+    <div class="popup-window">
+
+      <ng-container *ngIf="confirmFlag">
+        <div class="popup-contents">
+          <div class="msg">
+            <div class="cancel">Do you <span class="really">really</span> want to cancel this transaction?</div>
+          </div>
+        </div>
+        <button type="button" class="cancel-btn btn btn-danger btn-lg"
+        (click)="confirmCancel()"
+        routerLink="/order/order-list">
+          Cancel Payment
+        </button>
+      </ng-container> <!-- confirm popup -->
+
+
+      <!-- CLOSE BUTTON-->
+      <button (click)="closePopup()" class="btn btn-primary close-btn btn-lg">
+        Close
+      </button><!-- POPUP: CLOSE BUTTON -->
+    </div> <!-- popup window -->
+  </div> <!-- popup cover -->
 
 
 
