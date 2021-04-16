@@ -57,3 +57,72 @@ hr {
 label {
   margin-bottom: 0;
 }
+
+// POPUPS
+
+// SCREEN COVER (prevents unwanted button presses)
+.popup-screen-cover {
+  grid-area: 1 / 1 / 6 / 4;
+  display: flex;
+  position: relative;
+  width: 100vw;
+  height: 90vh;
+  border: 2px solid rgb(39, 39, 39);
+  background-color: rgba(248, 248, 248, 0.919);
+  padding: 3vh 3vw;
+  margin: 0 -2vw;
+}
+
+.popup-window {
+  display: grid;
+  grid-template:
+    [s-s] ". . ." 2fr [s-e]
+    [msg-s] ". contents ." 60fr [msg-e]
+    [spc1-s] ". . ." 2fr [spc1-e]
+    [yes-s] ". btn1 ." 6fr [yes-e]
+    [spc2-s] ". . ." 6fr [spc2-e]
+    [close-s] ". btn2 ." 6fr [close-e]
+    [e-s] ". . ." 6fr [e-e]
+    / 2fr 96fr 2fr;
+  place-self: center stretch;
+  width: 96vw;
+  height: 90vh;
+}
+
+// CONFIRM CANCEL
+.popup-contents {
+  grid-area: contents;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3vh 3vw;
+  background-color: rgb(248, 248, 248);
+  overflow: scroll;
+  flex-direction: column;
+}
+
+.msg {
+  grid-area: msg;
+  display: flex;
+  flex-flow: column;
+  // place-self: center;
+  justify-items: center;
+  align-items: center;
+  background-color: whitesmoke;
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+
+.cancel-pop {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.cancel-btn-pop {
+  grid-area: btn1; // popup-window
+}
+
+.close-btn {
+  grid-area: btn2; // popup-window
+  // margin: 1vh auto;
+}

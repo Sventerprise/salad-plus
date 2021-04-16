@@ -6,5 +6,36 @@
   <div class="divider">
     <hr>
   </div>
-  <button type="button" class="cancel btn btn-danger">Cancel</button>
+  <button type="button" class="cancel btn btn-danger"
+  (click)="openCancelConfirm()">Cancel</button>
+
+
+  <!-- CANCEL POPUP -->
+  <div class="popup-screen-cover" *ngIf="popupFlag">
+    <div class="popup-window">
+
+      <ng-container *ngIf="confirmFlag">
+        <div class="popup-contents">
+          // TODO: reduce .msg & .popup-contents
+          <div class="contents">
+            <div class="cancel-pop">
+              <div class="msg">Do you <em>really</em> want to cancel this order?
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="cancel-btn-pop btn btn-danger btn-lg"
+        (click)="confirmCancel()"
+        routerLink="/">
+          Cancel Order
+        </button>
+      </ng-container> <!-- confirm popup -->
+
+      <!-- CLOSE BUTTON-->
+      <button (click)="closePopup()" class="btn btn-primary close-btn btn-lg">
+        Close
+      </button><!-- POPUP: CLOSE BUTTON -->
+    </div> <!-- popup window -->
+  </div> <!-- popup cover -->
+
 </div>

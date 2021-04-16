@@ -11,7 +11,7 @@
   <button type="button" class="submit btn btn-success btn-lg"
   routerLink="../post-pay">Submit</button>
   <hr>
-  <button type="button" class="cancel btn btn-danger btn-lg" (click)="openCancelConfirm()">Cancel</button>
+  <button type="button" class="cancel-btn btn btn-danger btn-lg" (click)="openCancelConfirm()">Cancel</button>
 
 
   <!-- POPUPS -->
@@ -23,10 +23,10 @@
       <ng-container *ngIf="confirmFlag">
         <div class="popup-contents">
           <div class="msg">
-            <div class="cancel">Do you <span class="really">really</span> want to cancel this transaction?</div>
+            <div class="cancel">Do you <em>really</em> want to cancel this transaction?</div>
           </div>
         </div>
-        <button type="button" class="cancel-btn btn btn-danger btn-lg"
+        <button type="button" class="cancel-btn-pop btn btn-danger btn-lg"
         (click)="confirmCancel()"
         routerLink="/order/order-list">
           Cancel Payment

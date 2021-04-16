@@ -13,11 +13,11 @@
 }
 
 .edit {
-  grid-area: edit;
+  grid-area: edit; // paywrap
 }
 
 .total {
-  grid-area: total;
+  grid-area: total; // paywrap
   margin-bottom: 0;
   height: 6vh;
   font-size: 1.55rem;
@@ -29,11 +29,11 @@
 }
 
 .form {
-  grid-area: form;
+  grid-area: form; // paywrap
 }
 
 .submit {
-  grid-area: submit;
+  grid-area: submit; // paywrap
 }
 
 hr {
@@ -46,8 +46,8 @@ input {
   margin: 0;
 }
 
-.cancel {
-  grid-area: cancel;
+.cancel-btn {
+  grid-area: cancel; // paywrap
 }
 
 form > input {
@@ -76,9 +76,9 @@ form > input {
     [s-s] ". . ." 2fr [s-e]
     [msg-s] ". contents ." 60fr [msg-e]
     [spc1-s] ". . ." 2fr [spc1-e]
-    [yes-s] ". remove_btn ." 6fr [yes-e]
+    [yes-s] ". btn1 ." 6fr [yes-e]
     [spc2-s] ". . ." 6fr [spc2-e]
-    [close-s] ". close ." 6fr [close-e]
+    [close-s] ". btn2 ." 6fr [close-e]
     [e-s] ". . ." 6fr [e-e]
     / 2fr 96fr 2fr;
   place-self: center stretch;
@@ -115,11 +115,11 @@ form > input {
   font-size: 2rem;
 }
 
-.cancel-btn {
-  grid-area: remove_btn;
+.cancel-btn-pop {
+  grid-area: btn1; // popup-window
 }
 
 .close-btn {
-  grid-area: close;
+  grid-area: btn2; // popup-window
   // margin: 1vh auto;
 }
