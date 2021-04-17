@@ -1,12 +1,152 @@
 {
-  "staticData": {
-    "recipes": [
+  "staticOrderData": {
+    "specialties": [
       {
         "id": "ham_sourdough",
         "name": "Ham on Sourdough",
-        "img": "",
-        "type": "sandwich"
+        "ingredients": ["ham", "sourdough", "cheddar", "mustard"],
+        "itemGroup": "sandwich",
+        "img": "./assets/images/specialties/ham_sourdough.png",
+        "description": "This is some sample text describing a sandwich. You should think about this sandwich when you're hungry. But if you have no way of getting this sandwich, maybe don't."
       }
-    ]
+    ],
+    "ingredients": [
+      {
+        "id": "ham",
+        "name": "Ham",
+        "image": ".assets/images/ingredients/ham.png",
+        "group": "sal/sand",
+        "category": "Meat"
+      },
+      {
+        "id": "turkey",
+        "name": "Turkey",
+        "image": ".assets/images/ingredients/turkey.png",
+        "group": "sal/sand",
+        "category": "Meat"
+      },
+      {
+        "id": "roast_beef",
+        "name": "Roast Beef",
+        "image": ".assets/images/ingredients/roast_beef.png",
+        "group": "sand",
+        "category": "Meat"
+      },
+      {
+        "id": "red_lettuce",
+        "name": "Red Lettuce",
+        "image": ".assets/images/ingredients/red_lettuce.png",
+        "group": "sal/sand",
+        "category": "Veggies"
+      },
+      {
+        "id": "green_lettuce",
+        "name": "Red Lettuce",
+        "image": ".assets/images/ingredients/green_lettuce.png",
+        "group": "sal/sand",
+        "category": "Veggies"
+      },
+      {
+        "id": "mixed_greens",
+        "name": "Mixed Greens",
+        "image": ".assets/images/ingredients/mixed_greens.png",
+        "group": "sal",
+        "category": "Veggies"
+      },
+      {
+        "id": "tomatoes",
+        "name": "Tomatoes",
+        "image": ".assets/images/ingredients/tomatoes.png",
+        "group": "sal/sand",
+        "category": "Veggies"
+      },
+      {
+        "id": "pickles",
+        "name": "Pickles",
+        "image": ".assets/images/ingredients/Pickles.png",
+        "group": "sand",
+        "category": "Veggies"
+      },
+      {
+        "id": "onions",
+        "name": "Onions",
+        "image": ".assets/images/ingredients/onions.png",
+        "group": "sal/sand",
+        "category": "Veggies"
+      },
+      {
+        "id": "cucumbers",
+        "name": "Cucumbers",
+        "image": ".assets/images/ingredients/cucumbers.png",
+        "group": "sal",
+        "category": "Veggies"
+      },
+      {
+        "id": "cheddar",
+        "name": "Cheddar",
+        "image": ".assets/images/ingredients/cheddar.png",
+        "group": "sal/sand",
+        "category": "Cheese"
+      },
+      {
+        "id": "provolone",
+        "name": "Provolone",
+        "image": ".assets/images/ingredients/provolone.png",
+        "group": "sand",
+        "category": "Cheese"
+      },
+      {
+        "id": "blue_cheese",
+        "name": "Blue Cheese",
+        "image": ".assets/images/ingredients/blue_cheese.png",
+        "group": "sal",
+        "category": "Cheese"
+      },
+      {
+        "id": "sourdough",
+        "name": "Sourdough",
+        "image": ".assets/images/ingredients/sourdough.png",
+        "group": "sand",
+        "category": "Bread"
+      },
+      {
+        "id": "kaiser_roll",
+        "name": "Kaiser Roll",
+        "image": ".assets/images/ingredients/kaiser_roll.png",
+        "group": "sand",
+        "category": "Bread"
+      },
+      {
+        "id": "mustard",
+        "name": "Mustard",
+        "image": ".assets/images/ingredients/mustard.png",
+        "group": "sand",
+        "category": "Condiments"
+      },
+      {
+        "id": "mayo",
+        "name": "Mayo",
+        "image": ".assets/images/ingredients/mayo.png",
+        "group": "sand",
+        "category": "Condiments"
+      },
+      {
+        "id": "ranch",
+        "name": "Ranch",
+        "image": ".assets/images/ingredients/ranch.png",
+        "group": "sal",
+        "category": "Condiments"
+      }
+    ],
+    "FoodTypePrices": {
+      "Condiment": 0.25,
+      "Bread": 3,
+      "Cheese": 2,
+      "Meat": 3.2,
+      "Veggie": 1.7
+    },
+    "desserts": [],
+    "drinks": [],
+    "sides": []
   }
 }

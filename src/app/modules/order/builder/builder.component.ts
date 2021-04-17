@@ -29,6 +29,7 @@ export class BuilderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // #region Methods
   public openIngredientTypes() {
     this.popupFlag = true
     this.categoryFlag = true
@@ -40,7 +41,7 @@ export class BuilderComponent implements OnInit {
     this.categoryFlag = false
     this.selectorFlag = true
   }
-
+  //#region Popups
   public openCancelConfirm() {
     this.popupFlag = true
     this.confirmFlag = true
@@ -60,5 +61,7 @@ export class BuilderComponent implements OnInit {
     this.categoryFlag = false
     this.selectorFlag = false
   }
+  //#endregion popups
+  //#endregion methods
 
 }
