@@ -19,6 +19,8 @@ import * as fromStaticOrderData from '../../stores/reducers/static-order-data.re
 import { CartEffects } from '../../stores/effects/cart.effects';
 import { OrderEffects } from '../../stores/effects/order.effects';
 import { StaticOrderDataEffects } from '../../stores/effects/static-order-data.effects';
+import * as fromCurrentItem from '../../stores/reducers/current-item.reducer';
+import { CurrentItemEffects } from '../../stores/effects/current-item.effects';
 
 
 
@@ -39,10 +41,11 @@ import { StaticOrderDataEffects } from '../../stores/effects/static-order-data.e
     OrderRoutingModule,
     RouterModule,
     //#region Store
-    EffectsModule.forFeature([CartEffects, OrderEffects, StaticOrderDataEffects]),
+    EffectsModule.forFeature([CartEffects, OrderEffects, StaticOrderDataEffects, CurrentItemEffects]),
     StoreModule.forFeature(fromCart.cartFeatureKey, fromCart.reducer),
     StoreModule.forFeature(fromOrder.orderFeatureKey, fromOrder.reducer),
-    StoreModule.forFeature(fromStaticOrderData.staticOrderDataFeatureKey, fromStaticOrderData.reducer)
+    StoreModule.forFeature(fromStaticOrderData.staticOrderDataFeatureKey, fromStaticOrderData.reducer),
+    StoreModule.forFeature(fromCurrentItem.currentItemFeatureKey, fromCurrentItem.reducer)
     //#endregion store
   ]
 })
