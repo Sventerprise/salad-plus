@@ -54,7 +54,7 @@
         "description": "This is some sample text describing a sandwich. You should think about this sandwich when you're hungry. But if you have no way of getting this sandwich, maybe don't."
       }
     ],
-    "ingredientsList": [
+    "ingredients": [
       {
         "ham": {
           "name": "Ham",
@@ -224,7 +224,7 @@
         }
       }
     ],
-    "FoodTypes": {
+    "foodTypes": {
       "Condiment": { "price": 0.25 },
       "Bread": { "price": 3 },
       "Cheese": { "price": 2 },

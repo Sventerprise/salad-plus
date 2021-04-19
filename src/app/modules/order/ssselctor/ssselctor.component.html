@@ -1,46 +1,56 @@
 <div class="ssselector-wrap">
+  <!-- SALAD -->
   <div class="salad">
     <div class="fill">
       <img src="./assets/images/specialty_salad.png">
     </div>
     <button class="salad-specialty btn btn-primary btn-lg"
+    (click)="setItemGroup('salad')"
     routerLink="/order/specialty">
       Specialty Salad!
     </button>
     <button class="salad-byo btn btn-primary btn-lg"
+    (click)="setItemGroup('salad')"
     routerLink="../builder">
       BMO Salad!
     </button>
   </div> <!-- salad -->
 
+  <!-- SANDWICH -->
   <div class="sandwich">
     <div class="fill">
       <img src="./assets/images/specialty_sandwich.png">
     </div>
     <button class="sandwich-specialty btn btn-primary btn-lg"
-    routerLink="specialty-salad">
+    (click)="setItemGroup('sandwich')"
+    routerLink="/order/specialty">
       Specialty Sandwich!
     </button>
     <button class="sandwich-byo btn btn-primary btn-lg"
+    (click)="setItemGroup('sandwich')"
     routerLink="../builder">
       BMO Sandwich!
     </button>
   </div> <!-- sandwich -->
 
+  <!-- OTHER -->
   <div class="other">
     <div class="fill-other">
       <img src="./assets/images/specialty_other.png">
     </div>
     <button class="sides btn btn-primary btn-lg"
-    routerLink="specialty-salad">
+    (click)="setItemGroup('side')"
+    routerLink="/order/other">
       Sides!
     </button>
     <button class="desserts btn btn-primary btn-lg"
-    routerLink="specialty-salad">
+    (click)="setItemGroup('dessert')"
+    routerLink="/order/other">
       Desserts!
     </button>
     <button class="drinks btn btn-primary btn-lg"
-    routerLink="specialty-salad">
+    (click)="setItemGroup('drink')"
+    routerLink="/order/other">
       Drinks!
     </button>
   </div> <!-- other -->

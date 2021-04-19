@@ -2,21 +2,21 @@ import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
-import { StaticOrderDataEffects } from './static-order-data.effects';
+import { OrderStaticDataEffects } from './order-static-data.effects';
 
 describe('StaticOrderDataEffects', () => {
   let actions$: Observable<any>;
-  let effects: StaticOrderDataEffects;
+  let effects: OrderStaticDataEffects;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        StaticOrderDataEffects,
+        OrderStaticDataEffects,
         provideMockActions(() => actions$)
       ]
     });
 
-    effects = TestBed.inject(StaticOrderDataEffects);
+    effects = TestBed.inject(OrderStaticDataEffects);
   });
 
   it('should be created', () => {

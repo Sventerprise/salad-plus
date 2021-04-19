@@ -1,29 +1,37 @@
-import { Action, createReducer, on } from '@ngrx/store';
-import * as OrderActions from './order.actions';
+import { Action, ActionReducer, combineReducers, createReducer, MetaReducer, on, ActionReducerMap } from '@ngrx/store';
+import * as OrderActions from './actions/order.actions';
 import * as fromCart from './reducers/cart.reducer';
 import * as fromOrder from './reducers/order.reducer';
-import * as fromStaticOrderData from './reducers/static-order-data.reducer';
+import * as fromOrderStaticData from './reducers/order-static-data.reducer';
+import { environment } from 'src/environments/environment';
 
 export const orderFeatureKey = 'order';
 
-export interface State {
+export interface AppState {
 
   [fromCart.cartFeatureKey]: fromCart.State;
   [fromOrder.orderFeatureKey]: fromOrder.State;
-  [fromStaticOrderData.staticOrderDataFeatureKey]: fromStaticOrderData.State;
+  [fromOrderStaticData.orderStaticDataFeatureKey]: fromOrderStaticData.State;
 }
 
-export const initialState: State = {
-
+export const reducers: ActionReducerMap<AppState> = {
+  [fromCart.cartFeatureKey]: fromCart.reducer,
+  [fromOrder.orderFeatureKey]: fromOrder.reducer,
+  [fromOrderStaticData.orderStaticDataFeatureKey]: fromOrderStaticData.reducer
 };
 
 
-export const reducer = createReducer(
-  initialState,
+export const metaReducers: MetaReducer<AppState>[] =
+  !environment.production
+    ? [debug]
+    : [];
 
-  on(OrderActions.loadOrders, state => state),
-  on(OrderActions.loadOrdersSuccess, (state, action) => state),
-  on(OrderActions.loadOrdersFailure, (state, action) => state),
+export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
+  return function (state, action) {
+    console.log('state', state);
+    console.log('action', action);
 
-);
+    return reducer(state, action)
+  }
+}
 

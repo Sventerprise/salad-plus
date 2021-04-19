@@ -1,4 +1,4 @@
-import { reducer, initialState } from './static-order-data.reducer';
+import { reducer, initialState } from './order-static-data.reducer';
 
 describe('StaticOrderData Reducer', () => {
   describe('an unknown action', () => {

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-ssselctor',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SsselctorComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private store: Store<any>
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  public setItemGroup(group: string) {
+    // TODO: action set item itemGroup to group
   }
 
 }

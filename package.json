@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "server": "json-server --watch ./server/database.json",
+    "dev": "concurrently \"npm run server\" \"npm run start\""
   },
   "private": true,
   "dependencies": {
@@ -24,7 +26,9 @@
     "@ngrx/store": "^11.1.0",
     "@ngrx/store-devtools": "^11.1.0",
     "bootstrap": "^4.6.0",
+    "concurrently": "^6.0.2",
     "jquery": "^3.6.0",
+    "json-server": "^0.16.3",
     "ngrx-etc": "^5.0.2",
     "ngrx-forms": "^6.3.5",
     "rxjs": "~6.6.0",
