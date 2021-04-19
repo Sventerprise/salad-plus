@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { setItemGroup } from 'src/app/stores/actions/current-item.actions';
+import { ItemGroup } from '../models/ItemGroup';
 
 @Component({
   selector: 'app-ssselctor',
@@ -17,8 +19,8 @@ export class SsselctorComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public setItemGroup(group: string) {
-    // TODO: action set item itemGroup to group
+  public setItemGroup(itemGroup: ItemGroup) {
+    this.store.dispatch(setItemGroup({ itemGroup }))
   }
 
 }

@@ -1,5 +1,14 @@
 import { createAction, props } from '@ngrx/store';
+import { ItemGroup } from 'src/app/modules/order/models/ItemGroup';
 
+
+export const setItemGroup = createAction(
+  '[Specialty] Set Item Group',
+  props<{ itemGroup: ItemGroup }>()
+);
+
+
+// boilerplate
 export const loadCurrentItems = createAction(
   '[CurrentItem] Load CurrentItems'
 );

@@ -1,4 +1,4 @@
-<ng-container *ngFor="let recipe of specialties" >
+<ng-container *ngFor="let recipe of specialties$ | async " >
   <div class="specialty-wrapper">
     <div class="recipe-wrap">
       <div class="fill">
