@@ -5,14 +5,16 @@ export type DrinkTypePrices = {
   water: number
 }
 
-export type DrinkTypes = keyof DrinkTypePrices
-
-export interface Drink {
-  id: string
-  name: string
-  type: DrinkTypes
-  price: string
-  image: string
-}
+export type DrinkTypes = keyof Drink
 
 export type Drinks = Drink[]
+
+
+export interface Drink {
+  [id: string]: {
+    name: string
+    type: DrinkTypes
+    price: string
+    image: string
+  }
+}

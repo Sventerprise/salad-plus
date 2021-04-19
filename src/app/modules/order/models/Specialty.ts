@@ -1,7 +1,6 @@
-import { StringDecoder } from "node:string_decoder";
-import { Ingredients } from "./Ingredient";
+import { Item } from "./Item";
 
-export interface Specialty {
+export interface Specialty extends Item {
   img: string
   description: string
 }

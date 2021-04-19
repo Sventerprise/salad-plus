@@ -1,10 +1,10 @@
-import { Ingredients } from "./Ingredient";
+import { IngredientList } from "./Ingredient";
 import { ItemGroup } from "./ItemGroup";
 
 export interface Item {
   id: string
   name: string
-  ingredients: Ingredients
+  ingredients: IngredientList
   itemGroup: ItemGroup
 }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipes } from '../models/Recipe';
+import { Specialties } from '../models/Specialty';
 
 @Component({
   selector: 'app-specialty',
@@ -7,38 +7,62 @@ import { Recipes } from '../models/Recipe';
   styleUrls: ['./specialty.component.scss']
 })
 export class SpecialtyComponent implements OnInit {
-  recipes!: Recipes
+  specialties!: Specialties
 
   constructor() {
-    this.recipes = [
+    this.specialties = [
       {
         "id": "ham_sourdough",
         "name": "Ham on Sourdough",
-        "description": "I'm a ham sandwich! I have ham and cheese on me!",
-        "img": "./assets/images/recipes/ham_sandwich.jpg",
-        "type": "sandwich"
+        "ingredients": ["ham", "sourdough", "cheddar"],
+        "itemGroup": "sandwich",
+        "img": "./assets/images/specialties/ham_sourdough.png",
+        "description": "This is some sample text describing a sandwich. You should think about this sandwich when you're hungry. But if you have no way of getting this sandwich, maybe don't."
       },
       {
-        "id": "meat_thing",
-        "name": "Meat Thing",
-        "description": "I'm a ham sandwich! I have ham and cheese on me!",
-        "img": "./assets/images/recipes/ham_sandwich.jpg",
-        "type": "sandwich"
+        "id": "turkey_sandwich",
+        "name": "Turkey on White",
+        "ingredients": [
+          "ham",
+          "kaiser_roll",
+          "provolone",
+          "mustard",
+          "green_lettuce"
+        ],
+        "itemGroup": "sandwich",
+        "img": "./assets/images/specialties/ham_sourdough.png",
+        "description": "This is some sample text describing a sandwich. You should think about this sandwich when you're hungry. But if you have no way of getting this sandwich, maybe don't."
       },
       {
-        "id": "ham_sourdough",
-        "name": "Veggie Thing",
-        "description": "I'm a ham sandwich! I have ham and cheese on me!",
-        "img": "./assets/images/recipes/ham_sandwich.jpg",
-        "type": "sandwich"
+        "id": "cobb",
+        "name": "Cobb Salad",
+        "ingredients": [
+          "ham",
+          "turkey",
+          "mixed_greens",
+          "tomato",
+          "cheddar",
+          "cucumber",
+          "ranch"
+        ],
+        "itemGroup": "salad",
+        "img": "./assets/images/specialties/ham_sourdough.png",
+        "description": "This is some sample text describing a sandwich. You should think about this sandwich when you're hungry. But if you have no way of getting this sandwich, maybe don't."
       },
       {
-        "id": "ham_sourdough",
-        "name": "Turtle Thing",
-        "description": "I'm a ham sandwich! I have ham and cheese on me!",
-        "img": "./assets/images/recipes/ham_sandwich.jpg",
-        "type": "sandwich"
-      },
+        "id": "svens_salad",
+        "name": "Sven's Salad",
+        "ingredients": [
+          "red_lettuce",
+          "vinaigrette",
+          "almonds",
+          "cranberries",
+          "ham"
+        ],
+        "itemGroup": "salad",
+        "img": "./assets/images/specialties/ham_sourdough.png",
+        "description": "This is some sample text describing a sandwich. You should think about this sandwich when you're hungry. But if you have no way of getting this sandwich, maybe don't."
+      }
     ]
   }
 
