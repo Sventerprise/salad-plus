@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectSpecialties } from 'src/app/stores/selectors/order-static-data.selectors';
-import { Specialties } from '../models/Specialty';
+import { selectItemGroup } from 'src/app/stores/selectors/current-item.selectors';
+
+import { Specialties, Specialty } from '../models/Specialty';
 
 @Component({
   selector: 'app-specialty',
@@ -11,11 +12,13 @@ import { Specialties } from '../models/Specialty';
 })
 export class SpecialtyComponent implements OnInit {
   specialties$: Observable<Specialties>
+  itemGroup: string | undefined
+  myArray: Specialty[] = []
 
   constructor(
     public store: Store<Specialties>
   ) {
-    this.specialties$ = this.store.select(selectSpecialties)
+    this.specialties$ = this.store.select(selectItemGroup)
 
   }
 
