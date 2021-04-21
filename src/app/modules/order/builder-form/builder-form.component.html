@@ -1,5 +1,5 @@
 <form>
-  <ng-container *ngFor="let ingredient of ingredients">
+  <ng-container *ngFor="let ingredient of ingredients$ | async ">
     <div class="control-wrap">
       <button class="add btn btn-success">+</button>
       <label class="ingredient">{{ingredient.name}}</label>

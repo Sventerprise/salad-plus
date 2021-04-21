@@ -56,172 +56,151 @@
     ],
     "ingredients": [
       {
-        "ham": {
-          "name": "Ham",
-          "image": ".assets/images/ingredients/ham.png",
-          "itemGroup": "sal/sand",
-          "type": "Meat"
-        }
+        "id": "ham",
+        "name": "Ham",
+        "image": ".assets/images/ingredients/ham.png",
+        "itemGroup": "sal/sand",
+        "type": "Meat"
       },
       {
-        "turkey": {
-          "name": "Turkey",
-          "image": ".assets/images/ingredients/turkey.png",
-          "itemGroup": "sal/sand",
-          "type": "Meat"
-        }
+        "id": "turkey",
+        "name": "Turkey",
+        "image": ".assets/images/ingredients/turkey.png",
+        "itemGroup": "sal/sand",
+        "type": "Meat"
       },
       {
-        "roast_beef": {
-          "name": "Roast Beef",
-          "image": ".assets/images/ingredients/roast_beef.png",
-          "itemGroup": "sand",
-          "type": "Meat"
-        }
+        "id": "roast_beef",
+        "name": "Roast Beef",
+        "image": ".assets/images/ingredients/roast_beef.png",
+        "itemGroup": "sand",
+        "type": "Meat"
       },
       {
-        "red_lettuce": {
-          "name": "Red Lettuce",
-          "image": ".assets/images/ingredients/red_lettuce.png",
-          "itemGroup": "sal/sand",
-          "type": "Veggies"
-        }
+        "id": "red_lettuce",
+        "name": "Red Lettuce",
+        "image": ".assets/images/ingredients/red_lettuce.png",
+        "itemGroup": "sal/sand",
+        "type": "Veggies"
       },
       {
-        "green_lettuce": {
-          "name": "Red Lettuce",
-          "image": ".assets/images/ingredients/green_lettuce.png",
-          "itemGroup": "sal/sand",
-          "type": "Veggies"
-        }
+        "id": "green_lettuce",
+        "name": "Red Lettuce",
+        "image": ".assets/images/ingredients/green_lettuce.png",
+        "itemGroup": "sal/sand",
+        "type": "Veggies"
       },
       {
-        "mixed_greens": {
-          "name": "Mixed Greens",
-          "image": ".assets/images/ingredients/mixed_greens.png",
-          "itemGroup": "sal",
-          "type": "Veggies"
-        }
+        "id": "mixed_greens",
+        "name": "Mixed Greens",
+        "image": ".assets/images/ingredients/mixed_greens.png",
+        "itemGroup": "sal",
+        "type": "Veggies"
       },
       {
-        "tomatoes": {
-          "name": "Tomatoes",
-          "image": ".assets/images/ingredients/tomatoes.png",
-          "itemGroup": "sal/sand",
-          "type": "Veggies"
-        }
+        "id": "tomatoes",
+        "name": "Tomatoes",
+        "image": ".assets/images/ingredients/tomatoes.png",
+        "itemGroup": "sal/sand",
+        "type": "Veggies"
       },
       {
-        "pickles": {
-          "name": "Pickles",
-          "image": ".assets/images/ingredients/Pickles.png",
-          "itemGroup": "sand",
-          "type": "Veggies"
-        }
+        "id": "pickles",
+        "name": "Pickles",
+        "image": ".assets/images/ingredients/Pickles.png",
+        "itemGroup": "sand",
+        "type": "Veggies"
       },
       {
-        "onions": {
-          "name": "Onions",
-          "image": ".assets/images/ingredients/onions.png",
-          "itemGroup": "sal/sand",
-          "type": "Veggies"
-        }
+        "id": "onions",
+        "name": "Onions",
+        "image": ".assets/images/ingredients/onions.png",
+        "itemGroup": "sal/sand",
+        "type": "Veggies"
       },
       {
-        "cucumbers": {
-          "name": "Cucumbers",
-          "image": ".assets/images/ingredients/cucumbers.png",
-          "itemGroup": "sal",
-          "type": "Veggies"
-        }
+        "id": "cucumbers",
+        "name": "Cucumbers",
+        "image": ".assets/images/ingredients/cucumbers.png",
+        "itemGroup": "sal",
+        "type": "Veggies"
       },
       {
-        "cheddar": {
-          "name": "Cheddar",
-          "image": ".assets/images/ingredients/cheddar.png",
-          "itemGroup": "sal/sand",
-          "type": "Cheese"
-        }
+        "id": "cheddar",
+        "name": "Cheddar",
+        "image": ".assets/images/ingredients/cheddar.png",
+        "itemGroup": "sal/sand",
+        "type": "Cheese"
       },
       {
-        "provolone": {
-          "name": "Provolone",
-          "image": ".assets/images/ingredients/provolone.png",
-          "itemGroup": "sand",
-          "type": "Cheese"
-        }
+        "id": "provolone",
+        "name": "Provolone",
+        "image": ".assets/images/ingredients/provolone.png",
+        "itemGroup": "sand",
+        "type": "Cheese"
       },
       {
-        "blue_cheese": {
-          "name": "Blue Cheese",
-          "image": ".assets/images/ingredients/blue_cheese.png",
-          "itemGroup": "sal",
-          "type": "Cheese"
-        }
+        "id": "blue_cheese",
+        "name": "Blue Cheese",
+        "image": ".assets/images/ingredients/blue_cheese.png",
+        "itemGroup": "sal",
+        "type": "Cheese"
       },
       {
-        "sourdough": {
-          "name": "Sourdough",
-          "image": ".assets/images/ingredients/sourdough.png",
-          "itemGroup": "sand",
-          "type": "Bread"
-        }
+        "id": "sourdough",
+        "name": "Sourdough",
+        "image": ".assets/images/ingredients/sourdough.png",
+        "itemGroup": "sand",
+        "type": "Bread"
       },
       {
-        "kaiser_roll": {
-          "name": "Kaiser Roll",
-          "image": ".assets/images/ingredients/kaiser_roll.png",
-          "itemGroup": "sand",
-          "type": "Bread"
-        }
+        "id": "kaiser_roll",
+        "name": "Kaiser Roll",
+        "image": ".assets/images/ingredients/kaiser_roll.png",
+        "itemGroup": "sand",
+        "type": "Bread"
       },
       {
-        "mustard": {
-          "name": "Mustard",
-          "image": ".assets/images/ingredients/mustard.png",
-          "itemGroup": "sand",
-          "type": "Condiments"
-        }
+        "id": "mustard",
+        "name": "Mustard",
+        "image": ".assets/images/ingredients/mustard.png",
+        "itemGroup": "sand",
+        "type": "Condiments"
       },
       {
-        "mayo": {
-          "name": "Mayo",
-          "image": ".assets/images/ingredients/mayo.png",
-          "itemGroup": "sand",
-          "type": "Condiments"
-        }
+        "id": "mayo",
+        "name": "Mayo",
+        "image": ".assets/images/ingredients/mayo.png",
+        "itemGroup": "sand",
+        "type": "Condiments"
       },
       {
-        "ranch": {
-          "name": "Ranch",
-          "image": ".assets/images/ingredients/ranch.png",
-          "itemGroup": "sal",
-          "type": "Condiments"
-        }
+        "id": "ranch",
+        "name": "Ranch",
+        "image": ".assets/images/ingredients/ranch.png",
+        "itemGroup": "sal",
+        "type": "Condiments"
       },
       {
-        "almonds": {
-          "name": "Almonds",
-          "image": ".assets/images/ingredients/almonds.png",
-          "itemGroup": "sal",
-          "type": "Nuts/Fruit"
-        }
+        "id": "almonds",
+        "name": "Almonds",
+        "image": ".assets/images/ingredients/almonds.png",
+        "itemGroup": "sal",
+        "type": "Nuts/Fruit"
       },
       {
-        "cranberries": {
-          "name": "Cranberries",
-          "image": ".assets/images/ingredients/cranberries.png",
-          "itemGroup": "sal",
-          "type": "Nuts/Fruit"
-        }
+        "id": "cranberries",
+        "name": "Cranberries",
+        "image": ".assets/images/ingredients/cranberries.png",
+        "itemGroup": "sal",
+        "type": "Nuts/Fruit"
       },
       {
-        "vinaigrette": {
-          "name": "Vinaigrette",
-          "image": ".assets/images/ingredients/vinaigrette.png",
-          "itemGroup": "sal",
-          "type": "Condiments"
-        }
+        "id": "vinaigrette",
+        "name": "Vinaigrette",
+        "image": ".assets/images/ingredients/vinaigrette.png",
+        "itemGroup": "sal",
+        "type": "Condiments"
       }
     ],
     "foodTypes": {

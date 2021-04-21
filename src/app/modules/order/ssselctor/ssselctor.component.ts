@@ -19,8 +19,8 @@ export class SsselctorComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public setItemGroup(itemGroup: ItemGroup) {
-    this.store.dispatch(setItemGroup({ itemGroup }))
+  public setItemGroup(selectedItemGroup: ItemGroup) {
+    this.store.dispatch(setItemGroup({ selectedItemGroup }))
   }
 
 }

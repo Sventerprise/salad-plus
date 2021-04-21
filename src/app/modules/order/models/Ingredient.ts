@@ -1,16 +1,15 @@
 import { FoodTypes } from "./FoodTypes";
 
 export interface Ingredient {
-  [id: string]: {
-    name: string
-    image: string
-    itemGroup: string
-    type: FoodTypes
-  }
+  id: string,
+  name: string
+  image: string
+  itemGroup: string
+  type: FoodTypes
 }
 
-export type Ingredients = keyof Ingredient
+export type Ingredients = string[]
 
-export type IngredientList = Ingredients[]
+export type IngredientList = Ingredient[]
 
 

@@ -1,14 +1,21 @@
+import { state } from '@angular/animations';
 import { Action, createReducer, on } from '@ngrx/store';
+import { IngredientList, Ingredients } from 'src/app/modules/order/models/Ingredient';
+import { Specialty } from 'src/app/modules/order/models/Specialty';
 import * as CurrentItemActions from '../actions/current-item.actions';
 
 export const currentItemFeatureKey = 'currentItem';
 
 export interface State {
-  itemGroup: string
+  selectedItemGroup: string,
+  selectedSpecialty: Specialty,
+  ingredients: IngredientList
 }
 
 export const initialState: State = {
-  itemGroup: ''
+  selectedItemGroup: null,
+  selectedSpecialty: null,
+  ingredients: []
 };
 
 
@@ -16,17 +23,18 @@ export const reducer = createReducer(
   initialState,
 
   on(CurrentItemActions.setItemGroup,
-    (state, action) => {
-      return {
-        ...state, itemGroup: action.itemGroup
-      }
-    }
+    (state, action) => (
+      { ...state, selectedItemGroup: action.selectedItemGroup })
   ),
-
-  // boilerplate
-  on(CurrentItemActions.loadCurrentItems, state => state),
-  on(CurrentItemActions.loadCurrentItemsSuccess, (state, action) => state),
-  on(CurrentItemActions.loadCurrentItemsFailure, (state, action) => state),
+  on(CurrentItemActions.updateSpecialty,
+    (state, action) => (
+      { ...state, selectedSpecialty: action.selectedSpecialty }
+    )
+  ),
+  on(CurrentItemActions.loadSpecialtyIngredients,
+    (state, action) => (
+      { ...state, ingredients: action.ingredientList })
+  ),
 
 );
 

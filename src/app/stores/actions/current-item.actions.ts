@@ -1,11 +1,23 @@
 import { createAction, props } from '@ngrx/store';
+import { IngredientList } from 'src/app/modules/order/models/Ingredient';
 import { ItemGroup } from 'src/app/modules/order/models/ItemGroup';
+import { Specialty } from 'src/app/modules/order/models/Specialty';
 
 
 export const setItemGroup = createAction(
   '[Specialty] Set Item Group',
-  props<{ itemGroup: ItemGroup }>()
+  props<{ selectedItemGroup: ItemGroup }>()
 );
+
+export const updateSpecialty = createAction(
+  '[Specialty] Update Selected Specialty',
+  props<{ selectedSpecialty: Specialty }>()
+)
+
+export const loadSpecialtyIngredients = createAction(
+  '[Specialty] UpdateCurrentIngredients',
+  props<{ ingredientList: IngredientList }>()
+)
 
 
 // boilerplate
@@ -22,3 +34,4 @@ export const loadCurrentItemsFailure = createAction(
   '[CurrentItem] Load CurrentItems Failure',
   props<{ error: any }>()
 );
+
