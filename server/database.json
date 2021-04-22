@@ -81,19 +81,26 @@
         "name": "Red Lettuce",
         "image": ".assets/images/ingredients/red_lettuce.png",
         "itemGroup": "sal/sand",
-        "type": "Veggies"
+        "type": "Greens"
       },
       {
         "id": "green_lettuce",
         "name": "Red Lettuce",
         "image": ".assets/images/ingredients/green_lettuce.png",
         "itemGroup": "sal/sand",
-        "type": "Veggies"
+        "type": "Greens"
       },
       {
         "id": "mixed_greens",
         "name": "Mixed Greens",
         "image": ".assets/images/ingredients/mixed_greens.png",
+        "itemGroup": "sal",
+        "type": "Greens"
+      },
+      {
+        "id": "lettuce",
+        "name": "Lettuce",
+        "image": ".assets/images/ingredients/lettuce.png",
         "itemGroup": "sal",
         "type": "Veggies"
       },
@@ -203,13 +210,14 @@
         "type": "Condiments"
       }
     ],
-    "foodTypes": {
-      "Condiment": { "price": 0.25 },
-      "Bread": { "price": 3 },
-      "Cheese": { "price": 2 },
-      "Meat": { "price": 3.2 },
-      "Veggie": { "price": 1.7 },
-      "Nuts/Fruit": { "price": 2.2 }
+    "ingredientTypes": {
+      "Condiments": { "price": "0.25" },
+      "Breads": { "price": "3.00" },
+      "Cheeses": { "price": "2.00" },
+      "Meats": { "price": "3.20" },
+      "Veggies": { "price": "1.70" },
+      "Greens": { "price": "2.80" },
+      "Nuts/Fruits": { "price": "2.20" }
     },
     "desserts": [],
     "drinks": [],

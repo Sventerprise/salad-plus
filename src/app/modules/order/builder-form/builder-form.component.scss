@@ -13,6 +13,7 @@
 .ingredient {
   grid-area: ingredient;
   display: flex;
+  position: relative;
   text-align: start;
   background-color: lightgray;
   border-radius: 4px;
@@ -20,6 +21,11 @@
   align-items: center;
   margin: 1px 2px;
   padding: 0.5rem;
+}
+
+.ingredient-header {
+  width: 100%;
+  display: inline-block;
 }
 
 .remove {
@@ -34,4 +40,71 @@ button {
   align-items: center;
   font-weight: bolder;
   padding: 0;
+}
+
+.typeContainer {
+  display: flex;
+  flex-flow: column wrap;
+  width: 100%;
+  border-width: 1px;
+  box-shadow: rgb(107, 107, 107);
+  font-size: 4vw;
+  font-weight: bold;
+  padding: 0.25rem;
+}
+
+.bread {
+  background-color: rgb(247, 213, 184);
+}
+
+.breads {
+  background-color: sandybrown;
+}
+
+.green {
+  background-color: rgb(216, 238, 216);
+}
+
+.greens {
+  background-color: rgb(31, 172, 27);
+}
+
+.meat {
+  background-color: rgb(250, 250, 250);
+}
+
+.meats {
+  background-color: rgb(228, 228, 228);
+}
+
+.cheese {
+  background-color: rgb(241, 247, 184);
+}
+
+.cheeses {
+  background-color: rgb(241, 255, 119);
+}
+
+.veggie {
+  background-color: rgb(163, 231, 180);
+}
+
+.veggies {
+  background-color: rgb(80, 146, 96);
+}
+
+.condiment {
+  background-color: rgb(247, 195, 240);
+}
+
+.condiments {
+  background-color: rgb(199, 112, 199);
+}
+
+.nuts-fruit {
+  background-color: rgb(194, 243, 247);
+}
+
+.nuts-fruits {
+  background-color: rgb(97, 203, 212);
 }

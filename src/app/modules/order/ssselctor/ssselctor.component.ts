@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { setItemGroup } from 'src/app/stores/actions/current-item.actions';
+import { clearSpecialty, clearSpecialtyIngredients, setItemGroup } from 'src/app/stores/actions/current-item.actions';
 import { ItemGroup } from '../models/ItemGroup';
 
 @Component({
@@ -21,6 +21,11 @@ export class SsselctorComponent implements OnInit {
 
   public setItemGroup(selectedItemGroup: ItemGroup) {
     this.store.dispatch(setItemGroup({ selectedItemGroup }))
+  }
+
+  public clearCurrentItem() {
+    this.store.dispatch(clearSpecialty())
+    this.store.dispatch(clearSpecialtyIngredients())
   }
 
 }

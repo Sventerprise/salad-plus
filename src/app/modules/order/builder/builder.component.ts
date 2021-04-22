@@ -12,13 +12,13 @@ export class BuilderComponent implements OnInit {
   confirmFlag: boolean = false
   popupFlag: boolean = false
 
-  //ingredients list
-  ingredientTypes: string[] = ["Bread", "Meat", "Cheese", "Veggies", "Condiments"]
-  ingredients = [
-    { name: "Sourdough", type: "Bread", price: 1.20 },
-    { name: "Rye", type: "Bread", price: 1.20 },
-    { name: "Wheat", type: "Bread", price: 1.20 }
-  ]
+  // //ingredients list
+  // ingredientTypes: string[] = ["Bread", "Meat", "Cheese", "Veggies", "Condiments"]
+  // ingredients = [
+  //   { name: "Sourdough", type: "Bread", price: 1.20 },
+  //   { name: "Rye", type: "Bread", price: 1.20 },
+  //   { name: "Wheat", type: "Bread", price: 1.20 }
+  // ]
   typeSelect: boolean = true
 
   constructor(

@@ -35,3 +35,11 @@ export const loadCurrentItemsFailure = createAction(
   props<{ error: any }>()
 );
 
+export const clearSpecialty = createAction(
+  '[SS-Selector] Clear Current Item'
+);
+
+export const clearSpecialtyIngredients = createAction(
+  '[SS-Selector] Clear Current Item'
+);
+

@@ -14,7 +14,14 @@ export interface State {
 
 export const initialState: State = {
   selectedItemGroup: null,
-  selectedSpecialty: null,
+  selectedSpecialty: {
+    id: null,
+    name: null,
+    ingredients: [],
+    itemGroup: null,
+    img: '',
+    description: ''
+  },
   ingredients: []
 };
 
@@ -34,6 +41,14 @@ export const reducer = createReducer(
   on(CurrentItemActions.loadSpecialtyIngredients,
     (state, action) => (
       { ...state, ingredients: action.ingredientList })
+  ),
+  on(CurrentItemActions.clearSpecialty,
+    (state) => (
+      { ...state, ingredients: [] })
+  ),
+  on(CurrentItemActions.clearSpecialtyIngredients,
+    (state) => (
+      { ...state, selectedSpecialty: null })
   ),
 
 );

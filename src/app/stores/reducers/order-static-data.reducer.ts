@@ -11,7 +11,7 @@ export interface State extends OrderStaticData {
 export const initialState: State = {
   specialties: [],
   ingredients: [],
-  foodTypes: {},
+  ingredientTypes: {},
   desserts: [],
   drinks: [],
   sides: [],

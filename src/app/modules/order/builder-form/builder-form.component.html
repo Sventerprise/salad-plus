@@ -1,10 +1,71 @@
-<form>
-  <ng-container *ngFor="let ingredient of ingredients$ | async ">
-    <div class="control-wrap">
-      <button class="add btn btn-success">+</button>
-      <label class="ingredient">{{ingredient.name}}</label>
+<ng-container *ngIf="selectedItemGroup$ |async as group">
+  <div class="bread typeContainer" *ngIf="group=='sandwich'">
+    <div class="ingredient-header">
+      Breads @ ${{iType['Breads'].price}} each
+    </div> <!-- header -->
+    <div class="ingredient-list">
+      <div class="breads ingredient" *ngFor="let bread of breads | async">
+        {{bread.name}}
+      </div>
+    </div> <!-- ingredient list -->
+  </div>
 
-      <button class="remove btn btn-danger">-</button>
+  <div class="greens typeContainer" *ngIf="group=='salad'">
+    <div class="ingredient-header">
+      Greens @ ${{iType['Greens'].price}} each
     </div>
-  </ng-container>
-</form>
+    <div class="green ingredient" *ngFor="let green of greens | async">
+      {{green.name}}
+    </div>
+  </div> <!-- greens -->
+
+  <div class="meat typeContainer">
+    <div class="ingredient-header">
+      Meats @ ${{iType['Meats'].price}} each
+    </div>
+    <div class="meats ingredient" *ngFor="let meat of meats | async">
+      {{meat.name}}
+    </div>
+  </div> <!-- meats -->
+
+  <div class="cheese typeContainer">
+    <div class="ingredient-header">
+      Cheeses @ ${{iType['Cheeses'].price}} each
+    </div>
+    <div class="cheeses ingredient" *ngFor="let cheese of cheeses | async">
+      {{cheese.name}}
+    </div>
+  </div> <!-- cheeses -->
+
+  <div class="veggie typeContainer">
+    <div class="ingredient-header">
+      Veggies @ ${{iType['Veggies'].price}} each
+    </div>
+    <div class="veggies ingredient"
+    *ngFor="let veggie of veggies | async">
+      {{veggie.name}}
+    </div>
+  </div> <!-- veggies -->
+
+  <div class="nuts-fruit typeContainer" *ngIf="group=='salad'">
+    <div class="ingredient-header">
+      Nuts/Fruits @ ${{iType['Nuts/Fruits'].price}} each
+    </div>
+    <div class="nuts-fruits ingredient"
+    *ngFor="let nutsFruit of nutsFruits | async">
+      {{nutsFruit.name}}
+    </div>
+  </div> <!-- nuts & fruits -->
+
+  <div class="condiment typeContainer" *ngIf="group=='salad'">
+    <div class="ingredient-header">
+      Condiments @ ${{iType['Condiments'].price}} each
+    </div>
+    <div class="condiments ingredient"
+    *ngFor="let condiment of condiments | async">
+      {{condiment.name}}
+    </div>
+  </div> <!-- condiments -->
+
+</ng-container>
+

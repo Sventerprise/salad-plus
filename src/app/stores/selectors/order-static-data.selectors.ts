@@ -1,4 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { IngredientType } from 'src/app/modules/order/models/Ingredient';
 import * as fromOrderStaticData from '../reducers/order-static-data.reducer';
 
 export const selectOrderStaticDataState = createFeatureSelector<fromOrderStaticData.State>(
@@ -10,7 +11,7 @@ export const selectSpecialties = createSelector(
   (state) => state.specialties
 )
 
-export const selectIngredients = createSelector(
+export const selectAllIngredients = createSelector(
   selectOrderStaticDataState,
   (state) => state.ingredients
 )
@@ -20,9 +21,9 @@ export const selectDrinks = createSelector(
   (state) => state.drinks
 )
 
-export const selectFoodTypes = createSelector(
+export const selectIngredientTypes = createSelector(
   selectOrderStaticDataState,
-  (state) => state.foodTypes
+  (state) => state.ingredientTypes
 )
 
 export const selectSides = createSelector(
