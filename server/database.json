@@ -85,7 +85,7 @@
       },
       {
         "id": "green_lettuce",
-        "name": "Red Lettuce",
+        "name": "Green Lettuce",
         "image": ".assets/images/ingredients/green_lettuce.png",
         "itemGroup": "sal/sand",
         "type": "Greens"

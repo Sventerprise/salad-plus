@@ -29,18 +29,10 @@ export const selectSelectedSpecialty = createSelector(
 )
 
 export const selectSpecialtyIngredients = createSelector(
-  selectSelectedSpecialty,
-  selectAllIngredients,
-  (specialty: Specialty, allIngredients: IngredientList): IngredientList => {
-    let list: IngredientList = []
-    specialty.ingredients.forEach(specialtyIngredients => {
-      allIngredients.forEach(ingredient => {
-        if (ingredient.id === specialtyIngredients) { list.push(ingredient) }
-      })
-    })
-    return list
-  }
+  selectCurrentItemState,
+  (state) => state.specialtyIngredients
 )
+
 //#region Individual Ingredients
 export const selectBreads = createSelector(
   selectAllIngredients,

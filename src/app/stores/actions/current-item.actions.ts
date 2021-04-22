@@ -16,9 +16,8 @@ export const updateSpecialty = createAction(
 
 export const loadSpecialtyIngredients = createAction(
   '[Specialty] UpdateCurrentIngredients',
-  props<{ ingredientList: IngredientList }>()
+  props<{ specialtyIngredients: IngredientList }>()
 )
-
 
 // boilerplate
 export const loadCurrentItems = createAction(

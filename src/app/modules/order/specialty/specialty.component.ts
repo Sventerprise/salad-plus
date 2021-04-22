@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { loadSpecialtyIngredients, updateSpecialty } from 'src/app/stores/actions/current-item.actions';
 import { selectSpecialtiesOfGroup } from 'src/app/stores/selectors/current-item.selectors';
+import { Ingredient, IngredientList } from '../models/Ingredient';
 
 import { Specialties, Specialty } from '../models/Specialty';
 import { CurrentItemService } from '../services/currentItems.services';
@@ -31,10 +32,16 @@ export class SpecialtyComponent implements OnInit {
 
   // find specialty
   public loadSpecialty(selectedSpecialtyId: string): void {
-    let selectedSpecialty = this.service
+    let selectedSpecialty: Specialty = this.service
       .getSelectedSpecialty(selectedSpecialtyId)
     // load specialty to store
     this.store.dispatch(updateSpecialty({ selectedSpecialty }))
+    //get specialty ingredient objects
+    let specialtyIngredients: IngredientList = this.service
+      .getSpecialtyIngredientsList(selectedSpecialty.ingredients)
+    // load to store for use by builder
+    this.store.dispatch(loadSpecialtyIngredients({ specialtyIngredients }))
   }
+
 
 }

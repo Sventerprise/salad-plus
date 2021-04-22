@@ -1,71 +1,135 @@
 <ng-container *ngIf="selectedItemGroup$ |async as group">
   <div class="bread typeContainer" *ngIf="group=='sandwich'">
     <div class="ingredient-header">
-      Breads @ ${{iType['Breads'].price}} each
+      Bread @ ${{iType['Breads'].price}}
     </div> <!-- header -->
     <div class="ingredient-list">
-      <div class="breads ingredient" *ngFor="let bread of breads | async">
-        {{bread.name}}
-      </div>
+      <ng-container *ngFor="let bread of breads | async">
+        <ng-container *ngIf="inSpecialty(bread.id)">
+          <div class="breads ingredient">
+                {{bread.name}}
+          </div>
+        </ng-container>
+      </ng-container>
     </div> <!-- ingredient list -->
-  </div>
+  </div> <!-- found -->
 
   <div class="greens typeContainer" *ngIf="group=='salad'">
     <div class="ingredient-header">
       Greens @ ${{iType['Greens'].price}} each
     </div>
-    <div class="green ingredient" *ngFor="let green of greens | async">
-      {{green.name}}
-    </div>
+
+    <div class="ingredient-list">
+      <ng-container *ngFor="let green of greens | async">
+        <ng-container *ngIf="inSpecialty(green.id)">
+          <div class="greens ingredient">
+                {{green.name}}
+          </div>
+        </ng-container>
+      </ng-container>
+    </div> <!-- ingredient list -->
+
   </div> <!-- greens -->
 
   <div class="meat typeContainer">
     <div class="ingredient-header">
       Meats @ ${{iType['Meats'].price}} each
     </div>
-    <div class="meats ingredient" *ngFor="let meat of meats | async">
-      {{meat.name}}
-    </div>
-  </div> <!-- meats -->
+
+    <div class="ingredient-list">
+      <ng-container *ngFor="let meat of meats | async">
+        <ng-container *ngIf="inSpecialty(meat.id)">
+          <div class="meats ingredient">
+                {{meat.name}}
+          </div>
+        </ng-container>
+      </ng-container>
+    </div> <!-- ingredient list -->
+  </div> <!-- meats-->
 
   <div class="cheese typeContainer">
     <div class="ingredient-header">
       Cheeses @ ${{iType['Cheeses'].price}} each
     </div>
-    <div class="cheeses ingredient" *ngFor="let cheese of cheeses | async">
-      {{cheese.name}}
-    </div>
-  </div> <!-- cheeses -->
+
+    <div class="ingredient-list">
+      <ng-container *ngFor="let cheese of cheeses | async">
+        <ng-container *ngIf="inSpecialty(cheese.id)">
+          <div class="cheeses ingredient">
+                {{cheese.name}}
+          </div>
+        </ng-container>
+      </ng-container>
+    </div> <!-- ingredient list -->
+  </div> <!-- cheeses-->
 
   <div class="veggie typeContainer">
     <div class="ingredient-header">
       Veggies @ ${{iType['Veggies'].price}} each
     </div>
-    <div class="veggies ingredient"
-    *ngFor="let veggie of veggies | async">
-      {{veggie.name}}
-    </div>
-  </div> <!-- veggies -->
+
+    <div class="ingredient-list">
+      <ng-container *ngFor="let veggie of veggies | async">
+        <ng-container *ngIf="inSpecialty(veggie.id)">
+          <div class="veggies ingredient">
+                {{veggie.name}}
+          </div>
+        </ng-container>
+      </ng-container>
+    </div> <!-- ingredient list -->
+  </div> <!-- veggies-->
 
   <div class="nuts-fruit typeContainer" *ngIf="group=='salad'">
     <div class="ingredient-header">
       Nuts/Fruits @ ${{iType['Nuts/Fruits'].price}} each
     </div>
-    <div class="nuts-fruits ingredient"
-    *ngFor="let nutsFruit of nutsFruits | async">
-      {{nutsFruit.name}}
-    </div>
+    <div class="ingredient-list">
+      <ng-container *ngFor="let nutsFruit of nutsFruits | async">
+        <ng-container *ngIf="inSpecialty(nutsFruit.id)">
+          <div class="nutsFruits ingredient">
+                {{nutsFruit.name}}
+          </div>
+        </ng-container>
+      </ng-container>
+    </div> <!-- ingredient list -->
   </div> <!-- nuts & fruits -->
 
   <div class="condiment typeContainer" *ngIf="group=='salad'">
     <div class="ingredient-header">
       Condiments @ ${{iType['Condiments'].price}} each
     </div>
-    <div class="condiments ingredient"
-    *ngFor="let condiment of condiments | async">
-      {{condiment.name}}
-    </div>
+    <div class="ingredient-list">
+      <ng-container *ngFor="let condiment of condiments | async">
+        <ng-container *ngIf="inSpecialty(condiment.id)">
+          <div class="condiments ingredient">
+                {{condiment.name}}
+          </div>
+        </ng-container>
+      </ng-container>
+    </div> <!-- ingredient list -->
   </div> <!-- condiments -->
 
 </ng-container>
 
+<!-- POPUP: INGREDIENT SELECTOR -->
+<div class="popup-screen-cover" *ngIf="popupFlag">
+  <div class="popup-window">
+    <ng-container *ngIf="selectorFlag">
+      <div class="popup-contents">
+        <ng-container *ngFor="let ingredient of ingredients">
+          <button
+          (click)="selectIngredient(ingredient.name)"
+          class="ingredient btn btn-primary"
+          type="button">
+            {{ ingredient.name }}
+          </button>
+        </ng-container>
+      </div>
+    </ng-container> <!-- /popup: ingredient selector -->
+
+    <!-- COMMON CLOSE BUTTON-->
+    <button (click)="closePopup()" class="btn btn-primary close-btn">
+      Close
+    </button><!-- POPUP: CLOSE BUTTON (shared) -->
+  </div> <!-- popup window -->
+</div> <!-- popup cover -->

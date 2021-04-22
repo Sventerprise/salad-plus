@@ -9,7 +9,7 @@ export const currentItemFeatureKey = 'currentItem';
 export interface State {
   selectedItemGroup: string,
   selectedSpecialty: Specialty,
-  ingredients: IngredientList
+  specialtyIngredients: IngredientList
 }
 
 export const initialState: State = {
@@ -22,7 +22,7 @@ export const initialState: State = {
     img: '',
     description: ''
   },
-  ingredients: []
+  specialtyIngredients: []
 };
 
 
@@ -40,11 +40,15 @@ export const reducer = createReducer(
   ),
   on(CurrentItemActions.loadSpecialtyIngredients,
     (state, action) => (
-      { ...state, ingredients: action.ingredientList })
+      { ...state, specialtyIngredients: action.specialtyIngredients })
   ),
   on(CurrentItemActions.clearSpecialty,
     (state) => (
       { ...state, ingredients: [] })
+  ),
+  on(CurrentItemActions.clearSpecialtyIngredients,
+    (state) => (
+      { ...state, selectedSpecialty: null })
   ),
   on(CurrentItemActions.clearSpecialtyIngredients,
     (state) => (

@@ -1,7 +1,7 @@
 <div class="builder-wrap">
-  <div class="fill">
+  <!-- <div class="fill">
     <img src="/assets/images/temp_img.png" alt="">
-  </div>
+  </div> -->
 
   <app-builder-form class="builder"></app-builder-form>
 
@@ -36,8 +36,7 @@
           </button>
         </ng-container> <!-- confirm popup -->
 
-
-        <!-- POPUP: TYPE SELECT -->
+  <!-- deprecated: type select
         <ng-container *ngIf="categoryFlag">
           <div class="popup-contents">
             <ng-container *ngFor="let type of ingredientTypes">
@@ -48,9 +47,9 @@
               </button>
             </ng-container>
           </div>
-        </ng-container><!-- /popup: type select -->
+        </ng-container>         -->
 
-        <!-- POPUP: INGREDIENT SELECTOR -->
+        <!-- Moved: INGREDIENT SELECTOR
         <ng-container *ngIf="selectorFlag">
           <div class="popup-contents">
             <ng-container *ngFor="let ingredient of ingredients">
@@ -62,7 +61,7 @@
               </button>
             </ng-container>
           </div>
-        </ng-container> <!-- /popup: ingredient selector -->
+        </ng-container>  /popup: ingredient selector -->
 
         <!-- COMMON CLOSE BUTTON-->
         <button (click)="closePopup()" class="btn btn-primary close-btn">
@@ -70,13 +69,6 @@
         </button><!-- POPUP: CLOSE BUTTON (shared) -->
       </div> <!-- popup window -->
     </div> <!-- popup cover -->
-
-
-
-
-
-
-
 
 </div> <!-- /builder wrap -->
 

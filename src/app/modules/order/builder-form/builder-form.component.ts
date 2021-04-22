@@ -7,7 +7,6 @@ import { selectAllIngredients, selectIngredientTypes } from 'src/app/stores/sele
 import { Ingredient, IngredientList, IngredientType, IngredientTypes } from '../models/Ingredient';
 import { Specialty } from '../models/Specialty';
 import * as fromCurrentItem from 'src/app/stores/selectors/current-item.selectors'
-import { ItemGroup } from '../models/ItemGroup';
 
 @Component({
   selector: 'app-builder-form',
@@ -15,8 +14,14 @@ import { ItemGroup } from '../models/ItemGroup';
   styleUrls: ['./builder-form.component.scss']
 })
 export class BuilderFormComponent implements OnInit {
+  //#region Flags
+  selectorFlag: boolean = false
+  popupFlag: boolean = false
+  //#endregion flags
+
   //#region Declarations
   specialtyIngredients$: Observable<IngredientList>
+  specialtyIngredients: IngredientList
   allIngredients$: Observable<IngredientList>
   specialty$: Observable<Specialty>
   allIngredients: Ingredient[]
@@ -34,6 +39,8 @@ export class BuilderFormComponent implements OnInit {
   iType: IngredientType
   //#endregion declarations
 
+  ingredients = []
+
 
   constructor(
     // private fb: FormBuilder
@@ -43,6 +50,10 @@ export class BuilderFormComponent implements OnInit {
   ngOnInit(): void {
     this.specialty$ = this.store.select(selectSelectedSpecialty)
     this.specialtyIngredients$ = this.store.select(selectSpecialtyIngredients)
+    this.specialtyIngredients$.subscribe(ingredients => {
+      this.specialtyIngredients = ingredients
+      console.log(ingredients)
+    })
     this.allIngredients$ = this.store.select(selectAllIngredients)
     this.ingredientTypes$ = this.store.select(selectIngredientTypes)
     this.ingredientTypes$.subscribe(x => {
@@ -75,8 +86,41 @@ export class BuilderFormComponent implements OnInit {
     //#endregion ingredient groups
   }
 
+
+  //#region POPUP METHODS
+  public confirmCancel() {
+
+  }
+
+  public selectIngredient(ingredient: string) {
+    this.closePopup()
+  }
+
+  public closePopup() {
+    this.popupFlag = false
+    this.selectorFlag = false
+  }
+  //#endregion popup methods
+
   onSubmit() {
 
+  }
+
+  // get specialty ingredients (check)
+  // filter displayed ingredients by specialty ingredients
+
+
+  inSpecialty(typeId: string): Boolean {
+    let result: Boolean = false
+    this.specialtyIngredients$.subscribe(ingredients => {
+      ingredients.forEach(ingredient => {
+        if (ingredient.id == typeId) {
+          result = true
+          return
+        }
+      })
+    })
+    return result
   }
 
 }
