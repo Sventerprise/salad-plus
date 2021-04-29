@@ -2,7 +2,7 @@
   <div class="bread typeContainer" *ngIf="group=='sandwich'">
     <div class="ingredient-header">
       Bread @ ${{iType['Breads'].price}}
-    </div> <!-- header -->
+    </div> <!-- breads header -->
     <div class="ingredient-list">
       <ng-container *ngFor="let bread of breads | async">
         <ng-container *ngIf="inSpecialty(bread.id)">
@@ -12,13 +12,12 @@
         </ng-container>
       </ng-container>
     </div> <!-- ingredient list -->
-  </div> <!-- found -->
+  </div> <!-- breads -->
 
-  <div class="greens typeContainer" *ngIf="group=='salad'">
+  <div class="green typeContainer" *ngIf="group=='salad'">
     <div class="ingredient-header">
       Greens @ ${{iType['Greens'].price}} each
-    </div>
-
+    </div> <!-- greens header -->
     <div class="ingredient-list">
       <ng-container *ngFor="let green of greens | async">
         <ng-container *ngIf="inSpecialty(green.id)">
@@ -28,14 +27,12 @@
         </ng-container>
       </ng-container>
     </div> <!-- ingredient list -->
-
   </div> <!-- greens -->
 
   <div class="meat typeContainer">
     <div class="ingredient-header">
       Meats @ ${{iType['Meats'].price}} each
-    </div>
-
+    </div> <!-- meat header -->
     <div class="ingredient-list">
       <ng-container *ngFor="let meat of meats | async">
         <ng-container *ngIf="inSpecialty(meat.id)">
@@ -50,8 +47,7 @@
   <div class="cheese typeContainer">
     <div class="ingredient-header">
       Cheeses @ ${{iType['Cheeses'].price}} each
-    </div>
-
+    </div> <!-- cheeses header -->
     <div class="ingredient-list">
       <ng-container *ngFor="let cheese of cheeses | async">
         <ng-container *ngIf="inSpecialty(cheese.id)">
@@ -66,8 +62,7 @@
   <div class="veggie typeContainer">
     <div class="ingredient-header">
       Veggies @ ${{iType['Veggies'].price}} each
-    </div>
-
+    </div>  <!-- veggie header -->
     <div class="ingredient-list">
       <ng-container *ngFor="let veggie of veggies | async">
         <ng-container *ngIf="inSpecialty(veggie.id)">
@@ -82,11 +77,11 @@
   <div class="nuts-fruit typeContainer" *ngIf="group=='salad'">
     <div class="ingredient-header">
       Nuts/Fruits @ ${{iType['Nuts/Fruits'].price}} each
-    </div>
+    </div>  <!-- nuts/fruit header -->
     <div class="ingredient-list">
       <ng-container *ngFor="let nutsFruit of nutsFruits | async">
         <ng-container *ngIf="inSpecialty(nutsFruit.id)">
-          <div class="nutsFruits ingredient">
+          <div class="nuts-fruits ingredient">
                 {{nutsFruit.name}}
           </div>
         </ng-container>
@@ -94,10 +89,10 @@
     </div> <!-- ingredient list -->
   </div> <!-- nuts & fruits -->
 
-  <div class="condiment typeContainer" *ngIf="group=='salad'">
+  <div class="condiment typeContainer" *ngIf="group=='sandwich'">
     <div class="ingredient-header">
       Condiments @ ${{iType['Condiments'].price}} each
-    </div>
+    </div> <!-- condiment header -->
     <div class="ingredient-list">
       <ng-container *ngFor="let condiment of condiments | async">
         <ng-container *ngIf="inSpecialty(condiment.id)">
@@ -109,7 +104,22 @@
     </div> <!-- ingredient list -->
   </div> <!-- condiments -->
 
-</ng-container>
+  <div class="condiment typeContainer" *ngIf="group=='salad'">
+    <div class="ingredient-header">
+      Dressings @ ${{iType['Dressings'].price}} each
+    </div> <!-- dressing header -->
+    <div class="ingredient-list">
+      <ng-container *ngFor="let dressing of dressings | async">
+        <ng-container *ngIf="inSpecialty(dressing.id)">
+          <div class="dressings ingredient">
+                {{dressing.name}}
+          </div>
+        </ng-container>
+      </ng-container>
+    </div> <!-- ingredient list -->
+  </div> <!-- condiments -->
+
+</ng-container>  <!-- view model -->
 
 <!-- POPUP: INGREDIENT SELECTOR -->
 <div class="popup-screen-cover" *ngIf="popupFlag">

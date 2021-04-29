@@ -26,6 +26,8 @@
 .ingredient-header {
   width: 100%;
   display: inline-block;
+  text-align: center;
+  font-size: large;
 }
 
 .remove {
@@ -78,7 +80,7 @@ button {
 }
 
 .cheese {
-  background-color: rgb(241, 247, 184);
+  background-color: rgb(239, 243, 199);
 }
 
 .cheeses {
@@ -86,11 +88,11 @@ button {
 }
 
 .veggie {
-  background-color: rgb(163, 231, 180);
+  background-color: rgb(202, 226, 208);
 }
 
 .veggies {
-  background-color: rgb(80, 146, 96);
+  background-color: rgb(85, 156, 103);
 }
 
 .condiment {
@@ -99,6 +101,14 @@ button {
 
 .condiments {
   background-color: rgb(197, 146, 197);
+}
+
+.dressing {
+  background-color: rgb(241, 216, 223);
+}
+
+.dressings {
+  background-color: rgb(197, 146, 161);
 }
 
 .nuts-fruit {

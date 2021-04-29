@@ -35,6 +35,7 @@ export class BuilderFormComponent implements OnInit {
   condiments: Observable<Ingredient[]>
   cheeses: Observable<Ingredient[]>
   nutsFruits: Observable<Ingredient[]>
+  dressings: Observable<Ingredient[]>
 
   iType: IngredientType
   //#endregion declarations

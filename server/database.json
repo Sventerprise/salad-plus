@@ -13,7 +13,7 @@
         "id": "turkey_sandwich",
         "name": "Turkey on White",
         "ingredients": [
-          "ham",
+          "turkey",
           "kaiser_roll",
           "provolone",
           "mustard",
@@ -73,7 +73,7 @@
         "id": "roast_beef",
         "name": "Roast Beef",
         "image": ".assets/images/ingredients/roast_beef.png",
-        "itemGroup": "sand",
+        "itemGroup": "sandwich",
         "type": "Meat"
       },
       {
@@ -94,14 +94,14 @@
         "id": "mixed_greens",
         "name": "Mixed Greens",
         "image": ".assets/images/ingredients/mixed_greens.png",
-        "itemGroup": "sal",
+        "itemGroup": "salad",
         "type": "Greens"
       },
       {
         "id": "lettuce",
         "name": "Lettuce",
         "image": ".assets/images/ingredients/lettuce.png",
-        "itemGroup": "sal",
+        "itemGroup": "salad",
         "type": "Veggies"
       },
       {
@@ -115,7 +115,7 @@
         "id": "pickles",
         "name": "Pickles",
         "image": ".assets/images/ingredients/Pickles.png",
-        "itemGroup": "sand",
+        "itemGroup": "sandwich",
         "type": "Veggies"
       },
       {
@@ -129,7 +129,7 @@
         "id": "cucumbers",
         "name": "Cucumbers",
         "image": ".assets/images/ingredients/cucumbers.png",
-        "itemGroup": "sal",
+        "itemGroup": "salad",
         "type": "Veggies"
       },
       {
@@ -143,71 +143,71 @@
         "id": "provolone",
         "name": "Provolone",
         "image": ".assets/images/ingredients/provolone.png",
-        "itemGroup": "sand",
+        "itemGroup": "sandwich",
         "type": "Cheese"
       },
       {
         "id": "blue_cheese",
         "name": "Blue Cheese",
         "image": ".assets/images/ingredients/blue_cheese.png",
-        "itemGroup": "sal",
+        "itemGroup": "salad",
         "type": "Cheese"
       },
       {
         "id": "sourdough",
         "name": "Sourdough",
         "image": ".assets/images/ingredients/sourdough.png",
-        "itemGroup": "sand",
+        "itemGroup": "sandwich",
         "type": "Bread"
       },
       {
         "id": "kaiser_roll",
         "name": "Kaiser Roll",
         "image": ".assets/images/ingredients/kaiser_roll.png",
-        "itemGroup": "sand",
+        "itemGroup": "sandwich",
         "type": "Bread"
       },
       {
         "id": "mustard",
         "name": "Mustard",
         "image": ".assets/images/ingredients/mustard.png",
-        "itemGroup": "sand",
+        "itemGroup": "sandwich",
         "type": "Condiments"
       },
       {
         "id": "mayo",
         "name": "Mayo",
         "image": ".assets/images/ingredients/mayo.png",
-        "itemGroup": "sand",
+        "itemGroup": "sandwich",
         "type": "Condiments"
       },
       {
         "id": "ranch",
         "name": "Ranch",
         "image": ".assets/images/ingredients/ranch.png",
-        "itemGroup": "sal",
-        "type": "Condiments"
+        "itemGroup": "salad",
+        "type": "Dressings"
       },
       {
         "id": "almonds",
         "name": "Almonds",
         "image": ".assets/images/ingredients/almonds.png",
-        "itemGroup": "sal",
+        "itemGroup": "salad",
         "type": "Nuts/Fruit"
       },
       {
         "id": "cranberries",
         "name": "Cranberries",
         "image": ".assets/images/ingredients/cranberries.png",
-        "itemGroup": "sal",
+        "itemGroup": "salad",
         "type": "Nuts/Fruit"
       },
       {
         "id": "vinaigrette",
         "name": "Vinaigrette",
         "image": ".assets/images/ingredients/vinaigrette.png",
-        "itemGroup": "sal",
-        "type": "Condiments"
+        "itemGroup": "salad",
+        "type": "Dressings"
       }
     ],
     "ingredientTypes": {
@@ -217,6 +217,7 @@
       "Meats": { "price": "3.20" },
       "Veggies": { "price": "1.70" },
       "Greens": { "price": "2.80" },
+      "Dressings": { "price": "1.50" },
       "Nuts/Fruits": { "price": "2.20" }
     },
     "desserts": [],
