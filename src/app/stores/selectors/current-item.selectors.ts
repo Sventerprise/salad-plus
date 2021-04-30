@@ -82,4 +82,11 @@ export const selectCondiments = createSelector(
     ingredient => ingredient.type == "Condiments"
   )
 )
+
+export const selectDressings = createSelector(
+  selectAllIngredients,
+  (allIngredients): IngredientList => allIngredients.filter(
+    ingredient => ingredient.type == "Dressings"
+  )
+)
 //#region individual ingredients

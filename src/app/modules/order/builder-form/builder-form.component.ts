@@ -84,17 +84,32 @@ export class BuilderFormComponent implements OnInit {
     this.condiments = this.store.select(fromCurrentItem.selectCondiments)
     this.breads.subscribe(
     )
+    this.dressings = this.store.select(fromCurrentItem.selectDressings)
+    this.breads.subscribe(
+    )
     //#endregion ingredient groups
   }
 
 
   //#region POPUP METHODS
   public confirmCancel() {
+    // when a user taps cancel
+    // a popup asks if the user is sure (cancels current item)
 
   }
 
-  public selectIngredient(ingredient: string) {
-    this.closePopup()
+  public editIngredients(ingredient: string) {
+    // when a user taps either an ingredient or its header
+    // a popup listing the ingredients of that type appears
+    this.popupFlag = true
+    this.selectorFlag = false
+
+  }
+
+  public selectIngredients() {
+    // when user taps an ingredient name
+    // it is added to the array of selected ingredients of that type
+
   }
 
   public closePopup() {

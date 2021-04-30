@@ -1,6 +1,6 @@
 <ng-container *ngIf="selectedItemGroup$ |async as group">
   <div class="bread typeContainer" *ngIf="group=='sandwich'">
-    <div class="ingredient-header">
+    <div class="ingredient-header" (click)="editIngredients('bread')">
       Bread @ ${{iType['Breads'].price}}
     </div> <!-- breads header -->
     <div class="ingredient-list">
@@ -128,7 +128,7 @@
       <div class="popup-contents">
         <ng-container *ngFor="let ingredient of ingredients">
           <button
-          (click)="selectIngredient(ingredient.name)"
+          (click)="selectIngredients()"
           class="ingredient btn btn-primary"
           type="button">
             {{ ingredient.name }}

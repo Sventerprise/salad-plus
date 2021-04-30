@@ -17,7 +17,7 @@
           "kaiser_roll",
           "provolone",
           "mustard",
-          "green_lettuce"
+          "lettuce"
         ],
         "itemGroup": "sandwich",
         "img": "./assets/images/specialties/turkey_sandwich.png",
@@ -30,9 +30,9 @@
           "ham",
           "turkey",
           "mixed_greens",
-          "tomato",
+          "tomatoes",
           "cheddar",
-          "cucumber",
+          "cucumbers",
           "ranch"
         ],
         "itemGroup": "salad",
