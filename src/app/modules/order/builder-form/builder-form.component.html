@@ -1,12 +1,12 @@
 <ng-container *ngIf="selectedItemGroup$ |async as group">
   <div class="bread typeContainer" *ngIf="group=='sandwich'">
-    <div class="ingredient-header" (click)="editIngredients('bread')">
-      Bread @ ${{iType['Breads'].price}}
+    <div class="ingredient-header" (click)="editIngredients('Bread')">
+      Bread @ ${{iType['Bread'].price}}
     </div> <!-- breads header -->
     <div class="ingredient-list">
       <ng-container *ngFor="let bread of breads | async">
         <ng-container *ngIf="inSpecialty(bread.id)">
-          <div class="breads ingredient">
+          <div class="breads ingredient" (click)="editIngredients('Bread')">
                 {{bread.name}}
           </div>
         </ng-container>
@@ -15,13 +15,13 @@
   </div> <!-- breads -->
 
   <div class="green typeContainer" *ngIf="group=='salad'">
-    <div class="ingredient-header">
+    <div class="ingredient-header" (click)="editIngredients('Greens')">
       Greens @ ${{iType['Greens'].price}} each
     </div> <!-- greens header -->
     <div class="ingredient-list">
       <ng-container *ngFor="let green of greens | async">
         <ng-container *ngIf="inSpecialty(green.id)">
-          <div class="greens ingredient">
+          <div class="greens ingredient"> (click)="editIngredients('Greens')"
                 {{green.name}}
           </div>
         </ng-container>
@@ -30,14 +30,14 @@
   </div> <!-- greens -->
 
   <div class="meat typeContainer">
-    <div class="ingredient-header">
-      Meats @ ${{iType['Meats'].price}} each
+    <div class="ingredient-header" (click)="editIngredients('Meat')">
+      Meats @ ${{iType['Meat'].price}} each
     </div> <!-- meat header -->
     <div class="ingredient-list">
       <ng-container *ngFor="let meat of meats | async">
         <ng-container *ngIf="inSpecialty(meat.id)">
-          <div class="meats ingredient">
-                {{meat.name}}
+          <div class="meats ingredient" (click)="editIngredients('Meat')">
+            {{meat.name}}
           </div>
         </ng-container>
       </ng-container>
@@ -45,13 +45,13 @@
   </div> <!-- meats-->
 
   <div class="cheese typeContainer">
-    <div class="ingredient-header">
-      Cheeses @ ${{iType['Cheeses'].price}} each
+    <div class="ingredient-header" (click)="editIngredients('Cheese')">
+      Cheeses @ ${{iType['Cheese'].price}} each
     </div> <!-- cheeses header -->
     <div class="ingredient-list">
       <ng-container *ngFor="let cheese of cheeses | async">
         <ng-container *ngIf="inSpecialty(cheese.id)">
-          <div class="cheeses ingredient">
+          <div class="cheeses ingredient" (click)="editIngredients('Cheese')">
                 {{cheese.name}}
           </div>
         </ng-container>
@@ -60,13 +60,13 @@
   </div> <!-- cheeses-->
 
   <div class="veggie typeContainer">
-    <div class="ingredient-header">
+    <div class="ingredient-header" (click)="editIngredients('Veggies')">
       Veggies @ ${{iType['Veggies'].price}} each
     </div>  <!-- veggie header -->
     <div class="ingredient-list">
       <ng-container *ngFor="let veggie of veggies | async">
         <ng-container *ngIf="inSpecialty(veggie.id)">
-          <div class="veggies ingredient">
+          <div class="veggies ingredient" (click)="editIngredients('Veggies')">
                 {{veggie.name}}
           </div>
         </ng-container>
@@ -75,13 +75,13 @@
   </div> <!-- veggies-->
 
   <div class="nuts-fruit typeContainer" *ngIf="group=='salad'">
-    <div class="ingredient-header">
-      Nuts/Fruits @ ${{iType['Nuts/Fruits'].price}} each
+    <div class="ingredient-header" (click)="editIngredients('Nuts/Fruit')">
+      Nuts/Fruits @ ${{iType['Nuts/Fruit'].price}} each
     </div>  <!-- nuts/fruit header -->
     <div class="ingredient-list">
       <ng-container *ngFor="let nutsFruit of nutsFruits | async">
         <ng-container *ngIf="inSpecialty(nutsFruit.id)">
-          <div class="nuts-fruits ingredient">
+          <div class="nuts-fruits ingredient" (click)="editIngredients('Nuts/Fruit')">
                 {{nutsFruit.name}}
           </div>
         </ng-container>
@@ -90,13 +90,13 @@
   </div> <!-- nuts & fruits -->
 
   <div class="condiment typeContainer" *ngIf="group=='sandwich'">
-    <div class="ingredient-header">
+    <div class="ingredient-header" (click)="editIngredients('Condiments')">
       Condiments @ ${{iType['Condiments'].price}} each
     </div> <!-- condiment header -->
     <div class="ingredient-list">
       <ng-container *ngFor="let condiment of condiments | async">
         <ng-container *ngIf="inSpecialty(condiment.id)">
-          <div class="condiments ingredient">
+          <div class="condiments ingredient" (click)="editIngredients('Condiments')">
                 {{condiment.name}}
           </div>
         </ng-container>
@@ -105,41 +105,18 @@
   </div> <!-- condiments -->
 
   <div class="condiment typeContainer" *ngIf="group=='salad'">
-    <div class="ingredient-header">
+    <div class="ingredient-header" (click)="editIngredients('Dressings')">
       Dressings @ ${{iType['Dressings'].price}} each
     </div> <!-- dressing header -->
     <div class="ingredient-list">
       <ng-container *ngFor="let dressing of dressings | async">
         <ng-container *ngIf="inSpecialty(dressing.id)">
-          <div class="dressings ingredient">
+          <div class="dressings ingredient" (click)="editIngredients('Dressings')">
                 {{dressing.name}}
           </div>
         </ng-container>
       </ng-container>
     </div> <!-- ingredient list -->
-  </div> <!-- condiments -->
+  </div> <!-- dressings -->
 
 </ng-container>  <!-- view model -->
-
-<!-- POPUP: INGREDIENT SELECTOR -->
-<div class="popup-screen-cover" *ngIf="popupFlag">
-  <div class="popup-window">
-    <ng-container *ngIf="selectorFlag">
-      <div class="popup-contents">
-        <ng-container *ngFor="let ingredient of ingredients">
-          <button
-          (click)="selectIngredients()"
-          class="ingredient btn btn-primary"
-          type="button">
-            {{ ingredient.name }}
-          </button>
-        </ng-container>
-      </div>
-    </ng-container> <!-- /popup: ingredient selector -->
-
-    <!-- COMMON CLOSE BUTTON-->
-    <button (click)="closePopup()" class="btn btn-primary close-btn">
-      Close
-    </button><!-- POPUP: CLOSE BUTTON (shared) -->
-  </div> <!-- popup window -->
-</div> <!-- popup cover -->

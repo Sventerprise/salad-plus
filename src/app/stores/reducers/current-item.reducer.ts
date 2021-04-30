@@ -10,6 +10,8 @@ export interface State {
   selectedItemGroup: string,
   selectedSpecialty: Specialty,
   specialtyIngredients: IngredientList
+  ingredientSelectList: IngredientList
+  selectorFlag: boolean
 }
 
 export const initialState: State = {
@@ -22,7 +24,9 @@ export const initialState: State = {
     img: '',
     description: ''
   },
-  specialtyIngredients: []
+  specialtyIngredients: [],
+  ingredientSelectList: [],
+  selectorFlag: false
 };
 
 
@@ -42,6 +46,21 @@ export const reducer = createReducer(
     (state, action) => (
       { ...state, specialtyIngredients: action.specialtyIngredients })
   ),
+  on(CurrentItemActions.updateIngredientSelectList,
+    (state, action) => (
+      { ...state, ingredientSelectList: action.list })
+  ),
+  on(CurrentItemActions.openIngredientSelectorPopup,
+    (state) => (
+      { ...state, selectorFlag: true })
+  ),
+  on(CurrentItemActions.closeIngredientSelectorPopup,
+    (state) => (
+      { ...state, selectorFlag: false })
+  ),
+
+
+
   on(CurrentItemActions.clearSpecialty,
     (state) => (
       { ...state, ingredients: [] })

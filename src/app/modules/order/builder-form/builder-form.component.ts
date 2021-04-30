@@ -7,6 +7,7 @@ import { selectAllIngredients, selectIngredientTypes } from 'src/app/stores/sele
 import { Ingredient, IngredientList, IngredientType, IngredientTypes } from '../models/Ingredient';
 import { Specialty } from '../models/Specialty';
 import * as fromCurrentItem from 'src/app/stores/selectors/current-item.selectors'
+import { openIngredientSelectorPopup, updateIngredientSelectList } from 'src/app/stores/actions/current-item.actions';
 
 @Component({
   selector: 'app-builder-form',
@@ -98,11 +99,20 @@ export class BuilderFormComponent implements OnInit {
 
   }
 
-  public editIngredients(ingredient: string) {
+  public editIngredients(type: string) {
     // when a user taps either an ingredient or its header
     // a popup listing the ingredients of that type appears
-    this.popupFlag = true
-    this.selectorFlag = false
+
+
+    // create list of ingredients to show in popup (type selected)
+    let list: IngredientList
+    this.store.select(selectAllIngredients).subscribe(all =>
+      list = all.filter(i => i.type === type)
+    )
+    this.store.dispatch(updateIngredientSelectList({ list }))
+
+    // update selector flag in builder to open selector popup
+    this.store.dispatch(openIngredientSelectorPopup())
 
   }
 
@@ -112,10 +122,6 @@ export class BuilderFormComponent implements OnInit {
 
   }
 
-  public closePopup() {
-    this.popupFlag = false
-    this.selectorFlag = false
-  }
   //#endregion popup methods
 
   onSubmit() {
@@ -126,8 +132,8 @@ export class BuilderFormComponent implements OnInit {
   // filter displayed ingredients by specialty ingredients
 
 
-  inSpecialty(typeId: string): Boolean {
-    let result: Boolean = false
+  inSpecialty(typeId: string): boolean {
+    let result: boolean = false
     this.specialtyIngredients$.subscribe(ingredients => {
       ingredients.forEach(ingredient => {
         if (ingredient.id == typeId) {

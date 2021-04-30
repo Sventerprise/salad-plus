@@ -19,6 +19,24 @@ export const loadSpecialtyIngredients = createAction(
   props<{ specialtyIngredients: IngredientList }>()
 )
 
+export const updateIngredientSelectList = createAction(
+  '[Builder Form] Update Ingredient Select Popup List',
+  props<{ list: IngredientList }>()
+);
+
+export const openIngredientSelectorPopup = createAction(
+  '[Builder Form] Open Ingredient Sector Popup (Builder)'
+);
+
+export const closeIngredientSelectorPopup = createAction(
+  '[Builder Popup] Close Ingredient Sector Popup (Builder)'
+);
+
+
+
+
+
+
 // boilerplate
 export const loadCurrentItems = createAction(
   '[CurrentItem] Load CurrentItems'

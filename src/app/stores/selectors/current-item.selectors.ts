@@ -33,7 +33,18 @@ export const selectSpecialtyIngredients = createSelector(
   (state) => state.specialtyIngredients
 )
 
-//#region Individual Ingredients
+export const selectIngredientSelect = createSelector(
+  selectCurrentItemState,
+  (state): IngredientList => state.ingredientSelectList
+)
+
+export const selectSelectorFlag = createSelector(
+  selectCurrentItemState,
+  (state): boolean => state.selectorFlag
+)
+
+
+// #region Individual Ingredients
 export const selectBreads = createSelector(
   selectAllIngredients,
   (allIngredients): IngredientList => allIngredients.filter(
@@ -89,4 +100,5 @@ export const selectDressings = createSelector(
     ingredient => ingredient.type == "Dressings"
   )
 )
+
 //#region individual ingredients

@@ -211,14 +211,38 @@
       }
     ],
     "ingredientTypes": {
-      "Condiments": { "price": "0.25" },
-      "Breads": { "price": "3.00" },
-      "Cheeses": { "price": "2.00" },
-      "Meats": { "price": "3.20" },
-      "Veggies": { "price": "1.70" },
-      "Greens": { "price": "2.80" },
-      "Dressings": { "price": "1.50" },
-      "Nuts/Fruits": { "price": "2.20" }
+      "Condiments": {
+        "selectType": "multiple",
+        "price": "0.25"
+      },
+      "Bread": {
+        "selectType": "single",
+        "price": "3.00"
+      },
+      "Cheese": {
+        "selectType": "multiple",
+        "price": "2.00"
+      },
+      "Meat": {
+        "selectType": "multiple",
+        "price": "3.20"
+      },
+      "Veggies": {
+        "selectType": "multiple",
+        "price": "1.70"
+      },
+      "Greens": {
+        "selectType": "single",
+        "price": "2.80"
+      },
+      "Dressings": {
+        "selectType": "multiple",
+        "price": "1.50"
+      },
+      "Nuts/Fruit": {
+        "selectType": "multiple",
+        "price": "2.20"
+      }
     },
     "desserts": [],
     "drinks": [],

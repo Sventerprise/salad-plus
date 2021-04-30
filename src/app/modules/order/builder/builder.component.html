@@ -11,64 +11,55 @@
     Cancel
   </button> <!-- cancel confirm popup -->
 
+<!--
   <hr class="divider2">
   <button type="button" class="add-ingredients-btn btn btn-lg btn-primary"
-  (click)="openIngredientTypes()">Add Ingredients</button>
+  (click)="openIngredientTypes()">Add Ingredients</button> -->
 
 
 
   <!-- POPUPS -->
 
-    <div class="popup-screen-cover" *ngIf="popupFlag">
-      <div class="popup-window">
+  <!-- INGREDIENT SELECTOR -->
+  <div class="popup-screen-cover" *ngIf="selectorFlag | async">
+    <div class="popup-window">
 
-        <!-- POPUP: CONFIRM -->
-        <ng-container *ngIf="confirmFlag">
-          <div class="popup-contents">
-            <div class="msg">
-              <div class="remove">Do you <span class="really">really</span> want to cancel this item?</div>
-            </div>
-          </div>
-          <button type="button" class="remove-btn btn btn-danger"
-          (click)="confirmCancel()"
-          routerLink="../">
-            Remove Item
-          </button>
-        </ng-container> <!-- confirm popup -->
+      <!-- <ng-container *ngIf="selectorFlag"> -->
+        <div class="popup-contents">
+          <ng-container *ngFor="let ingredient of ingredientSelect | async">
+            <button
+            (click)="selectIngredient(ingredient.name)"
+            class="ingredient btn btn-primary"
+            type="button">
+              {{ ingredient.name }}
+            </button>
+          </ng-container>
+        </div>
+      <!-- </ng-container>  /popup: ingredient selector -->
 
-  <!-- deprecated: type select
-        <ng-container *ngIf="categoryFlag">
-          <div class="popup-contents">
-            <ng-container *ngFor="let type of ingredientTypes">
-              <button (click)="openSelectIngredient(type)"
-              class="ingredient btn btn-primary"
-              type="button">
-                {{ type }}
-              </button>
-            </ng-container>
-          </div>
-        </ng-container>         -->
+      <!-- COMMON CLOSE BUTTON-->
+      <button (click)="closeSelectIngredient()" class="btn btn-primary close-btn">
+        Close
+      </button><!-- POPUP: CLOSE BUTTON (shared) -->
+    </div> <!-- popup window -->
+  </div> <!-- popup cover -->
 
-        <!-- Moved: INGREDIENT SELECTOR
-        <ng-container *ngIf="selectorFlag">
-          <div class="popup-contents">
-            <ng-container *ngFor="let ingredient of ingredients">
-              <button
-              (click)="selectIngredient(ingredient.name)"
-              class="ingredient btn btn-primary"
-              type="button">
-                {{ ingredient.name }}
-              </button>
-            </ng-container>
-          </div>
-        </ng-container>  /popup: ingredient selector -->
 
-        <!-- COMMON CLOSE BUTTON-->
-        <button (click)="closePopup()" class="btn btn-primary close-btn">
-          Close
-        </button><!-- POPUP: CLOSE BUTTON (shared) -->
-      </div> <!-- popup window -->
-    </div> <!-- popup cover -->
+  <!-- POPUP: CONFIRM -->
+  <div class="popup-screen-cover" *ngIf="confirmFlag">
+    <div class="popup-window">
+      <div class="popup-contents">
+        <div class="msg">
+          <div class="remove">Do you <span class="really">really</span> want to cancel this item?</div>
+        </div>
+      </div>
+      <button type="button" class="remove-btn btn btn-danger"
+      (click)="confirmCancel()"
+      routerLink="../">
+        Remove Item
+      </button>
+    </div> <!-- popup window -->
+  </div> <!-- confirm popup -->
 
 </div> <!-- /builder wrap -->
 
