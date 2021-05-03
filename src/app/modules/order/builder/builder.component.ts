@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { closeIngredientSelectorPopup } from 'src/app/stores/actions/current-item.actions';
-import { selectCurrentItemState, selectIngredientSelect, selectSelectorFlag } from 'src/app/stores/selectors/current-item.selectors';
-import { Ingredient } from '../models/Ingredient';
+import { closeIngredientSelectorPopup } from 'src/app/stores/actions/item-edit.actions';
+import { selectAllIngredientsOfType, selectSelectorFlag } from 'src/app/stores/selectors/item-edit.selectors';
+import { Ingredient, IngredientList } from '../models/Ingredient';
+import * as fromItemEdit from 'src/app/stores/selectors/item-edit.selectors'
 
 @Component({
   selector: 'app-builder',
@@ -17,7 +18,8 @@ export class BuilderComponent implements OnInit {
   confirmFlag: boolean = false
   popupFlag: boolean = false
 
-  ingredientSelect: Observable<Ingredient[]>
+  ingredientsOfType: Observable<Ingredient[]>
+  selectedIngredients: IngredientList
   typeSelect: boolean = true
 
   constructor(
@@ -27,8 +29,10 @@ export class BuilderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.ingredientSelect = this.store.select(selectIngredientSelect)
+    this.ingredientsOfType = this.store.select(selectAllIngredientsOfType)
     this.selectorFlag = this.store.select(selectSelectorFlag)
+    this.store.select(fromItemEdit.selectAllIngredientsOfType)
+      .subscribe(ingredients => this.selectedIngredients = ingredients)
   }
 
   // #region Methods
@@ -41,6 +45,11 @@ export class BuilderComponent implements OnInit {
     this.store.dispatch(closeIngredientSelectorPopup())
   }
 
+  public isSelected(id: string): boolean {
+    return this.selectedIngredients.find(ingredients =>
+      ingredients.id === id) ? true : false
+  }
+
 
   //#region Popups
   public openCancelConfirm() {
@@ -49,7 +58,6 @@ export class BuilderComponent implements OnInit {
   }
 
   public confirmCancel() {
-
   }
 
   public selectIngredient(ingredient: string) {

@@ -11,11 +11,6 @@
     Cancel
   </button> <!-- cancel confirm popup -->
 
-<!--
-  <hr class="divider2">
-  <button type="button" class="add-ingredients-btn btn btn-lg btn-primary"
-  (click)="openIngredientTypes()">Add Ingredients</button> -->
-
 
 
   <!-- POPUPS -->
@@ -25,16 +20,16 @@
     <div class="popup-window">
 
       <!-- <ng-container *ngIf="selectorFlag"> -->
-        <div class="popup-contents">
-          <ng-container *ngFor="let ingredient of ingredientSelect | async">
-            <button
+        <ul class="popup-contents">
+          <ng-container *ngFor="let ingredient of ingredientsOfType | async">
+            <li
             (click)="selectIngredient(ingredient.name)"
-            class="ingredient btn btn-primary"
-            type="button">
+            class="ingredient" [class.selected]="isSelected(ingredient.id)"
+            >
               {{ ingredient.name }}
-            </button>
+            </li>
           </ng-container>
-        </div>
+        </ul>
       <!-- </ng-container>  /popup: ingredient selector -->
 
       <!-- COMMON CLOSE BUTTON-->

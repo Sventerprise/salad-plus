@@ -33,14 +33,9 @@ export const selectSpecialtyIngredients = createSelector(
   (state) => state.specialtyIngredients
 )
 
-export const selectIngredientSelect = createSelector(
+export const selectIngredients = createSelector(
   selectCurrentItemState,
-  (state): IngredientList => state.ingredientSelectList
-)
-
-export const selectSelectorFlag = createSelector(
-  selectCurrentItemState,
-  (state): boolean => state.selectorFlag
+  (state) => state.currentItemIngredients
 )
 
 

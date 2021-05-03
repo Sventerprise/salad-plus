@@ -15,23 +15,19 @@ export const updateSpecialty = createAction(
 )
 
 export const loadSpecialtyIngredients = createAction(
-  '[Specialty] UpdateCurrentIngredients',
+  '[Specialty] Load Specialty Ingredients to Store',
   props<{ specialtyIngredients: IngredientList }>()
 )
 
-export const updateIngredientSelectList = createAction(
-  '[Builder Form] Update Ingredient Select Popup List',
+export const setItemIngredientsFromSpecialty = createAction(
+  '[Specialty] Set Item Ingredients to Specialty Ingredients',
+  props<{ initialIngredients: IngredientList }>()
+)
+
+export const updateItemIngredients = createAction(
+  '[Builder Form] Update ingredients on the current item',
   props<{ list: IngredientList }>()
 );
-
-export const openIngredientSelectorPopup = createAction(
-  '[Builder Form] Open Ingredient Sector Popup (Builder)'
-);
-
-export const closeIngredientSelectorPopup = createAction(
-  '[Builder Popup] Close Ingredient Sector Popup (Builder)'
-);
-
 
 
 

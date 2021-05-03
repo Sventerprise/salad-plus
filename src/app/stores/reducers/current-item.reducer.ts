@@ -1,5 +1,4 @@
-import { state } from '@angular/animations';
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import { IngredientList, Ingredients } from 'src/app/modules/order/models/Ingredient';
 import { Specialty } from 'src/app/modules/order/models/Specialty';
 import * as CurrentItemActions from '../actions/current-item.actions';
@@ -10,8 +9,7 @@ export interface State {
   selectedItemGroup: string,
   selectedSpecialty: Specialty,
   specialtyIngredients: IngredientList
-  ingredientSelectList: IngredientList
-  selectorFlag: boolean
+  currentItemIngredients: IngredientList
 }
 
 export const initialState: State = {
@@ -25,8 +23,7 @@ export const initialState: State = {
     description: ''
   },
   specialtyIngredients: [],
-  ingredientSelectList: [],
-  selectorFlag: false
+  currentItemIngredients: [],
 };
 
 
@@ -46,17 +43,13 @@ export const reducer = createReducer(
     (state, action) => (
       { ...state, specialtyIngredients: action.specialtyIngredients })
   ),
-  on(CurrentItemActions.updateIngredientSelectList,
+  on(CurrentItemActions.setItemIngredientsFromSpecialty,
     (state, action) => (
-      { ...state, ingredientSelectList: action.list })
+      { ...state, currentItemIngredients: action.initialIngredients })
   ),
-  on(CurrentItemActions.openIngredientSelectorPopup,
-    (state) => (
-      { ...state, selectorFlag: true })
-  ),
-  on(CurrentItemActions.closeIngredientSelectorPopup,
-    (state) => (
-      { ...state, selectorFlag: false })
+  on(CurrentItemActions.updateItemIngredients,
+    (state, action) => (
+      { ...state, currentItemIngredients: action.list })
   ),
 
 

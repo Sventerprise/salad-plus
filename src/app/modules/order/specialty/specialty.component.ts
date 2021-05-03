@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { loadSpecialtyIngredients, updateSpecialty } from 'src/app/stores/actions/current-item.actions';
+import { loadSpecialtyIngredients, setItemIngredientsFromSpecialty, updateSpecialty } from 'src/app/stores/actions/current-item.actions';
 import { selectSpecialtiesOfGroup } from 'src/app/stores/selectors/current-item.selectors';
 import { Ingredient, IngredientList } from '../models/Ingredient';
 
@@ -41,7 +41,13 @@ export class SpecialtyComponent implements OnInit {
       .getSpecialtyIngredientsList(selectedSpecialty.ingredients)
     // load to store for use by builder
     this.store.dispatch(loadSpecialtyIngredients({ specialtyIngredients }))
+
+    // set specialty ingredients to item ingredients (in case they change)
+    this.store.dispatch(setItemIngredientsFromSpecialty(
+      { initialIngredients: specialtyIngredients }
+    ))
   }
+
 
 
 }

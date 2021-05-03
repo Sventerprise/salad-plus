@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectSpecialtyIngredients, selectSelectedSpecialty, selectBreads } from 'src/app/stores/selectors/current-item.selectors';
@@ -7,7 +6,8 @@ import { selectAllIngredients, selectIngredientTypes } from 'src/app/stores/sele
 import { Ingredient, IngredientList, IngredientType, IngredientTypes } from '../models/Ingredient';
 import { Specialty } from '../models/Specialty';
 import * as fromCurrentItem from 'src/app/stores/selectors/current-item.selectors'
-import { openIngredientSelectorPopup, updateIngredientSelectList } from 'src/app/stores/actions/current-item.actions';
+import * as fromItemEdit from 'src/app/stores/actions/item-edit.actions'
+
 
 @Component({
   selector: 'app-builder-form',
@@ -45,7 +45,6 @@ export class BuilderFormComponent implements OnInit {
 
 
   constructor(
-    // private fb: FormBuilder
     private store: Store<{}>,
   ) { }
 
@@ -103,22 +102,35 @@ export class BuilderFormComponent implements OnInit {
     // when a user taps either an ingredient or its header
     // a popup listing the ingredients of that type appears
 
-
     // create list of ingredients to show in popup (type selected)
-    let list: IngredientList
+    let allIngredientsOfType: IngredientList
     this.store.select(selectAllIngredients).subscribe(all =>
-      list = all.filter(i => i.type === type)
+      allIngredientsOfType = all.filter(i => i.type === type)
     )
-    this.store.dispatch(updateIngredientSelectList({ list }))
+    // send to the store
+    this.store.dispatch(fromItemEdit.updateAllIngredientsOfType(
+      { allIngredientsOfType: allIngredientsOfType }
+    ))
+
+    // create a temporary list of currently selected ingredients where items can be added/removed without affecting current item
+    let selectedIngredients: IngredientList
+    this.store.select(fromCurrentItem.selectIngredients)
+      .subscribe(ingredients =>
+        selectedIngredients = ingredients.filter(i => i.type === type)
+      )
+    // send to the store
+    this.store.dispatch(fromItemEdit.updateTempIngredientsOfType(
+      { selectedIngredientsOfType: selectedIngredients }
+    ))
+
+
+
+    // debug
+    console.log('Currently Selected Ingredients:')
+    console.log(selectedIngredients)
 
     // update selector flag in builder to open selector popup
-    this.store.dispatch(openIngredientSelectorPopup())
-
-  }
-
-  public selectIngredients() {
-    // when user taps an ingredient name
-    // it is added to the array of selected ingredients of that type
+    this.store.dispatch(fromItemEdit.openIngredientSelectorPopup())
 
   }
 
@@ -127,9 +139,6 @@ export class BuilderFormComponent implements OnInit {
   onSubmit() {
 
   }
-
-  // get specialty ingredients (check)
-  // filter displayed ingredients by specialty ingredients
 
 
   inSpecialty(typeId: string): boolean {
