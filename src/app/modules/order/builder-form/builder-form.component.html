@@ -21,7 +21,7 @@
     <div class="ingredient-list">
       <ng-container *ngFor="let green of greens | async">
         <ng-container *ngIf="inSpecialty(green.id)">
-          <div class="greens ingredient"> (click)="editIngredients('Greens')"
+          <div class="greens ingredient" (click)="editIngredients('Greens')">
                 {{green.name}}
           </div>
         </ng-container>

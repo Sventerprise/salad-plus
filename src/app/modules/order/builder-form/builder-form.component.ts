@@ -53,7 +53,6 @@ export class BuilderFormComponent implements OnInit {
     this.specialtyIngredients$ = this.store.select(selectSpecialtyIngredients)
     this.specialtyIngredients$.subscribe(ingredients => {
       this.specialtyIngredients = ingredients
-      console.log(ingredients)
     })
     this.allIngredients$ = this.store.select(selectAllIngredients)
     this.ingredientTypes$ = this.store.select(selectIngredientTypes)
@@ -122,12 +121,6 @@ export class BuilderFormComponent implements OnInit {
     this.store.dispatch(fromItemEdit.updateTempIngredientsOfType(
       { selectedIngredientsOfType: selectedIngredients }
     ))
-
-
-
-    // debug
-    console.log('Currently Selected Ingredients:')
-    console.log(selectedIngredients)
 
     // update selector flag in builder to open selector popup
     this.store.dispatch(fromItemEdit.openIngredientSelectorPopup())

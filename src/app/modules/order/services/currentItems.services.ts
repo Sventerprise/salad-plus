@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { find } from "rxjs/operators";
-import { selectAllIngredients, selectSpecialties } from "src/app/stores/selectors/order-static-data.selectors";
+import { selectAllIngredients, selectOrderStaticDataState, selectSpecialties } from "src/app/stores/selectors/order-static-data.selectors";
 import { IngredientList, Ingredients } from "../models/Ingredient";
 import { Specialties, Specialty } from "../models/Specialty";
 
@@ -37,5 +37,12 @@ export class CurrentItemService {
       )
     )
     return list
+  }
+
+  public ingredientMultiSelectType(id: string) {
+    let selectType: string
+    this.store.select(selectOrderStaticDataState).subscribe(state =>
+      selectType = state.ingredientTypes[id].selectType)
+    return selectType
   }
 }

@@ -29,6 +29,11 @@ export const updateItemIngredients = createAction(
   props<{ list: IngredientList }>()
 );
 
+export const commitChanges = createAction(
+  '[Builder Popup] Commit Temp List Changes to Item',
+  props<{ newIngredients: IngredientList }>()
+)
+
 
 
 

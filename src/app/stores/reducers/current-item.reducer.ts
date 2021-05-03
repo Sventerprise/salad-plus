@@ -52,6 +52,11 @@ export const reducer = createReducer(
       { ...state, currentItemIngredients: action.list })
   ),
 
+  on(CurrentItemActions.commitChanges,
+    (state, action) => (
+      { ...state, currentItemIngredients: action.newIngredients })
+  ),
+
 
 
   on(CurrentItemActions.clearSpecialty,

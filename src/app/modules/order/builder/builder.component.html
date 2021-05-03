@@ -23,8 +23,8 @@
         <ul class="popup-contents">
           <ng-container *ngFor="let ingredient of ingredientsOfType | async">
             <li
-            (click)="selectIngredient(ingredient.name)"
-            class="ingredient" [class.selected]="isSelected(ingredient.id)"
+            (click)="selectIngredient(ingredient)"
+            class="ingredient btn" [class.selected]="isSelected(ingredient.id)"
             >
               {{ ingredient.name }}
             </li>

@@ -39,5 +39,18 @@ export const reducer = createReducer(
       { ...state, selectorFlag: false })
   ),
 
+  on(ItemEditActions.clearSelectedIngredients,
+    (state) => (
+      { ...state, selectedIngredientsOfType: [] })
+  ),
+  on(ItemEditActions.addSelectedIngredient,
+    (state, action) => (
+      { ...state, ingredient: action.ingredient })
+  ),
+  on(ItemEditActions.removeSelectedIngredient,
+    (state, action) => (
+      { ...state, ingredient: action.ingredient })
+  ),
+
 );
 

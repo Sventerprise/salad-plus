@@ -12,7 +12,10 @@ export type IngredientList = Ingredient[]
 
 // group (bread, meat, etc.) properties
 export interface IngredientType {
-  [id: string]: { price: string }
+  [id: string]: {
+    price: string,
+    selectType: "single" | "multiple"
+  }
 }
 
 export type IngredientTypes = IngredientType[]
