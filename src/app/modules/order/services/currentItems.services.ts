@@ -2,8 +2,9 @@ import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { find } from "rxjs/operators";
+import { selectAllIngredientsOfType, selectSelectedIngredientsOfType } from "src/app/stores/selectors/item-edit.selectors";
 import { selectAllIngredients, selectOrderStaticDataState, selectSpecialties } from "src/app/stores/selectors/order-static-data.selectors";
-import { IngredientList, Ingredients } from "../models/Ingredient";
+import { Ingredient, IngredientList, Ingredients } from "../models/Ingredient";
 import { Specialties, Specialty } from "../models/Specialty";
 
 @Injectable({
@@ -39,10 +40,31 @@ export class CurrentItemService {
     return list
   }
 
-  public ingredientMultiSelectType(id: string) {
+  public ingredientMultiSelectType(id: string): string {
     let selectType: string
     this.store.select(selectOrderStaticDataState).subscribe(state =>
       selectType = state.ingredientTypes[id].selectType)
     return selectType
+  }
+
+  public addSelectedIngredient(ingredient: Ingredient): IngredientList {
+    let ingredientList: IngredientList
+    this.store.select(selectSelectedIngredientsOfType)
+      .subscribe(ingredients =>
+        ingredientList = ingredients
+      )
+    let newList: IngredientList = Object.assign([], ingredientList)
+    newList.push(ingredient)
+    return newList
+  }
+
+  public removeSelectedIngredient(ingredient: Ingredient): IngredientList {
+    let ingredientList: IngredientList
+    this.store.select(selectSelectedIngredientsOfType)
+      .subscribe(ingredients =>
+        ingredientList = ingredients.filter(sIngredient =>
+          sIngredient.id != ingredient.id)
+      )
+    return ingredientList
   }
 }

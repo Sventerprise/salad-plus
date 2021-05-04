@@ -24,6 +24,9 @@ export class BuilderComponent implements OnInit {
   selectedIngredients: IngredientList
   typeSelect: boolean = true
 
+  // debugg
+  counter: number = 0
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -49,8 +52,13 @@ export class BuilderComponent implements OnInit {
   }
 
   public isSelected(id: string): boolean {
-    return this.selectedIngredients.find(ingredients =>
-      ingredients.id === id) ? true : false
+    // this.counter += 1
+    // console.log("I've run " + this.counter + " times.")
+    if (this.selectedIngredients) {
+      return this.selectedIngredients.find(ingredient =>
+        ingredient.id === id) ? true : false
+    } else
+      return false
   }
 
   //#region Popups
@@ -63,20 +71,29 @@ export class BuilderComponent implements OnInit {
   }
 
   public selectIngredient(ingredient: Ingredient) {
+    let ingredients: IngredientList
+
     if (this.isSelected(ingredient.id)) {
       // remove the item from selected list
-      this.store.dispatch(fromItemEditActions.removeSelectedIngredient({ ingredient }))
-
-      //   else
-      // if multiselect type is multi, add
-      if (this.service.ingredientMultiSelectType(ingredient.id) === 'multi') {
+      ingredients = this.service.removeSelectedIngredient(ingredient)
+      this.store.dispatch(fromItemEditActions.removeSelectedIngredient(
+        { ingredients }
+      ))
+    } else {
+      // if selectType "multiple" 1+ can be selected
+      if (this.service.ingredientMultiSelectType(ingredient.type) === 'multiple') {
+        //  add the new ingredient
+        ingredients = this.service.addSelectedIngredient(ingredient)
         this.store.dispatch(fromItemEditActions.addSelectedIngredient(
-          { ingredient }
+          { ingredients }
         ))
-      } else { // remove all, then add
+      } else {
+        //  remove all
         this.store.dispatch(fromItemEditActions.clearSelectedIngredients())
+        // add the new ingredient
+        ingredients = this.service.addSelectedIngredient(ingredient)
         this.store.dispatch(fromItemEditActions.addSelectedIngredient(
-          { ingredient }
+          { ingredients }
         ))
       }
     }

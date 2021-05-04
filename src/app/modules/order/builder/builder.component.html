@@ -19,18 +19,16 @@
   <div class="popup-screen-cover" *ngIf="selectorFlag | async">
     <div class="popup-window">
 
-      <!-- <ng-container *ngIf="selectorFlag"> -->
-        <ul class="popup-contents">
-          <ng-container *ngFor="let ingredient of ingredientsOfType | async">
-            <li
-            (click)="selectIngredient(ingredient)"
-            class="ingredient btn" [class.selected]="isSelected(ingredient.id)"
-            >
-              {{ ingredient.name }}
-            </li>
-          </ng-container>
-        </ul>
-      <!-- </ng-container>  /popup: ingredient selector -->
+      <div class="popup-contents">
+        <ng-container *ngFor="let ingredient of ingredientsOfType | async">
+          <button
+          (click)="selectIngredient(ingredient)"
+          class="ingredient btn" [class.selected]="isSelected(ingredient.id)"
+          >
+            {{ ingredient.name }}
+          </button>
+        </ng-container>
+      </div>
 
       <!-- COMMON CLOSE BUTTON-->
       <button (click)="closeSelectIngredient()" class="btn btn-primary close-btn">

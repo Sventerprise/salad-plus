@@ -45,11 +45,11 @@ export const reducer = createReducer(
   ),
   on(ItemEditActions.addSelectedIngredient,
     (state, action) => (
-      { ...state, ingredient: action.ingredient })
+      { ...state, selectedIngredientsOfType: action.ingredients })
   ),
   on(ItemEditActions.removeSelectedIngredient,
     (state, action) => (
-      { ...state, ingredient: action.ingredient })
+      { ...state, selectedIngredientsOfType: action.ingredients })
   ),
 
 );

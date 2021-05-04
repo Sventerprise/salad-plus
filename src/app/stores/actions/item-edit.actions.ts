@@ -25,11 +25,11 @@ export const clearSelectedIngredients = createAction(
 
 export const addSelectedIngredient = createAction(
   '[Builder Popup] Add Selected to Temp List',
-  props<{ ingredient: Ingredient }>()
+  props<{ ingredients: IngredientList }>()
 )
 
 export const removeSelectedIngredient = createAction(
   '[Builder Popup] Remove Selected From Temp List',
-  props<{ ingredient: Ingredient }>()
+  props<{ ingredients: IngredientList }>()
 )
 
