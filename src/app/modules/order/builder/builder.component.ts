@@ -8,6 +8,7 @@ import { Ingredient, IngredientList } from '../models/Ingredient';
 import * as fromItemEdit from 'src/app/stores/selectors/item-edit.selectors'
 import * as fromItemEditActions from 'src/app/stores/actions/item-edit.actions'
 import { CurrentItemService } from '../services/currentItems.services';
+import { commitChanges } from 'src/app/stores/actions/current-item.actions';
 
 @Component({
   selector: 'app-builder',
@@ -24,7 +25,7 @@ export class BuilderComponent implements OnInit {
   selectedIngredients: IngredientList
   typeSelect: boolean = true
 
-  // debugg
+  // debug
   counter: number = 0
 
   constructor(
@@ -42,14 +43,6 @@ export class BuilderComponent implements OnInit {
   }
 
   // #region Methods
-  public openIngredientTypes() {
-    this.popupFlag = true
-    this.categoryFlag = true
-  }
-
-  public closeSelectIngredient() {
-    this.store.dispatch(closeIngredientSelectorPopup())
-  }
 
   public isSelected(id: string): boolean {
     // this.counter += 1
@@ -62,16 +55,14 @@ export class BuilderComponent implements OnInit {
   }
 
   //#region Popups
-  public openCancelConfirm() {
-    this.popupFlag = true
-    this.confirmFlag = true
-  }
 
-  public confirmCancel() {
-  }
-
+  //#region Select Ingredient
   public selectIngredient(ingredient: Ingredient) {
     let ingredients: IngredientList
+    // update ingredient type for commit list filter
+    this.store.dispatch(fromItemEditActions.updateEditIngredientType(
+      { ingredientType: ingredient.type }
+    ))
 
     if (this.isSelected(ingredient.id)) {
       // remove the item from selected list
@@ -98,6 +89,31 @@ export class BuilderComponent implements OnInit {
       }
     }
   }
+
+  public closeSelectIngredient() {
+    this.commitSelections()
+    this.store.dispatch(closeIngredientSelectorPopup())
+  }
+
+  private commitSelections() {
+    let ingredients: IngredientList = this.service.commitIngredientChanges()
+    this.store.dispatch(commitChanges({ ingredients }))
+  }
+  //#endregion Select Ingredient
+
+  public openCancelConfirm() {
+    this.popupFlag = true
+    this.confirmFlag = true
+  }
+
+  // //#region Confirm Cancel
+  public confirmCancel() {
+  }
+
+  public closeConfirmCancel() {
+    this.store.dispatch(closeIngredientSelectorPopup())
+  }
+  // //#endregion Confirm Cancel
 
   public closePopup() {
     this.popupFlag = false

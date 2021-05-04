@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Ingredient, IngredientList } from 'src/app/modules/order/models/Ingredient';
 
+// get ingredient infos
 export const updateTempIngredientsOfType = createAction(
   '[Builder Form] Load Ingredients of Selected Type from Current Item to Temp List',
   props<{ selectedIngredientsOfType: IngredientList }>()
@@ -11,6 +12,12 @@ export const updateAllIngredientsOfType = createAction(
   props<{ allIngredientsOfType: IngredientList }>()
 );
 
+export const updateEditIngredientType = createAction(
+  '[Builder Popup] Update Edited Ingredient Type',
+  props<{ ingredientType: string }>()
+)
+
+// popup open/close
 export const openIngredientSelectorPopup = createAction(
   '[Builder Form] Open Ingredient Sector Popup (Builder)'
 );
@@ -19,6 +26,7 @@ export const closeIngredientSelectorPopup = createAction(
   '[Builder Popup] Close Ingredient Sector Popup (Builder)'
 );
 
+// add/remove (de)selected ingredients
 export const clearSelectedIngredients = createAction(
   '[Builder Popup] Clear All Selected From Temp List'
 )
@@ -32,4 +40,3 @@ export const removeSelectedIngredient = createAction(
   '[Builder Popup] Remove Selected From Temp List',
   props<{ ingredients: IngredientList }>()
 )
-

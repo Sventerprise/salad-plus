@@ -52,7 +52,7 @@ hr.divider1 {
 
 .builder {
   grid-area: builder;
-  background-color: rgba(169, 169, 169, 0.707);
+  background-color: rgba(245, 245, 245, 0.707);
   padding: 0.25rem;
   border-radius: 3px;
   overflow-y: scroll;
@@ -145,6 +145,9 @@ hr.divider1 {
   width: 100%;
   margin: 1vh 2vw;
   font-weight: bold;
+  background-color: rgb(124, 178, 248);
+  color: black;
+  border: 1px blue;
 }
 
 .remove-btn {
@@ -157,5 +160,6 @@ hr.divider1 {
 }
 
 .selected {
-  background-color: red;
+  background-color: blue;
+  color: white;
 }

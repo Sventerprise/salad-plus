@@ -8,12 +8,14 @@ export interface State {
   // list of ingredient options for selection on edit:
   selectedIngredientsOfType: IngredientList
   allIngredientsOfType: IngredientList
+  ingredientType: string
   selectorFlag: boolean
 }
 
 export const initialState: State = {
   selectedIngredientsOfType: [],
   allIngredientsOfType: [],
+  ingredientType: '',
   selectorFlag: false,
 };
 
@@ -30,6 +32,10 @@ export const reducer = createReducer(
     (state, action) => (
       { ...state, allIngredientsOfType: action.allIngredientsOfType })
   ),
+  on(ItemEditActions.updateEditIngredientType,
+    (state, action) => (
+      { ...state, ingredientType: action.ingredientType })
+  ),
   on(ItemEditActions.openIngredientSelectorPopup,
     (state) => (
       { ...state, selectorFlag: true })
@@ -38,7 +44,7 @@ export const reducer = createReducer(
     (state) => (
       { ...state, selectorFlag: false })
   ),
-
+  // add/remove (de)selected items
   on(ItemEditActions.clearSelectedIngredients,
     (state) => (
       { ...state, selectedIngredientsOfType: [] })

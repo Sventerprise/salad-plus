@@ -33,67 +33,7 @@ export const selectSpecialtyIngredients = createSelector(
   (state) => state.specialtyIngredients
 )
 
-export const selectIngredients = createSelector(
+export const selectCurrentItemIngredients = createSelector(
   selectCurrentItemState,
   (state) => state.currentItemIngredients
 )
-
-
-// #region Individual Ingredients
-export const selectBreads = createSelector(
-  selectAllIngredients,
-  (allIngredients): IngredientList => allIngredients.filter(
-    ingredient => ingredient.type == "Bread"
-  )
-)
-
-export const selectGreens = createSelector(
-  selectAllIngredients,
-  (allIngredients): IngredientList => allIngredients.filter(
-    ingredient => ingredient.type == "Greens"
-  )
-)
-
-export const selectMeats = createSelector(
-  selectAllIngredients,
-  (allIngredients): IngredientList => allIngredients.filter(
-    ingredient => ingredient.type == "Meat"
-  )
-)
-
-export const selectCheeses = createSelector(
-  selectAllIngredients,
-  (allIngredients): IngredientList => allIngredients.filter(
-    ingredient => ingredient.type == "Cheese"
-  )
-)
-
-export const selectVeggies = createSelector(
-  selectAllIngredients,
-  (allIngredients): IngredientList => allIngredients.filter(
-    ingredient => ingredient.type == "Veggies"
-  )
-)
-
-export const selectNutsFruit = createSelector(
-  selectAllIngredients,
-  (allIngredients): IngredientList => allIngredients.filter(
-    ingredient => ingredient.type == "Nuts/Fruit"
-  )
-)
-
-export const selectCondiments = createSelector(
-  selectAllIngredients,
-  (allIngredients): IngredientList => allIngredients.filter(
-    ingredient => ingredient.type == "Condiments"
-  )
-)
-
-export const selectDressings = createSelector(
-  selectAllIngredients,
-  (allIngredients): IngredientList => allIngredients.filter(
-    ingredient => ingredient.type == "Dressings"
-  )
-)
-
-//#region individual ingredients

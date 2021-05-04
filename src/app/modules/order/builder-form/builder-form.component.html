@@ -1,11 +1,12 @@
 <ng-container *ngIf="selectedItemGroup$ |async as group">
+
   <div class="bread typeContainer" *ngIf="group=='sandwich'">
     <div class="ingredient-header" (click)="editIngredients('Bread')">
       Bread @ ${{iType['Bread'].price}}
     </div> <!-- breads header -->
     <div class="ingredient-list">
-      <ng-container *ngFor="let bread of breads | async">
-        <ng-container *ngIf="inSpecialty(bread.id)">
+      <ng-container *ngFor="let bread of breads">
+        <ng-container *ngIf="inSelected(bread.id)">
           <div class="breads ingredient" (click)="editIngredients('Bread')">
                 {{bread.name}}
           </div>
@@ -19,8 +20,8 @@
       Greens @ ${{iType['Greens'].price}} each
     </div> <!-- greens header -->
     <div class="ingredient-list">
-      <ng-container *ngFor="let green of greens | async">
-        <ng-container *ngIf="inSpecialty(green.id)">
+      <ng-container *ngFor="let green of greens">
+        <ng-container *ngIf="inSelected(green.id)">
           <div class="greens ingredient" (click)="editIngredients('Greens')">
                 {{green.name}}
           </div>
@@ -34,8 +35,8 @@
       Meats @ ${{iType['Meat'].price}} each
     </div> <!-- meat header -->
     <div class="ingredient-list">
-      <ng-container *ngFor="let meat of meats | async">
-        <ng-container *ngIf="inSpecialty(meat.id)">
+      <ng-container *ngFor="let meat of meats">
+        <ng-container *ngIf="inSelected(meat.id)">
           <div class="meats ingredient" (click)="editIngredients('Meat')">
             {{meat.name}}
           </div>
@@ -49,8 +50,8 @@
       Cheeses @ ${{iType['Cheese'].price}} each
     </div> <!-- cheeses header -->
     <div class="ingredient-list">
-      <ng-container *ngFor="let cheese of cheeses | async">
-        <ng-container *ngIf="inSpecialty(cheese.id)">
+      <ng-container *ngFor="let cheese of cheeses">
+        <ng-container *ngIf="inSelected(cheese.id)">
           <div class="cheeses ingredient" (click)="editIngredients('Cheese')">
                 {{cheese.name}}
           </div>
@@ -64,8 +65,8 @@
       Veggies @ ${{iType['Veggies'].price}} each
     </div>  <!-- veggie header -->
     <div class="ingredient-list">
-      <ng-container *ngFor="let veggie of veggies | async">
-        <ng-container *ngIf="inSpecialty(veggie.id)">
+      <ng-container *ngFor="let veggie of veggies">
+        <ng-container *ngIf="inSelected(veggie.id)">
           <div class="veggies ingredient" (click)="editIngredients('Veggies')">
                 {{veggie.name}}
           </div>
@@ -79,8 +80,8 @@
       Nuts/Fruits @ ${{iType['Nuts/Fruit'].price}} each
     </div>  <!-- nuts/fruit header -->
     <div class="ingredient-list">
-      <ng-container *ngFor="let nutsFruit of nutsFruits | async">
-        <ng-container *ngIf="inSpecialty(nutsFruit.id)">
+      <ng-container *ngFor="let nutsFruit of nutsFruits">
+        <ng-container *ngIf="inSelected(nutsFruit.id)">
           <div class="nuts-fruits ingredient" (click)="editIngredients('Nuts/Fruit')">
                 {{nutsFruit.name}}
           </div>
@@ -94,8 +95,8 @@
       Condiments @ ${{iType['Condiments'].price}} each
     </div> <!-- condiment header -->
     <div class="ingredient-list">
-      <ng-container *ngFor="let condiment of condiments | async">
-        <ng-container *ngIf="inSpecialty(condiment.id)">
+      <ng-container *ngFor="let condiment of condiments">
+        <ng-container *ngIf="inSelected(condiment.id)">
           <div class="condiments ingredient" (click)="editIngredients('Condiments')">
                 {{condiment.name}}
           </div>
@@ -109,8 +110,8 @@
       Dressings @ ${{iType['Dressings'].price}} each
     </div> <!-- dressing header -->
     <div class="ingredient-list">
-      <ng-container *ngFor="let dressing of dressings | async">
-        <ng-container *ngIf="inSpecialty(dressing.id)">
+      <ng-container *ngFor="let dressing of dressings">
+        <ng-container *ngIf="inSelected(dressing.id)">
           <div class="dressings ingredient" (click)="editIngredients('Dressings')">
                 {{dressing.name}}
           </div>

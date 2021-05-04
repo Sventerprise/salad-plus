@@ -18,6 +18,11 @@ export const selectSelectedIngredientsOfType = createSelector(
   (state): IngredientList => state.selectedIngredientsOfType
 )
 
+export const selectIngredientType = createSelector(
+  selectItemEditState,
+  (state): string => state.ingredientType
+)
+
 export const selectSelectorFlag = createSelector(
   selectItemEditState,
   (state): boolean => state.selectorFlag

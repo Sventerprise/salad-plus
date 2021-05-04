@@ -54,7 +54,7 @@ export const reducer = createReducer(
 
   on(CurrentItemActions.commitChanges,
     (state, action) => (
-      { ...state, currentItemIngredients: action.newIngredients })
+      { ...state, currentItemIngredients: action.ingredients })
   ),
 
 

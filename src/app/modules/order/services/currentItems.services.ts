@@ -1,8 +1,10 @@
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { find } from "rxjs/operators";
-import { selectAllIngredientsOfType, selectSelectedIngredientsOfType } from "src/app/stores/selectors/item-edit.selectors";
+import { selectCurrentItemIngredients, selectCurrentItemState } from "src/app/stores/selectors/current-item.selectors";
+import { selectAllIngredientsOfType, selectIngredientType, selectSelectedIngredientsOfType } from "src/app/stores/selectors/item-edit.selectors";
 import { selectAllIngredients, selectOrderStaticDataState, selectSpecialties } from "src/app/stores/selectors/order-static-data.selectors";
 import { Ingredient, IngredientList, Ingredients } from "../models/Ingredient";
 import { Specialties, Specialty } from "../models/Specialty";
@@ -16,6 +18,7 @@ export class CurrentItemService {
 
   constructor(
     private store: Store<any>,
+    private router: Router
   ) { }
 
   public getSelectedSpecialty(specialtyId: string) {
@@ -67,4 +70,41 @@ export class CurrentItemService {
       )
     return ingredientList
   }
+
+  public commitIngredientChanges(): IngredientList {
+    let currentItems, selectedItems, newList: IngredientList
+    let type: string
+    // get type for filters
+    this.store.select(selectIngredientType).subscribe(ingredientType =>
+      type = ingredientType
+    )
+    // get selected ingredients
+    this.store.select(selectSelectedIngredientsOfType).subscribe(ingredients =>
+      selectedItems = ingredients
+    )
+    // get current ingredients
+    this.store.select(selectCurrentItemIngredients).subscribe(ingredients =>
+      currentItems = ingredients
+    )
+    // transfer current ingredients not of selected type to new list
+    newList = currentItems.filter(ingredient =>
+      ingredient.type != type
+    )
+    // add selected items (if any)
+    selectedItems.forEach(ingredient =>
+      newList.push(ingredient)
+    )
+    return newList
+  }
+
+  public getIngredient(type: string): IngredientList {
+    let ingredients: IngredientList
+    this.store.select(selectAllIngredients).subscribe(allIngredients =>
+      ingredients = allIngredients.filter(ingredient =>
+        ingredient.type === type
+      )
+    )
+    return ingredients
+  }
+
 }
