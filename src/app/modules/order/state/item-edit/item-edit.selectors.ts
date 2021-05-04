@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { IngredientList } from 'src/app/modules/order/models/Ingredient';
-import * as fromItemEdit from '../reducers/item-edit.reducer';
+import * as fromItemEdit from './item-edit.reducer';
 
 export const selectItemEditState = createFeatureSelector<fromItemEdit.State>(
   fromItemEdit.itemEditFeatureKey

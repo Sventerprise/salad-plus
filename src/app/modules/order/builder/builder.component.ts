@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { closeIngredientSelectorPopup } from 'src/app/stores/actions/item-edit.actions';
-import { selectAllIngredientsOfType, selectSelectorFlag } from 'src/app/stores/selectors/item-edit.selectors';
+import { closeIngredientSelectorPopup } from 'src/app/modules/order/state/item-edit/item-edit.actions';
+import { selectAllIngredientsOfType, selectSelectorFlag } from 'src/app/modules/order/state/item-edit/item-edit.selectors';
 import { Ingredient, IngredientList } from '../models/Ingredient';
-import * as fromItemEdit from 'src/app/stores/selectors/item-edit.selectors'
-import * as fromItemEditActions from 'src/app/stores/actions/item-edit.actions'
+import * as fromItemEdit from 'src/app/modules/order/state/item-edit/item-edit.selectors'
+import * as fromItemEditActions from 'src/app/modules/order/state/item-edit/item-edit.actions'
 import { CurrentItemService } from '../services/currentItems.services';
-import { clearCurrentItem, commitChanges } from 'src/app/stores/actions/current-item.actions';
+import { commitChanges } from 'src/app/modules/order/state/current-item/current-item.actions';
 
 @Component({
   selector: 'app-builder',

@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { selectAllIngredients, selectIngredientTypes } from 'src/app/stores/selectors/order-static-data.selectors';
 import { Ingredient, IngredientList, IngredientTypes } from '../models/Ingredient';
 import { Specialty } from '../models/Specialty';
-import * as fromCurrentItem from 'src/app/stores/selectors/current-item.selectors'
-import * as fromItemEdit from 'src/app/stores/actions/item-edit.actions'
+import * as fromCurrentItem from 'src/app/modules/order/state/current-item/current-item.selectors'
+import * as fromItemEdit from 'src/app/modules/order/state/item-edit/item-edit.actions'
 import { CurrentItemService } from '../services/currentItems.services';
 
 

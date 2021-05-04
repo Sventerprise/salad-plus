@@ -2,21 +2,21 @@ import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
-import { CurrentItemEffects } from './current-item.effects';
+import { StateEffects } from './state.effects';
 
-describe('CurrentItemEffects', () => {
+describe('StateEffects', () => {
   let actions$: Observable<any>;
-  let effects: CurrentItemEffects;
+  let effects: StateEffects;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        CurrentItemEffects,
+        StateEffects,
         provideMockActions(() => actions$)
       ]
     });
 
-    effects = TestBed.inject(CurrentItemEffects);
+    effects = TestBed.inject(StateEffects);
   });
 
   it('should be created', () => {

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { loadSpecialtyIngredients, setItemIngredientsFromSpecialty, updateSpecialty } from 'src/app/stores/actions/current-item.actions';
-import { selectSpecialtiesOfGroup } from 'src/app/stores/selectors/current-item.selectors';
+import { loadSpecialtyIngredients, setItemIngredientsFromSpecialty, updateSpecialty } from 'src/app/modules/order/state/current-item/current-item.actions'
+import { selectSpecialtiesOfGroup } from 'src/app/modules/order/state/current-item/current-item.selectors';
 import { selectAllIngredients, selectIngredientTypes } from 'src/app/stores/selectors/order-static-data.selectors';
 import { IngredientList, IngredientTypes } from '../models/Ingredient';
 

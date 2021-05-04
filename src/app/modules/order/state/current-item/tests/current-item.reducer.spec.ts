@@ -1,4 +1,4 @@
-import { reducer, initialState } from './current-item.reducer';
+import { reducer, initialState } from '../current-item.reducer';
 
 describe('CurrentItem Reducer', () => {
   describe('an unknown action', () => {
