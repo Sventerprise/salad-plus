@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectSpecialtyIngredients, selectSelectedSpecialty } from 'src/app/stores/selectors/current-item.selectors';
 import { selectAllIngredients, selectIngredientTypes } from 'src/app/stores/selectors/order-static-data.selectors';
-import { Ingredient, IngredientList, IngredientType, IngredientTypes } from '../models/Ingredient';
+import { Ingredient, IngredientList, IngredientTypes } from '../models/Ingredient';
 import { Specialty } from '../models/Specialty';
 import * as fromCurrentItem from 'src/app/stores/selectors/current-item.selectors'
 import * as fromItemEdit from 'src/app/stores/actions/item-edit.actions'
@@ -25,9 +24,9 @@ export class BuilderFormComponent implements OnInit {
   currentItemIngredients$: Observable<IngredientList>
   specialty$: Observable<Specialty>
   allIngredients: Ingredient[]
-  ingredientTypes$: Observable<IngredientType>
+  ingredientTypes$: Observable<IngredientTypes>
   selectedItemGroup$: Observable<string>
-  iType: IngredientType
+  iType: IngredientTypes
 
   //#region Ingredient Lists
   breads: IngredientList

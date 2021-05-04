@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { IngredientList, IngredientType } from 'src/app/modules/order/models/Ingredient';
+import { IngredientList, IngredientTypes } from 'src/app/modules/order/models/Ingredient';
 import * as fromOrderStaticData from '../reducers/order-static-data.reducer';
 
 export const selectOrderStaticDataState = createFeatureSelector<fromOrderStaticData.State>(

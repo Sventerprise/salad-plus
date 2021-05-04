@@ -18,11 +18,21 @@
     / 3fr 44fr 6fr 44fr 3fr;
 }
 
+.price {
+  display: flex;
+  font-weight: bold;
+  font-size: 4vmin;
+  float: right;
+  margin: 0 1.5vmin 1.5vmin;
+  overflow: auto;
+}
+
 .description {
   grid-area: description;
-  padding: 0.5rem;
+  padding: 0.75vmin;
   z-index: 1;
   background-color: rgba($color: #fff, $alpha: 0.8);
+  font-size: 2.5vmin;
 }
 
 .fill {
@@ -42,6 +52,8 @@
 }
 
 button {
+  font-weight: bold;
   grid-area: btn;
   z-index: 2;
+  font-size: 4vmin;
 }

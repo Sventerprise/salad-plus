@@ -8,14 +8,15 @@
   border: 0.5px solid rgb(107, 107, 107);
   align-items: center;
   margin: 1px 2px;
-  padding: 0.5rem;
+  padding: 1vmin;
+  font-size: 4vmin;
 }
 
 .ingredient-header {
   width: 100%;
   display: inline-block;
   text-align: center;
-  font-size: large;
+  font-size: 3vmin;
 }
 
 .remove {
@@ -25,11 +26,11 @@
 
 button {
   display: flex;
-  margin: 1px;
+  margin: 1vmin;
   justify-content: center;
   align-items: center;
   font-weight: bolder;
-  padding: 0;
+  font-size: 4vmin;
 }
 
 .typeContainer {
@@ -40,10 +41,10 @@ button {
   // border-bottom: 1px solid rgb(106, 106, 106);
   border-radius: 3px;
   box-shadow: rgb(107, 107, 107);
-  font-size: 4vw;
+  font-size: 4vmin;
   font-weight: bold;
-  padding: 0.25rem;
-  margin-bottom: 0.1rem;
+  padding: 0.25vmin;
+  margin-bottom: 0.1vmin;
 }
 
 .bread {

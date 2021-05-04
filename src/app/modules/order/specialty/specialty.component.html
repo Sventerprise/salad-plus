@@ -8,7 +8,7 @@
       type="button" (click)="loadSpecialty(recipe.id)"
       routerLink="../builder"> {{ recipe.name }}</button>
       <div class="description bord-3">
-        <h3>{{ recipe.name }}</h3>
+        <div class="price">$ {{calculateSpecialtyPrice(recipe)}}</div>
         {{ recipe.description }}
       </div>
     </div> <!-- *ngFor: item wrap -->
