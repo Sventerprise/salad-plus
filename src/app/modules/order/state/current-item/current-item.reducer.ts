@@ -1,12 +1,13 @@
 import { createReducer, on } from '@ngrx/store';
 import { IngredientList } from 'src/app/modules/order/models/Ingredient';
 import { Specialty } from 'src/app/modules/order/models/Specialty';
+import { ItemGroup } from '../../models/ItemGroup';
 import * as CurrentItemActions from './current-item.actions';
 
 export const currentItemFeatureKey = 'currentItem';
 
 export interface State {
-  selectedItemGroup: string,
+  selectedItemGroup: ItemGroup,
   selectedSpecialty: Specialty,
   specialtyIngredients: IngredientList
   currentItemIngredients: IngredientList
@@ -60,7 +61,7 @@ export const reducer = createReducer(
     (state) => (
       {
         ...state,
-        selectedItemGroup: '',
+        selectedItemGroup: null,
         selectedSpecialty: null,
         specialtyIngredients: [],
         currentItemIngredients: []

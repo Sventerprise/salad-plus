@@ -6,7 +6,7 @@ import { Ingredient, IngredientList, IngredientTypes } from '../models/Ingredien
 import { Specialty } from '../models/Specialty';
 import * as fromCurrentItem from 'src/app/modules/order/state/current-item/current-item.selectors'
 import * as fromItemEdit from 'src/app/modules/order/state/item-edit/item-edit.actions'
-import { CurrentItemService } from '../services/currentItems.services';
+import { CurrentItemService } from '../services/currentItems.service';
 
 
 @Component({

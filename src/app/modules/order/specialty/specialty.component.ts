@@ -8,7 +8,7 @@ import { updateHeader } from '../../shared/state/shared.actions';
 import { IngredientList, IngredientTypes } from '../models/Ingredient';
 
 import { Specialties, Specialty } from '../models/Specialty';
-import { CurrentItemService } from '../services/currentItems.services';
+import { CurrentItemService } from '../services/currentItems.service';
 
 @Component({
   selector: 'app-specialty',

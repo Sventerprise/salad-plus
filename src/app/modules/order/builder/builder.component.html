@@ -5,7 +5,8 @@
 
   <app-builder-form class="builder"></app-builder-form>
 
-  <button type="button" class="done btn btn-success" routerLink="../order-list" >Done</button>
+  <button type="button" class="done btn btn-success" routerLink="../order-list"
+  (click)="submit()">Done</button>
     <hr class="divider1"> <!-- go to order-list -->
   <button type="button" class="cancel btn btn-danger" (click)="openCancelConfirm()">
     Cancel

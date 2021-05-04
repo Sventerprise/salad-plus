@@ -7,9 +7,14 @@ import { selectAllIngredientsOfType, selectSelectorFlag } from 'src/app/modules/
 import { Ingredient, IngredientList } from '../models/Ingredient';
 import * as fromItemEdit from 'src/app/modules/order/state/item-edit/item-edit.selectors'
 import * as fromItemEditActions from 'src/app/modules/order/state/item-edit/item-edit.actions'
-import { CurrentItemService } from '../services/currentItems.services';
+import { CurrentItemService } from '../services/currentItems.service';
 import { commitChanges } from 'src/app/modules/order/state/current-item/current-item.actions';
 import { updateHeader } from '../../shared/state/shared.actions';
+import { CartService } from 'src/app/services/cart.service';
+import { Item, Items, OrderItem, OrderItems } from '../models/Item';
+import { addItem } from '../state/cart/cart.actions';
+import { selectOrderItems } from '../state/cart/cart.selectors';
+import { selectCurrentItemIngredients, selectCurrentItemState } from '../state/current-item/current-item.selectors';
 
 @Component({
   selector: 'app-builder',
@@ -31,6 +36,7 @@ export class BuilderComponent implements OnInit {
   constructor(
     private store: Store<{}>,
     private service: CurrentItemService,
+    private cartService: CartService,
     private router: Router
   ) { }
 
@@ -54,6 +60,35 @@ export class BuilderComponent implements OnInit {
         ingredient.id === id) ? true : false
     } else
       return false
+  }
+
+  submit() {
+    let itemIngredients: IngredientList
+    let currentItems: OrderItems
+    let newItem: OrderItem
+    let price: number
+    let orderItems: OrderItems = []
+
+    // get ingredients to calculate price
+    this.store.select(selectCurrentItemIngredients).subscribe(ingredients =>
+      itemIngredients = ingredients
+    )
+    price = this.cartService.calculateItemPrice(itemIngredients)
+
+    // add the current order items
+    this.store.select(selectOrderItems).subscribe(items =>
+      items.forEach(item => orderItems.push(item))
+    )
+    // add the new item
+    newItem = this.cartService.buildOrderItem(price)
+    orderItems.push(newItem)
+    console.log(orderItems)
+    // put current items together with the new one
+
+    // submit items to store
+    this.store.dispatch(addItem(
+      { orderItems }
+    ))
   }
 
   //#region Popups

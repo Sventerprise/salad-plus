@@ -1,8 +1,16 @@
 import { createAction, props } from '@ngrx/store';
+import { OrderItem } from '../../models/Item';
 
-export const loadCarts = createAction(
-  '[Cart] Load Carts'
+export const addItem = createAction(
+  '[Builder] Add Item',
+  props<{ orderItems: OrderItem[] }>()
 );
+
+export const updateTotal = createAction(
+  '[Order List] Update Total'
+);
+
+
 
 export const loadCartsSuccess = createAction(
   '[Cart] Load Carts Success',
