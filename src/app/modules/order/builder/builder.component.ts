@@ -8,7 +8,7 @@ import { Ingredient, IngredientList } from '../models/Ingredient';
 import * as fromItemEdit from 'src/app/stores/selectors/item-edit.selectors'
 import * as fromItemEditActions from 'src/app/stores/actions/item-edit.actions'
 import { CurrentItemService } from '../services/currentItems.services';
-import { commitChanges } from 'src/app/stores/actions/current-item.actions';
+import { clearCurrentItem, commitChanges } from 'src/app/stores/actions/current-item.actions';
 
 @Component({
   selector: 'app-builder',
@@ -19,7 +19,6 @@ export class BuilderComponent implements OnInit {
   categoryFlag: boolean = false
   selectorFlag: Observable<boolean>
   confirmFlag: boolean = false
-  popupFlag: boolean = false
 
   ingredientsOfType: Observable<Ingredient[]>
   selectedIngredients: IngredientList
@@ -29,15 +28,15 @@ export class BuilderComponent implements OnInit {
   counter: number = 0
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
     private store: Store<{}>,
-    private service: CurrentItemService
+    private service: CurrentItemService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.ingredientsOfType = this.store.select(selectAllIngredientsOfType)
     this.selectorFlag = this.store.select(selectSelectorFlag)
+    this.store.dispatch(closeIngredientSelectorPopup())
     this.store.select(fromItemEdit.selectSelectedIngredientsOfType)
       .subscribe(ingredients => this.selectedIngredients = ingredients)
   }
@@ -102,24 +101,20 @@ export class BuilderComponent implements OnInit {
   //#endregion Select Ingredient
 
   public openCancelConfirm() {
-    this.popupFlag = true
     this.confirmFlag = true
   }
 
   // //#region Confirm Cancel
   public confirmCancel() {
+    this.confirmFlag = false
+    // current item is cleared on /order onInit
+    this.router.navigate(['/order'])
   }
 
   public closeConfirmCancel() {
-    this.store.dispatch(closeIngredientSelectorPopup())
+    this.confirmFlag = false
   }
   // //#endregion Confirm Cancel
-
-  public closePopup() {
-    this.popupFlag = false
-    this.confirmFlag = false
-    this.categoryFlag = false
-  }
   //#endregion popups
   //#endregion methods
 

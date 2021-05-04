@@ -34,30 +34,8 @@ export const commitChanges = createAction(
   props<{ ingredients: IngredientList }>()
 )
 
-
-
-
-
-// boilerplate
-export const loadCurrentItems = createAction(
-  '[CurrentItem] Load CurrentItems'
+export const clearCurrentItem = createAction(
+  '[Builder Confirm Popup] Clear Current Item'
 );
 
-export const loadCurrentItemsSuccess = createAction(
-  '[CurrentItem] Load CurrentItems Success',
-  props<{ data: any }>()
-);
-
-export const loadCurrentItemsFailure = createAction(
-  '[CurrentItem] Load CurrentItems Failure',
-  props<{ error: any }>()
-);
-
-export const clearSpecialty = createAction(
-  '[SS-Selector] Clear Current Item'
-);
-
-export const clearSpecialtyIngredients = createAction(
-  '[SS-Selector] Clear Current Item'
-);
 

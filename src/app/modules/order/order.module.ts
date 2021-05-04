@@ -20,7 +20,6 @@ import { CartEffects } from '../../stores/effects/cart.effects';
 import { OrderEffects } from '../../stores/effects/order.effects';
 import { OrderStaticDataEffects } from '../../stores/effects/order-static-data.effects';
 import * as fromCurrentItem from '../../stores/reducers/current-item.reducer';
-import { CurrentItemEffects } from '../../stores/effects/current-item.effects';
 import * as fromItemEdit from '../../stores/reducers/item-edit.reducer';
 
 
@@ -42,7 +41,7 @@ import * as fromItemEdit from '../../stores/reducers/item-edit.reducer';
     OrderRoutingModule,
     RouterModule,
     //#region Store
-    EffectsModule.forFeature([CartEffects, OrderEffects, OrderStaticDataEffects, CurrentItemEffects]),
+    EffectsModule.forFeature([CartEffects, OrderEffects, OrderStaticDataEffects]),
     StoreModule.forFeature(fromCart.cartFeatureKey, fromCart.reducer),
     StoreModule.forFeature(fromOrder.orderFeatureKey, fromOrder.reducer),
     StoreModule.forFeature(fromStaticOrderData.orderStaticDataFeatureKey, fromStaticOrderData.reducer),

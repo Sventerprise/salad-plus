@@ -56,20 +56,15 @@ export const reducer = createReducer(
     (state, action) => (
       { ...state, currentItemIngredients: action.ingredients })
   ),
-
-
-
-  on(CurrentItemActions.clearSpecialty,
+  on(CurrentItemActions.clearCurrentItem,
     (state) => (
-      { ...state, ingredients: [] })
-  ),
-  on(CurrentItemActions.clearSpecialtyIngredients,
-    (state) => (
-      { ...state, selectedSpecialty: null })
-  ),
-  on(CurrentItemActions.clearSpecialtyIngredients,
-    (state) => (
-      { ...state, selectedSpecialty: null })
+      {
+        ...state,
+        selectedItemGroup: '',
+        selectedSpecialty: null,
+        specialtyIngredients: [],
+        currentItemIngredients: []
+      })
   ),
 
 );
