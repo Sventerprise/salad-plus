@@ -2,21 +2,21 @@ import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
-import { StateEffects } from './state.effects';
+import { SharedEffects } from './shared.effects';
 
-describe('StateEffects', () => {
+describe('SharedEffects', () => {
   let actions$: Observable<any>;
-  let effects: StateEffects;
+  let effects: SharedEffects;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        StateEffects,
+        SharedEffects,
         provideMockActions(() => actions$)
       ]
     });
 
-    effects = TestBed.inject(StateEffects);
+    effects = TestBed.inject(SharedEffects);
   });
 
   it('should be created', () => {

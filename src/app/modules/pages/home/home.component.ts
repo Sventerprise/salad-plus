@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { updateHeader } from '../../shared/state/shared.actions';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store<{}>) { }
 
   ngOnInit(): void {
+    this.store.dispatch(updateHeader({ header: 'Salad, Sandwich, & Sven!' }))
   }
 
 }

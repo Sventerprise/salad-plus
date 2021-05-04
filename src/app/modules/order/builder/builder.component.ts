@@ -9,6 +9,7 @@ import * as fromItemEdit from 'src/app/modules/order/state/item-edit/item-edit.s
 import * as fromItemEditActions from 'src/app/modules/order/state/item-edit/item-edit.actions'
 import { CurrentItemService } from '../services/currentItems.services';
 import { commitChanges } from 'src/app/modules/order/state/current-item/current-item.actions';
+import { updateHeader } from '../../shared/state/shared.actions';
 
 @Component({
   selector: 'app-builder',
@@ -34,6 +35,8 @@ export class BuilderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.store.dispatch(updateHeader({ header: 'Customize!' }))
+
     this.ingredientsOfType = this.store.select(selectAllIngredientsOfType)
     this.selectorFlag = this.store.select(selectSelectorFlag)
     this.store.dispatch(closeIngredientSelectorPopup())

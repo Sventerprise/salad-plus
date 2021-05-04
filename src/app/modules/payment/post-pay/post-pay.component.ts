@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { updateHeader } from '../../shared/state/shared.actions';
 
 @Component({
   selector: 'app-post-pay',
@@ -14,9 +16,14 @@ export class PostPayComponent implements OnInit {
   confirmFlag: boolean = false
   popupFlag: boolean = false
 
-  constructor() { }
+  constructor(
+    private store: Store<{}>
+  ) { }
 
   ngOnInit(): void {
+    this.paySuccessFlag
+      ? this.store.dispatch(updateHeader({ header: 'Success!' }))
+      : this.store.dispatch(updateHeader({ header: 'Oops!' }))
   }
 
   public openCancelConfirm() {

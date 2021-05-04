@@ -1,6 +1,6 @@
-import { reducer, initialState } from './state.reducer';
+import { reducer, initialState } from './shared.reducer';
 
-describe('State Reducer', () => {
+describe('Shared Reducer', () => {
   describe('an unknown action', () => {
     it('should return the previous state', () => {
       const action = {} as any;

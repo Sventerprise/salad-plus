@@ -1,8 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { IngredientList } from 'src/app/modules/order/models/Ingredient';
 import { Specialties, Specialty } from 'src/app/modules/order/models/Specialty';
 import * as fromCurrentItem from './current-item.reducer';
-import { selectAllIngredients, selectSpecialties } from '../../../../stores/selectors/order-static-data.selectors';
+import { selectSpecialties } from '../../../../stores/selectors/order-static-data.selectors';
 
 export const selectCurrentItemState = createFeatureSelector<fromCurrentItem.State>(
   fromCurrentItem.currentItemFeatureKey

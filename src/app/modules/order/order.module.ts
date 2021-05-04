@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { SsselctorComponent } from './ssselctor/ssselctor.component';
 import { BuilderComponent } from './builder/builder.component';
 import { BuilderFormComponent } from './builder-form/builder-form.component';
-import { IngredientListComponent } from './ingredient-list/ingredient-list.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { OrderFormComponent } from './order-form/order-form.component';
 import { SpecialtyComponent } from './specialty/specialty.component';
@@ -19,8 +18,8 @@ import * as fromStaticOrderData from '../../stores/reducers/order-static-data.re
 import { CartEffects } from '../../stores/effects/cart.effects';
 import { OrderEffects } from '../../stores/effects/order.effects';
 import { OrderStaticDataEffects } from '../../stores/effects/order-static-data.effects';
-import * as fromCurrentItem from '../../stores/reducers/current-item.reducer';
-import * as fromItemEdit from '../../stores/reducers/item-edit.reducer';
+import * as fromCurrentItem from './state/current-item/current-item.reducer';
+import * as fromItemEdit from './state/item-edit/item-edit.reducer';
 
 
 
@@ -29,7 +28,6 @@ import * as fromItemEdit from '../../stores/reducers/item-edit.reducer';
     SsselctorComponent,
     BuilderComponent,
     BuilderFormComponent,
-    IngredientListComponent,
     OrderListComponent,
     OrderFormComponent,
     SpecialtyComponent,

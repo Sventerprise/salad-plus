@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { BuilderConfirmComponent } from "./builder-confirm/builder-confirm.component";
 import { BuilderComponent } from "./builder/builder.component";
-import { IngredientListComponent } from "./ingredient-list/ingredient-list.component";
 import { OrderListComponent } from "./order-list/order-list.component";
 import { OrderComponent } from "./order.component";
 import { SpecialtyComponent } from "./specialty/specialty.component";
@@ -23,7 +22,6 @@ const routes: Routes = [
         ]
       },
       { path: 'order-list', component: OrderListComponent },
-      { path: 'ingredient-list', component: IngredientListComponent },
       { path: '', redirectTo: 'ss-selector', pathMatch: 'full' },
     ]
   }

@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
-import { IngredientList, Ingredients } from 'src/app/modules/order/models/Ingredient';
+import { IngredientList } from 'src/app/modules/order/models/Ingredient';
 import { Specialty } from 'src/app/modules/order/models/Specialty';
-import * as CurrentItemActions from '../actions/current-item.actions';
+import * as CurrentItemActions from './current-item.actions';
 
 export const currentItemFeatureKey = 'currentItem';
 

@@ -1,6 +1,6 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import { IngredientList } from 'src/app/modules/order/models/Ingredient';
-import * as ItemEditActions from '../actions/item-edit.actions';
+import * as ItemEditActions from './item-edit.actions';
 
 export const itemEditFeatureKey = 'itemEdit';
 

@@ -4,9 +4,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainPanelComponent } from './main-panel/main-panel.component';
 import { StoreModule } from '@ngrx/store';
-import * as fromState from './state.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { StateEffects } from './state.effects';
+import * as fromShared from './state/shared.reducer';
 
 
 
@@ -15,8 +14,7 @@ import { StateEffects } from './state.effects';
   ],
   imports: [
     CommonModule,
-    StoreModule.forFeature(fromState.stateFeatureKey, fromState.reducer),
-    EffectsModule.forFeature([StateEffects])
+    StoreModule.forFeature(fromShared.sharedFeatureKey, fromShared.reducer)
   ]
 })
 export class SharedModule { }
