@@ -6,6 +6,7 @@ export interface Item {
   name: string
   ingredients: Ingredients
   itemGroup: ItemGroup
+  price: number
 }
 
 export type Items = Item[]
@@ -13,7 +14,6 @@ export type Items = Item[]
 export interface OrderItem extends Item {
   quantity: number
   subtotal: number
-  price: number
 }
 
 export type OrderItems = OrderItem[]

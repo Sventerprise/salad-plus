@@ -7,14 +7,12 @@ export const itemEditFeatureKey = 'itemEdit';
 export interface State {
   // list of ingredient options for selection on edit:
   selectedIngredientsOfType: IngredientList
-  allIngredientsOfType: IngredientList
   ingredientType: string
   selectorFlag: boolean
 }
 
 export const initialState: State = {
   selectedIngredientsOfType: [],
-  allIngredientsOfType: [],
   ingredientType: '',
   selectorFlag: false,
 };
@@ -28,10 +26,10 @@ export const reducer = createReducer(
     (state, action) => (
       { ...state, selectedIngredientsOfType: action.selectedIngredientsOfType })
   ),
-  on(ItemEditActions.updateAllIngredientsOfType,
-    (state, action) => (
-      { ...state, allIngredientsOfType: action.allIngredientsOfType })
-  ),
+  // on(ItemEditActions.updateAllIngredientsOfType,
+  //   (state, action) => (
+  //     { ...state, allIngredientsOfType: action.allIngredientsOfType })
+  // ),
   on(ItemEditActions.updateEditIngredientType,
     (state, action) => (
       { ...state, ingredientType: action.ingredientType })

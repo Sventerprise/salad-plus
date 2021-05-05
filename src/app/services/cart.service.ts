@@ -7,7 +7,7 @@ import { Item, OrderItem, OrderItems } from '../modules/order/models/Item';
 import { ItemGroup } from '../modules/order/models/ItemGroup';
 import { State } from '../modules/order/state/cart/cart.reducer';
 import { selectCartState } from '../modules/order/state/cart/cart.selectors';
-import { selectCurrentItemIngredients, selectCurrentItemState, selectSelectedItemGroup } from '../modules/order/state/current-item/current-item.selectors';
+import { selectCurrentItemIngredients, selectCurrentItemPrice, selectCurrentItemState, selectSelectedItemGroup } from '../modules/order/state/current-item/current-item.selectors';
 import { selectAllIngredients, selectIngredientTypes } from '../stores/selectors/order-static-data.selectors';
 
 @Injectable({
@@ -58,13 +58,16 @@ export class CartService {
     return totalPrice
   }
 
-  public buildOrderItem(price: number): OrderItem {
+  public buildOrderItem(): OrderItem {
     let orderItem: OrderItem
     let itemGroup: ItemGroup
-
+    let price: number
+    this.store.select(selectCurrentItemPrice).subscribe(itemPrice =>
+      price = itemPrice
+    )
     this.store.select(selectSelectedItemGroup).subscribe(group =>
-      itemGroup = group)
-
+      itemGroup = group
+    )
     // create an item-id-only list (Ingredients)
     let itemIngredients: Ingredients = []
     this.store.select(selectCurrentItemIngredients).subscribe(ingredients =>
@@ -83,7 +86,6 @@ export class CartService {
         quantity: 1
       }
     )
-    console.log(orderItem)
     return orderItem
   }
 

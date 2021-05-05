@@ -51,8 +51,8 @@ export class BuilderFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentItemIngredients$ = this.store.select(fromCurrentItem.selectCurrentItemIngredients)
-    this.store.select(selectIngredientTypes).subscribe(x => {
-      this.iType = x
+    this.store.select(selectIngredientTypes).subscribe(ingredientType => {
+      this.iType = ingredientType
     })
     this.selectedItemGroup$ = this.store.select(fromCurrentItem.selectSelectedItemGroup)
 
@@ -80,15 +80,23 @@ export class BuilderFormComponent implements OnInit {
     // when a user taps either an ingredient or its header
     // a popup listing the ingredients of that type appears
 
-    // create list of ingredients to show in popup (type selected)
-    let allIngredientsOfType: IngredientList
-    this.store.select(selectAllIngredients).subscribe(all =>
-      allIngredientsOfType = all.filter(i => i.type === type)
-    )
-    // send to the store
-    this.store.dispatch(fromItemEdit.updateAllIngredientsOfType(
-      { allIngredientsOfType: allIngredientsOfType }
+    this.store.dispatch(fromItemEdit.updateEditIngredientType(
+      { ingredientType: type }
     ))
+
+
+    // DELETE
+    // create list of ingredients to show in popup (type selected)
+    // let allIngredientsOfType: IngredientList
+    // this.store.select(selectAllIngredients).subscribe(all =>
+    //   allIngredientsOfType = all.filter(i => i.type === type)
+    // )
+    // send to the store
+    // this.store.dispatch(fromItemEdit.updateAllIngredientsOfType(
+    //   { allIngredientsOfType: allIngredientsOfType }
+    // ))
+
+
 
     // create a temporary list of currently selected ingredients where items can be added/removed without affecting current item
     let selectedIngredients: IngredientList
@@ -111,7 +119,6 @@ export class BuilderFormComponent implements OnInit {
   onSubmit() {
 
   }
-
 
   inSelected(typeId: string): boolean {
     let result: boolean = false

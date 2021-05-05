@@ -13,8 +13,8 @@ import { updateHeader } from '../../shared/state/shared.actions';
 import { CartService } from 'src/app/services/cart.service';
 import { Item, Items, OrderItem, OrderItems } from '../models/Item';
 import { addItem } from '../state/cart/cart.actions';
-import { selectOrderItems } from '../state/cart/cart.selectors';
-import { selectCurrentItemIngredients, selectCurrentItemState } from '../state/current-item/current-item.selectors';
+import { selectCurrentOrderItem, selectCurrentOrderItems, selectOrderItemQuantity, selectOrderItems } from '../state/cart/cart.selectors';
+import { selectCurrentItem, selectCurrentItemIngredientIds, selectCurrentItemIngredients, selectCurrentItemPrice, selectCurrentItemState, selectSelectedItemGroup } from '../state/current-item/current-item.selectors';
 
 @Component({
   selector: 'app-builder',
@@ -43,11 +43,14 @@ export class BuilderComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(updateHeader({ header: 'Customize!' }))
 
-    this.ingredientsOfType = this.store.select(selectAllIngredientsOfType)
-    this.selectorFlag = this.store.select(selectSelectorFlag)
+    // ensure page starts with popup closed
     this.store.dispatch(closeIngredientSelectorPopup())
+    this.selectorFlag = this.store.select(selectSelectorFlag)
+    // returns the ingredients currently on the item of the chosen type
+    // used to pre-select items on the ingredient selector popup:
     this.store.select(fromItemEdit.selectSelectedIngredientsOfType)
       .subscribe(ingredients => this.selectedIngredients = ingredients)
+    this.ingredientsOfType = this.store.select(selectAllIngredientsOfType)
   }
 
   // #region Methods
@@ -63,34 +66,29 @@ export class BuilderComponent implements OnInit {
   }
 
   submit() {
-    let itemIngredients: IngredientList
-    let currentItems: OrderItems
     let newItem: OrderItem
-    let price: number
     let orderItems: OrderItems = []
 
-    // get ingredients to calculate price
-    this.store.select(selectCurrentItemIngredients).subscribe(ingredients =>
-      itemIngredients = ingredients
-    )
-    price = this.cartService.calculateItemPrice(itemIngredients)
-
+    // add the new order item
+    newItem = this.cartService.buildOrderItem()
+    orderItems.push(newItem)
     // add the current order items
     this.store.select(selectOrderItems).subscribe(items =>
-      items.forEach(item => orderItems.push(item))
+      items.forEach(item => {
+        console.log('orderItems before:')
+        console.log(orderItems)
+        orderItems = Object.assign(orderItems).push(item)
+        console.log('orderItems after:')
+        console.log(orderItems)
+      })
     )
-    // add the new item
-    newItem = this.cartService.buildOrderItem(price)
-    orderItems.push(newItem)
     console.log(orderItems)
-    // put current items together with the new one
-
-    // submit items to store
+    // update cart
     this.store.dispatch(addItem(
       { orderItems }
     ))
-  }
 
+  }
   //#region Popups
 
   //#region Select Ingredient

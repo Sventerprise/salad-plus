@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { loadSpecialtyIngredients, setItemIngredientsFromSpecialty, updateSpecialty } from 'src/app/modules/order/state/current-item/current-item.actions'
-import { selectSpecialtiesOfGroup } from 'src/app/modules/order/state/current-item/current-item.selectors';
+import {
+  updateCurrentItemIngredients,
+  updateSpecialtyId
+} from 'src/app/modules/order/state/current-item/current-item.actions'
+import { selectSpecialtiesOfGroup, selectSpecialtyIngredients } from 'src/app/modules/order/state/current-item/current-item.selectors';
 import { selectAllIngredients, selectIngredientTypes } from 'src/app/stores/selectors/order-static-data.selectors';
 import { updateHeader } from '../../shared/state/shared.actions';
 import { IngredientList, IngredientTypes } from '../models/Ingredient';
@@ -31,24 +34,39 @@ export class SpecialtyComponent implements OnInit {
     this.store.dispatch(updateHeader({ header: 'Specialty Selector' }))
   }
   // before exiting use the selected ID to load the
-  // specialty into the store
+  // specialty as the current item
 
   // find specialty
   public loadSpecialty(selectedSpecialtyId: string): void {
-    let selectedSpecialty: Specialty = this.service
-      .getSelectedSpecialty(selectedSpecialtyId)
-    // load specialty to store
-    this.store.dispatch(updateSpecialty({ selectedSpecialty }))
-    //get specialty ingredient objects
-    let specialtyIngredients: IngredientList = this.service
-      .getSpecialtyIngredientsList(selectedSpecialty.ingredients)
-    // load to store for use by builder
-    this.store.dispatch(loadSpecialtyIngredients({ specialtyIngredients }))
+    this.store.dispatch(updateSpecialtyId({ selectedSpecialtyId }))
+    let specialtyIngredients: IngredientList
+    this.store.select(selectSpecialtyIngredients).subscribe(ingredients =>
+      specialtyIngredients = ingredients
+    )
+
+
+    // let selectedSpecialty: Specialty = this.service
+    //   .getSelectedSpecialty(selectedSpecialtyId)
+
+    // load specialty ingredients to current item
+    this.store.dispatch(updateCurrentItemIngredients({ ingredients: specialtyIngredients }))
+
+
+
+
+    // this.store.dispatch(updateSpecialty({ selectedSpecialty }))
+    // //get specialty ingredient objects
+    // let specialtyIngredients: IngredientList = this.service
+    //   .getSpecialtyIngredientsList(selectedSpecialty.ingredients)
+    // // load to store for use by builder
+    // this.store.dispatch(loadSpecialtyIngredients({ specialtyIngredients }))
 
     // set specialty ingredients to item ingredients (in case they change)
-    this.store.dispatch(setItemIngredientsFromSpecialty(
-      { initialIngredients: specialtyIngredients }
-    ))
+
+    // this.store.dispatch(setItemIngredientsFromSpecialty(
+    //   { initialIngredients: specialtyIngredients }
+    // ))
+
   }
 
   public calculateSpecialtyPrice(specialty: Specialty): string {

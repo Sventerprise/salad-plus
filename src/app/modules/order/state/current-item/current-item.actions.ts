@@ -9,25 +9,20 @@ export const setItemGroup = createAction(
   props<{ selectedItemGroup: ItemGroup }>()
 );
 
-export const updateSpecialty = createAction(
-  '[Specialty] Update Selected Specialty',
-  props<{ selectedSpecialty: Specialty }>()
+export const updateSpecialtyId = createAction(
+  '[Specialty] Update Selected Specialty ID',
+  props<{ selectedSpecialtyId: string }>()
 )
 
-export const loadSpecialtyIngredients = createAction(
-  '[Specialty] Load Specialty Ingredients to Store',
-  props<{ specialtyIngredients: IngredientList }>()
-)
+// export const setItemIngredientsFromSpecialty = createAction(
+//   '[Specialty] Set Item Ingredients to Specialty Ingredients',
+//   props<{ initialIngredients: IngredientList }>()
+// )
 
-export const setItemIngredientsFromSpecialty = createAction(
-  '[Specialty] Set Item Ingredients to Specialty Ingredients',
-  props<{ initialIngredients: IngredientList }>()
-)
-
-export const updateItemIngredients = createAction(
-  '[Builder Form] Update ingredients on the current item',
-  props<{ list: IngredientList }>()
-);
+// export const updateItemIngredients = createAction(
+//   '[Builder Form] Update ingredients on the current item',
+//   props<{ list: IngredientList }>()
+// );
 
 export const commitChanges = createAction(
   '[Builder Popup] Commit Temp List Changes to Item',
@@ -38,4 +33,9 @@ export const clearCurrentItem = createAction(
   '[Builder Confirm Popup] Clear Current Item'
 );
 
+
+export const updateCurrentItemIngredients = createAction(
+  '[Builder Form] Update ingredients on the current item',
+  props<{ ingredients: IngredientList }>()
+);
 

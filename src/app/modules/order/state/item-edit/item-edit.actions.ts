@@ -7,13 +7,13 @@ export const updateTempIngredientsOfType = createAction(
   props<{ selectedIngredientsOfType: IngredientList }>()
 )
 
-export const updateAllIngredientsOfType = createAction(
-  '[Builder Form] Update Ingredient Select Popup List',
-  props<{ allIngredientsOfType: IngredientList }>()
-);
+// export const updateAllIngredientsOfType = createAction(
+//   '[Builder Form] Update Ingredient Select Popup List',
+//   props<{ allIngredientsOfType: IngredientList }>()
+// );
 
 export const updateEditIngredientType = createAction(
-  '[Builder Popup] Update Edited Ingredient Type',
+  '[Builder Form] Update Edited Ingredient Type',
   props<{ ingredientType: string }>()
 )
 

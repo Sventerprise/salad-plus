@@ -1,15 +1,20 @@
 import { createAction, props } from '@ngrx/store';
-import { OrderItem } from '../../models/Item';
+import { OrderItems } from '../../models/Item';
 
 export const addItem = createAction(
   '[Builder] Add Item',
-  props<{ orderItems: OrderItem[] }>()
+  props<{ orderItems: OrderItems }>()
 );
 
 export const updateTotal = createAction(
   '[Order List] Update Total',
   props<{ total: number }>()
 );
+
+export const updateQuantity = createAction(
+  '[Order List] Update Quantity',
+  props<{ quantity: number }>()
+)
 
 
 

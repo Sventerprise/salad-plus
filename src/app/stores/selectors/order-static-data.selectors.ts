@@ -31,3 +31,7 @@ export const selectSides = createSelector(
   (state) => state.sides
 )
 
+export const selectAllIngredientIds = createSelector(
+  selectAllIngredients,
+  (allIngredients) => allIngredients.map(ingredient => ingredient.id)
+)

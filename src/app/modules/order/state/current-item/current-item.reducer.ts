@@ -8,22 +8,13 @@ export const currentItemFeatureKey = 'currentItem';
 
 export interface State {
   selectedItemGroup: ItemGroup,
-  selectedSpecialty: Specialty,
-  specialtyIngredients: IngredientList
+  selectedSpecialtyId: string,
   currentItemIngredients: IngredientList
 }
 
 export const initialState: State = {
   selectedItemGroup: null,
-  selectedSpecialty: {
-    id: null,
-    name: null,
-    ingredients: [],
-    itemGroup: null,
-    img: '',
-    description: ''
-  },
-  specialtyIngredients: [],
+  selectedSpecialtyId: null,
   currentItemIngredients: [],
 };
 
@@ -35,24 +26,15 @@ export const reducer = createReducer(
     (state, action) => (
       { ...state, selectedItemGroup: action.selectedItemGroup })
   ),
-  on(CurrentItemActions.updateSpecialty,
+  on(CurrentItemActions.updateSpecialtyId,
     (state, action) => (
-      { ...state, selectedSpecialty: action.selectedSpecialty }
+      { ...state, selectedSpecialtyId: action.selectedSpecialtyId }
     )
   ),
-  on(CurrentItemActions.loadSpecialtyIngredients,
+  on(CurrentItemActions.updateCurrentItemIngredients,
     (state, action) => (
-      { ...state, specialtyIngredients: action.specialtyIngredients })
+      { ...state, currentItemIngredients: action.ingredients })
   ),
-  on(CurrentItemActions.setItemIngredientsFromSpecialty,
-    (state, action) => (
-      { ...state, currentItemIngredients: action.initialIngredients })
-  ),
-  on(CurrentItemActions.updateItemIngredients,
-    (state, action) => (
-      { ...state, currentItemIngredients: action.list })
-  ),
-
   on(CurrentItemActions.commitChanges,
     (state, action) => (
       { ...state, currentItemIngredients: action.ingredients })
@@ -62,8 +44,7 @@ export const reducer = createReducer(
       {
         ...state,
         selectedItemGroup: null,
-        selectedSpecialty: null,
-        specialtyIngredients: [],
+        selectedSpecialtyId: null,
         currentItemIngredients: []
       })
   ),

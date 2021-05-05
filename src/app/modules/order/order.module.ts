@@ -9,7 +9,6 @@ import { SpecialtyComponent } from './specialty/specialty.component';
 import { OrderComponent } from './order.component';
 import { RouterModule } from '@angular/router';
 import { OrderRoutingModule } from './order-routing.module';
-import { BuilderConfirmComponent } from './builder-confirm/builder-confirm.component';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import * as fromCart from './state/cart/cart.reducer';
@@ -32,7 +31,6 @@ import * as fromItemEdit from './state/item-edit/item-edit.reducer';
     OrderFormComponent,
     SpecialtyComponent,
     OrderComponent,
-    BuilderConfirmComponent
   ],
   imports: [
     CommonModule,
