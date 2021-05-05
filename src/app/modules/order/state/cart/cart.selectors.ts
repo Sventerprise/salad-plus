@@ -10,3 +10,8 @@ export const selectOrderItems = createSelector(
   selectCartState,
   (state): OrderItems => state.orderItems
 );
+
+export const selectOrderTotal = createSelector(
+  selectCartState,
+  (state): number => state.total
+);

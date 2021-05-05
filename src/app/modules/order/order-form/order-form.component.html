@@ -8,9 +8,9 @@
       <!-- repeating item detail container-->
       <ng-container *ngIf="view1">
         <div class="ingredient-list">
-            <ng-container *ngFor="let recipe of item.recipe">
+            <ng-container *ngFor="let ingredients of item.ingredients">
               <label class="form-control ingredient">
-                {{recipe.name}} - ${{recipe.price}}
+                {{item.name}} - ${{item.subtotal}}
               </label>
             </ng-container>
         </div>
@@ -22,7 +22,7 @@
         <input type="number" class="qty form-control sm" placeholder="{{item.quantity}}">
 
         <div class="price-lbl mod">Price:</div>
-        <label class="price form-control sm">${{item.price}}</label>
+        <label class="price form-control sm">${{item.subtotal}}</label>
 
         <div class="subtotal-lbl mod">Subtotal:</div>
         <label class="subtotal form-control sm">${{item.subtotal}}</label>

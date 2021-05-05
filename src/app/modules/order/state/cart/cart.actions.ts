@@ -7,7 +7,8 @@ export const addItem = createAction(
 );
 
 export const updateTotal = createAction(
-  '[Order List] Update Total'
+  '[Order List] Update Total',
+  props<{ total: number }>()
 );
 
 

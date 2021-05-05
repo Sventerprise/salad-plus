@@ -6,10 +6,12 @@ export const cartFeatureKey = 'cart';
 
 export interface State {
   orderItems: OrderItems
+  total: number
 }
 
 export const initialState: State = {
-  orderItems: []
+  orderItems: [],
+  total: 0
 };
 
 
@@ -19,6 +21,10 @@ export const reducer = createReducer(
   on(CartActions.addItem, (state, action) => ({
     ...state,
     orderItems: action.orderItems
+  })),
+
+  on(CartActions.updateTotal, (state, action) => ({
+    ...state, total: action.total
   }))
 
 
