@@ -18,6 +18,8 @@ import { selectAllIngredients, selectIngredientTypes } from '../stores/selectors
 export class CartService {
   items: OrderItems
   cart: State
+  specialty: Specialty
+  group: ItemGroup
 
   constructor(
     private store: Store<{}>
@@ -25,10 +27,14 @@ export class CartService {
     this.store.select(selectCartState).subscribe(state =>
       this.cart = state
     )
-
     this.store.select(selectCartState).subscribe(state =>
       this.items = state.orderItems
     )
+    this.store.select(selectSelectedSpecialty).subscribe(itemSpecialty =>
+      this.specialty = itemSpecialty
+    )
+    this.store.select(selectSelectedItemGroup).subscribe(itemGroup =>
+      this.group = itemGroup)
   }
   public calculateItemPrice(itemIngredients: IngredientList): number {
     let totalPrice: number = 0
@@ -83,36 +89,34 @@ export class CartService {
   }
 
   private generateId(): string {
+    let unique: boolean = false
+    let i: number = 1
     let id: string
-    let specialty: Specialty
-    this.store.select(selectSelectedSpecialty).subscribe(thisSpecialty =>
-      specialty = thisSpecialty)
+    do {
+      id = this.group + "-" + i
+      unique = this.cart.orderItems.keys.toString().includes(id)
+        ? false
+        : true
+      i++
+    } while (!unique)
     return id
   }
 
   private generateName(): string {
-    let group, name: string
-    let specialty: Specialty
+    let name: string
     let modified: boolean
-    this.store.select(selectSelectedSpecialty).subscribe(itemSpecialty =>
-      specialty = itemSpecialty
-    )
-    this.store.select(selectSelectedItemGroup).subscribe(itemGroup =>
-      group = itemGroup
-    )
     this.store.select(selectSpecialtyModified).subscribe(itemModified =>
       modified = itemModified)
     // TODO: check to ensure specialties are properly cleared
-    if (specialty) {
+    if (this.specialty) {
       if (modified) {
-        name = 'Custom ' + specialty.name
+        name = 'Custom ' + this.specialty.name
       } else {
-        name = specialty.name
+        name = this.specialty.name
       }
     } else {
-      name = 'Custom ' + group
+      name = 'Custom ' + this.group
     }
-    console.log(name)
     return name
   }
 
