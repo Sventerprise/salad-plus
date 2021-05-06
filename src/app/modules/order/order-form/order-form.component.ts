@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { OrderItems } from '../models/Item';
 import { State } from '../state/cart/cart.reducer';
@@ -16,7 +17,7 @@ export class OrderFormComponent implements OnInit {
   view1: boolean = false
 
   constructor(
-    private store: Store<{}>
+    private store: Store<{}>,
   ) { }
 
 

@@ -89,14 +89,15 @@ export class CartService {
   }
 
   private generateId(): string {
-    let unique: boolean = false
+    let unique: boolean
     let i: number = 1
     let id: string
     do {
+      unique = true
       id = this.group + "-" + i
-      unique = this.cart.orderItems.keys.toString().includes(id)
-        ? false
-        : true
+      this.cart.orderItems.forEach(item =>
+        item.id === id ? unique = false : null
+      )
       i++
     } while (!unique)
     return id

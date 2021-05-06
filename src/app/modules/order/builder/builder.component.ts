@@ -66,19 +66,17 @@ export class BuilderComponent implements OnInit {
 
   submit() {
     let newItem: OrderItem
+    let currentItems: OrderItems
     let orderItems: OrderItems = []
-    let total: number
 
     // add the new order item
     newItem = this.cartService.buildOrderItem()
     orderItems.push(newItem)
     // add the current order items
     this.store.select(selectOrderItems).subscribe(items =>
-      items.forEach(item =>
-        orderItems = Object.assign(orderItems).push(item)
-      )
+      currentItems = items
     )
-    console.log(orderItems)
+    orderItems.push(...currentItems)
     // update cart
     this.store.dispatch(addItem(
       { orderItems }

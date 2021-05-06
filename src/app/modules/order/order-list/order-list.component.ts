@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
 import { updateHeader } from '../../shared/state/shared.actions';
 import { State } from '../state/cart/cart.reducer';
@@ -14,7 +15,7 @@ export class OrderListComponent implements OnInit {
   confirmFlag: boolean = false
   popupFlag: boolean = false
   cart: State
-  total: string
+  total: Observable<number>
 
   constructor(
     private store: Store<{}>,
@@ -22,12 +23,11 @@ export class OrderListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.store.dispatch(updateHeader({ header: 'Review and/or Order More' }))
+    this.store.dispatch(updateHeader({ header: 'Review & Order More' }))
     this.store.select(selectCartState).subscribe(cart => {
       this.cart = cart
     })
-    this.store.select(selectOrderTotal).subscribe(total =>
-      this.total = total.toFixed(2))
+    this.total = this.store.select(selectOrderTotal)
   }
 
   public openCancelConfirm() {
