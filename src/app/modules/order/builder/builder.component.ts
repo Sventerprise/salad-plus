@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { closeIngredientSelectorPopup } from 'src/app/modules/order/state/item-edit/item-edit.actions';
@@ -11,10 +11,9 @@ import { CurrentItemService } from '../services/currentItems.service';
 import { commitChanges } from 'src/app/modules/order/state/current-item/current-item.actions';
 import { updateHeader } from '../../shared/state/shared.actions';
 import { CartService } from 'src/app/services/cart.service';
-import { Item, Items, OrderItem, OrderItems } from '../models/Item';
-import { addItem } from '../state/cart/cart.actions';
-import { selectCurrentOrderItem, selectCurrentOrderItems, selectOrderItemQuantity, selectOrderItems } from '../state/cart/cart.selectors';
-import { selectCurrentItem, selectCurrentItemIngredientIds, selectCurrentItemIngredients, selectCurrentItemPrice, selectCurrentItemState, selectSelectedItemGroup } from '../state/current-item/current-item.selectors';
+import { OrderItem, OrderItems } from '../models/Item';
+import { addItem, updateTotal } from '../state/cart/cart.actions';
+import { selectOrderItems, } from '../state/cart/cart.selectors';
 
 @Component({
   selector: 'app-builder',
@@ -68,25 +67,23 @@ export class BuilderComponent implements OnInit {
   submit() {
     let newItem: OrderItem
     let orderItems: OrderItems = []
+    let total: number
 
     // add the new order item
     newItem = this.cartService.buildOrderItem()
     orderItems.push(newItem)
     // add the current order items
     this.store.select(selectOrderItems).subscribe(items =>
-      items.forEach(item => {
-        console.log('orderItems before:')
-        console.log(orderItems)
+      items.forEach(item =>
         orderItems = Object.assign(orderItems).push(item)
-        console.log('orderItems after:')
-        console.log(orderItems)
-      })
+      )
     )
     console.log(orderItems)
     // update cart
     this.store.dispatch(addItem(
       { orderItems }
     ))
+    this.cartService.updateTotal()
 
   }
   //#region Popups

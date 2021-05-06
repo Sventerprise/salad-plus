@@ -16,8 +16,6 @@ export const updateQuantity = createAction(
   props<{ quantity: number }>()
 )
 
-
-
 export const loadCartsSuccess = createAction(
   '[Cart] Load Carts Success',
   props<{ data: any }>()

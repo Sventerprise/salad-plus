@@ -21,11 +21,11 @@
         <div class="qty-lbl mod">Qty:</div>
         <input type="number" class="qty form-control sm" placeholder="{{item.quantity}}">
 
-        <div class="price-lbl mod">Price:</div>
-        <label class="price form-control sm">${{item.subtotal}}</label>
+        <div class="price-lbl mod">@</div>
+        <label class="price form-control sm">${{item.price | number:'1.2' }}</label>
 
         <div class="subtotal-lbl mod">Subtotal:</div>
-        <label class="subtotal form-control sm">${{item.subtotal}}</label>
+        <label class="subtotal form-control sm">${{item.subtotal | number:'1.2' }}</label>
         <!-- /qty, price, subtotal -->
       </div>
       <!-- item buttons -->

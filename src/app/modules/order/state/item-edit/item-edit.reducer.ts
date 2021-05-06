@@ -26,14 +26,11 @@ export const reducer = createReducer(
     (state, action) => (
       { ...state, selectedIngredientsOfType: action.selectedIngredientsOfType })
   ),
-  // on(ItemEditActions.updateAllIngredientsOfType,
-  //   (state, action) => (
-  //     { ...state, allIngredientsOfType: action.allIngredientsOfType })
-  // ),
   on(ItemEditActions.updateEditIngredientType,
     (state, action) => (
       { ...state, ingredientType: action.ingredientType })
   ),
+  // open/close selector popup
   on(ItemEditActions.openIngredientSelectorPopup,
     (state) => (
       { ...state, selectorFlag: true })
@@ -42,7 +39,7 @@ export const reducer = createReducer(
     (state) => (
       { ...state, selectorFlag: false })
   ),
-  // add/remove (de)selected items
+  // ingredient selector (de)select ingredients
   on(ItemEditActions.clearSelectedIngredients,
     (state) => (
       { ...state, selectedIngredientsOfType: [] })

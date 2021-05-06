@@ -69,19 +69,19 @@ export const selectCurrentItemPrice = createSelector(
   }
 )
 
-export const selectCurrentItem = createSelector(
+export const selectSpecialtyModified = createSelector(
   selectCurrentItemIngredientIds,
-  selectCurrentItemPrice,
-  selectSelectedItemGroup,
-  (ingredients, price, group): Item => (
-    {
-      id: 'string',
-      name: 'string',
-      ingredients: ingredients,
-      itemGroup: group,
-      price: price
+  selectSpecialtyIngredientIds,
+  (current, specialty): boolean => {
+    // check: same # of ingredients
+    if (current.length != specialty.length) {
+      return true // yes, modified
+    } else {
+      // check: all item ingredients included in specialty list
+      current.forEach(ingredientId =>
+        !specialty.includes(ingredientId) ? true : false
+      )
     }
-  )
-
+    return false // no, not modified
+  }
 )
-

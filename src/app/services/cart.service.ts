@@ -5,9 +5,11 @@ import { reduce } from 'rxjs/operators';
 import { IngredientList, Ingredients, IngredientTypes } from '../modules/order/models/Ingredient';
 import { Item, OrderItem, OrderItems } from '../modules/order/models/Item';
 import { ItemGroup } from '../modules/order/models/ItemGroup';
+import { Specialty } from '../modules/order/models/Specialty';
+import { updateTotal } from '../modules/order/state/cart/cart.actions';
 import { State } from '../modules/order/state/cart/cart.reducer';
-import { selectCartState } from '../modules/order/state/cart/cart.selectors';
-import { selectCurrentItemIngredients, selectCurrentItemPrice, selectCurrentItemState, selectSelectedItemGroup } from '../modules/order/state/current-item/current-item.selectors';
+import { selectCartState, selectOrderItems } from '../modules/order/state/cart/cart.selectors';
+import { selectCurrentItemIngredientIds, selectCurrentItemIngredients, selectCurrentItemPrice, selectCurrentItemState, selectSelectedItemGroup, selectSelectedSpecialty, selectSelectedSpecialtyId, selectSpecialtyIngredients, selectSpecialtyModified } from '../modules/order/state/current-item/current-item.selectors';
 import { selectAllIngredients, selectIngredientTypes } from '../stores/selectors/order-static-data.selectors';
 
 @Injectable({
@@ -28,12 +30,6 @@ export class CartService {
       this.items = state.orderItems
     )
   }
-
-
-
-
-
-
   public calculateItemPrice(itemIngredients: IngredientList): number {
     let totalPrice: number = 0
     let allIngredients: IngredientList
@@ -70,37 +66,63 @@ export class CartService {
     )
     // create an item-id-only list (Ingredients)
     let itemIngredients: Ingredients = []
-    this.store.select(selectCurrentItemIngredients).subscribe(ingredients =>
-      ingredients.forEach(ingredient => itemIngredients.push(ingredient.id)
-      )
+    this.store.select(selectCurrentItemIngredientIds).subscribe(ingredients =>
+      itemIngredients = ingredients
     )
-    // all all the properties to the OrderItem object
-    this.store.select(selectCurrentItemState).subscribe(state =>
-      orderItem = {
-        id: "1",
-        name: "1-1",
-        ingredients: itemIngredients,
-        itemGroup: itemGroup,
-        price: price,
-        subtotal: price,
-        quantity: 1
-      }
-    )
+    // all the properties to the OrderItem object
+    orderItem = {
+      id: this.generateId(),
+      name: this.generateName(),
+      ingredients: itemIngredients,
+      itemGroup: itemGroup,
+      price: price,
+      subtotal: price,
+      quantity: 1
+    }
     return orderItem
   }
 
-  private generateId() {
-
+  private generateId(): string {
+    let id: string
+    let specialty: Specialty
+    this.store.select(selectSelectedSpecialty).subscribe(thisSpecialty =>
+      specialty = thisSpecialty)
+    return id
   }
 
-  private generateName() {
-
+  private generateName(): string {
+    let group, name: string
+    let specialty: Specialty
+    let modified: boolean
+    this.store.select(selectSelectedSpecialty).subscribe(itemSpecialty =>
+      specialty = itemSpecialty
+    )
+    this.store.select(selectSelectedItemGroup).subscribe(itemGroup =>
+      group = itemGroup
+    )
+    this.store.select(selectSpecialtyModified).subscribe(itemModified =>
+      modified = itemModified)
+    // TODO: check to ensure specialties are properly cleared
+    if (specialty) {
+      if (modified) {
+        name = 'Custom ' + specialty.name
+      } else {
+        name = specialty.name
+      }
+    } else {
+      name = 'Custom ' + group
+    }
+    console.log(name)
+    return name
   }
 
-  public calcTotal(): number {
-    let total: number = this.items.reduce((accumulator, item) => {
-      return accumulator + item.subtotal
-    }, 0)
-    return total
+  public updateTotal(): void {
+    let total: number = 0
+    this.store.select(selectOrderItems).subscribe(items => {
+      items.forEach(item =>
+        total += item.subtotal
+      )
+    })
+    this.store.dispatch(updateTotal({ total }))
   }
 }

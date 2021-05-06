@@ -17,33 +17,7 @@ export const selectOrderTotal = createSelector(
   (state): number => state.total
 );
 
-
-
-export const selectOrderItemQuantity = createSelector(
+export const selectTotal = createSelector(
   selectCartState,
-  (state) => state.quantity
-)
-
-export const selectCurrentOrderItem = createSelector(
-  selectCurrentItemIngredientIds,
-  selectCurrentItemPrice,
-  selectSelectedItemGroup,
-  selectOrderItemQuantity,
-  (ingredients, price, group, quantity) => (
-    // {
-    //   id: 'string',
-    //   name: 'string',
-    //   ingredients: ingredients,
-    //   itemGroup: group,
-    //   price: price,
-    //   quantity: quantity,
-    //   subtotal: price * quantity
-    // }
-    { name: 'bruce' }
-  )
-)
-
-export const selectCurrentOrderItems = createSelector(
-  selectCartState,
-  (state) => state.orderItems
+  (state) => state.total
 )
