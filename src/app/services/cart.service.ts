@@ -6,7 +6,7 @@ import { IngredientList, Ingredients, IngredientTypes } from '../modules/order/m
 import { Item, OrderItem, OrderItems } from '../modules/order/models/Item';
 import { ItemGroup } from '../modules/order/models/ItemGroup';
 import { Specialty } from '../modules/order/models/Specialty';
-import { updateTotal } from '../modules/order/state/cart/cart.actions';
+import { removeCartItem, updateTotal } from '../modules/order/state/cart/cart.actions';
 import { State } from '../modules/order/state/cart/cart.reducer';
 import { selectCartState, selectOrderItems } from '../modules/order/state/cart/cart.selectors';
 import { selectCurrentItemIngredientIds, selectCurrentItemIngredients, selectCurrentItemPrice, selectCurrentItemState, selectSelectedItemGroup, selectSelectedSpecialty, selectSelectedSpecialtyId, selectSpecialtyIngredients, selectSpecialtyModified } from '../modules/order/state/current-item/current-item.selectors';
@@ -129,5 +129,19 @@ export class CartService {
       )
     })
     this.store.dispatch(updateTotal({ total }))
+  }
+
+  public removeItem(id: string) {
+    let orderItems: OrderItems = []
+    let currentItems: OrderItems
+    this.store.select(selectOrderItems).subscribe(items =>
+      currentItems = items
+    )
+    currentItems.forEach(item => {
+      if (item.id != id) { orderItems.push(item) }
+    });
+    this.store.dispatch(removeCartItem({ orderItems }))
+    // update total
+    this.updateTotal()
   }
 }

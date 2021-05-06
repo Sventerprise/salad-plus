@@ -1,8 +1,13 @@
 import { createAction, props } from '@ngrx/store';
 import { OrderItems } from '../../models/Item';
 
-export const addItem = createAction(
-  '[Builder] Add Item',
+export const addCartItem = createAction(
+  '[Builder] Add Cart Item',
+  props<{ orderItems: OrderItems }>()
+);
+
+export const removeCartItem = createAction(
+  '[Builder] Remove Cart Item',
   props<{ orderItems: OrderItems }>()
 );
 

@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { CartService } from 'src/app/services/cart.service';
 import { OrderItems } from '../models/Item';
+import { removeCartItem, updateTotal } from '../state/cart/cart.actions';
 import { State } from '../state/cart/cart.reducer';
-import { selectCartState } from '../state/cart/cart.selectors';
+import { selectCartState, selectOrderItems } from '../state/cart/cart.selectors';
 
 @Component({
   selector: 'app-order-form',
@@ -13,11 +16,13 @@ import { selectCartState } from '../state/cart/cart.selectors';
 export class OrderFormComponent implements OnInit {
   cart: State
   items: OrderItems
+  items$: Observable<OrderItems>
 
   view1: boolean = false
 
   constructor(
     private store: Store<{}>,
+    private cartService: CartService
   ) { }
 
 
@@ -26,16 +31,20 @@ export class OrderFormComponent implements OnInit {
       this.cart = cart
       this.items = cart.orderItems
     })
+    // this.cart$ = this.store.select(selectCartState)
+    this.items$ = this.store.select(selectOrderItems)
   }
 
-  viewDetail() {
-    // TODO set store item view to True
+  public viewDetail() {
     this.view1 = true
   }
 
-  hideDetail() {
-    // TODO set store item view to True
+  public hideDetail() {
     this.view1 = false
+  }
+
+  public removeItem(id: string) {
+    this.cartService.removeItem(id)
   }
 
 }

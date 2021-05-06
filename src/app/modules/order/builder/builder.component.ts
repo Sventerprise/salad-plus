@@ -12,7 +12,7 @@ import { commitChanges } from 'src/app/modules/order/state/current-item/current-
 import { updateHeader } from '../../shared/state/shared.actions';
 import { CartService } from 'src/app/services/cart.service';
 import { OrderItem, OrderItems } from '../models/Item';
-import { addItem, updateTotal } from '../state/cart/cart.actions';
+import { addCartItem, updateTotal } from '../state/cart/cart.actions';
 import { selectOrderItems, } from '../state/cart/cart.selectors';
 
 @Component({
@@ -24,13 +24,8 @@ export class BuilderComponent implements OnInit {
   categoryFlag: boolean = false
   selectorFlag: Observable<boolean>
   confirmFlag: boolean = false
-
   ingredientsOfType: Observable<Ingredient[]>
   selectedIngredients: IngredientList
-  typeSelect: boolean = true
-
-  // debug
-  counter: number = 0
 
   constructor(
     private store: Store<{}>,
@@ -78,7 +73,7 @@ export class BuilderComponent implements OnInit {
     )
     orderItems.push(...currentItems)
     // update cart
-    this.store.dispatch(addItem(
+    this.store.dispatch(addCartItem(
       { orderItems }
     ))
     this.cartService.updateTotal()

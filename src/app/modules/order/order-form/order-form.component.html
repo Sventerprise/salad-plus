@@ -1,16 +1,16 @@
 <div class="order-form-wrap">
 
   <!-- repeating item container -->
-  <ng-container *ngFor="let item of items">
+  <ng-container *ngFor="let item of items$ |async">
     <div class="item-list">
       <label class="item form-control sm">{{item.name}}</label>
 
       <!-- repeating item detail container-->
       <ng-container *ngIf="view1">
         <div class="ingredient-list">
-            <ng-container *ngFor="let ingredients of item.ingredients">
+            <ng-container *ngFor="let ingredient of item.ingredients">
               <label class="form-control ingredient">
-                {{item.name}} - ${{item.subtotal}}
+                {{ingredient}}
               </label>
             </ng-container>
         </div>
@@ -36,7 +36,8 @@
       <ng-container *ngIf="view1">
         <button class="view btn btn-warning" (click)="hideDetail()">Collapse</button>
       </ng-container>
-      <button class="remove btn btn-danger">Remove</button>
+      <button class="remove btn btn-danger"
+      (click)="removeItem(item.id)">Remove</button>
        <!-- /item buttons -->
     </div>
   </ng-container>  <!-- /item -->

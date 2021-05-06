@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { OrderItems } from '../../models/Item';
 import * as CartActions from './cart.actions';
+import { selectOrderItems } from './cart.selectors';
 
 export const cartFeatureKey = 'cart';
 
@@ -18,7 +19,11 @@ export const initialState: State = {
 export const reducer = createReducer(
   initialState,
 
-  on(CartActions.addItem, (state, action) => ({
+  on(CartActions.addCartItem, (state, action) => ({
+    ...state,
+    orderItems: action.orderItems
+  })),
+  on(CartActions.removeCartItem, (state, action) => ({
     ...state,
     orderItems: action.orderItems
   })),
