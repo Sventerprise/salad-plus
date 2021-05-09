@@ -1,22 +1,29 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { OrderItems } from '../../models/Item';
+import { OrderItem, OrderItems } from '../../models/Item';
+import { selectOrderItemArray } from '../order-items/order-items.selectors';
 import * as fromCart from './cart.reducer';
 
 export const selectCartState = createFeatureSelector<fromCart.State>(
   fromCart.cartFeatureKey
 );
 
-export const selectOrderItems = createSelector(
+export const selectCartIds = createSelector(
   selectCartState,
-  (state): OrderItems => state.orderItems
+  (state): string[] => state.orderItemIds
 );
 
-export const selectOrderTotal = createSelector(
+export const selectCartArray = createSelector(
+  selectOrderItemArray,
+  (orderItemArray): OrderItem[] => {
+    let orderItems: OrderItem[]
+    for (let item of orderItemArray) {
+      orderItems.push(item)
+    }
+    return orderItems
+  }
+);
+
+export const selectCartTotal = createSelector(
   selectCartState,
   (state): number => state.total
 );
-
-export const selectTotal = createSelector(
-  selectCartState,
-  (state) => state.total
-)

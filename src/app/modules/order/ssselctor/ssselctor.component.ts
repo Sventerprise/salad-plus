@@ -22,12 +22,13 @@ export class SsselctorComponent implements OnInit {
     this.store.dispatch(updateHeader({ header: 'Specialty or BYO?' }))
   }
 
-  public setItemGroup(selectedItemGroup: ItemGroup) {
-    this.store.dispatch(setItemGroup({ selectedItemGroup }))
+  //#region Methods
+  public setItemGroup(currentItemGroup: ItemGroup) {
+    this.store.dispatch(setItemGroup({ currentItemGroup }))
   }
 
   public clearCurrentSpecialty() {
     this.store.dispatch(clearCurrentItem())
   }
-
+  //#endregion Methods
 }

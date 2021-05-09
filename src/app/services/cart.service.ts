@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { reduce } from 'rxjs/operators';
+import { filter, map, reduce } from 'rxjs/operators';
 import { IngredientList, Ingredients, IngredientTypes } from '../modules/order/models/Ingredient';
 import { Item, OrderItem, OrderItems } from '../modules/order/models/Item';
 import { ItemGroup } from '../modules/order/models/ItemGroup';
 import { Specialty } from '../modules/order/models/Specialty';
 import { removeCartItem, updateTotal } from '../modules/order/state/cart/cart.actions';
 import { State } from '../modules/order/state/cart/cart.reducer';
-import { selectCartState, selectOrderItems } from '../modules/order/state/cart/cart.selectors';
-import { selectCurrentItemIngredientIds, selectCurrentItemIngredients, selectCurrentItemPrice, selectCurrentItemState, selectSelectedItemGroup, selectSelectedSpecialty, selectSelectedSpecialtyId, selectSpecialtyIngredients, selectSpecialtyModified } from '../modules/order/state/current-item/current-item.selectors';
+import { selectCartArray, selectCartIds, selectCartState } from '../modules/order/state/cart/cart.selectors';
+import { selectCurrentItemIngredientIds, selectCurrentItemIngredients, selectCurrentItemPrice, selectCurrentItemState, selectCurrentItemGroup, selectSelectedSpecialty, selectSelectedSpecialtyId, selectSpecialtyIngredients, selectSpecialtyModified } from '../modules/order/state/current-item/current-item.selectors';
 import { selectAllIngredients, selectIngredientTypes } from '../stores/selectors/order-static-data.selectors';
+import * as _ from 'lodash'
+import { selectOrderItemArray, selectOrderItemEntities } from '../modules/order/state/order-items/order-items.selectors';
 
 @Injectable({
   providedIn: 'root'
@@ -27,13 +29,10 @@ export class CartService {
     this.store.select(selectCartState).subscribe(state =>
       this.cart = state
     )
-    this.store.select(selectCartState).subscribe(state =>
-      this.items = state.orderItems
-    )
     this.store.select(selectSelectedSpecialty).subscribe(itemSpecialty =>
       this.specialty = itemSpecialty
     )
-    this.store.select(selectSelectedItemGroup).subscribe(itemGroup =>
+    this.store.select(selectCurrentItemGroup).subscribe(itemGroup =>
       this.group = itemGroup)
   }
   public calculateItemPrice(itemIngredients: IngredientList): number {
@@ -67,7 +66,7 @@ export class CartService {
     this.store.select(selectCurrentItemPrice).subscribe(itemPrice =>
       price = itemPrice
     )
-    this.store.select(selectSelectedItemGroup).subscribe(group =>
+    this.store.select(selectCurrentItemGroup).subscribe(group =>
       itemGroup = group
     )
     // create an item-id-only list (Ingredients)
@@ -88,22 +87,24 @@ export class CartService {
     return orderItem
   }
 
-  private generateId(): string {
+  public generateId(): string {
     let unique: boolean
     let i: number = 1
     let id: string
     do {
       unique = true
       id = this.group + "-" + i
-      this.cart.orderItems.forEach(item =>
-        item.id === id ? unique = false : null
+      this.store.select(selectOrderItemArray).subscribe(orderItems =>
+        orderItems.find(existingItem =>
+          existingItem.id === id ? unique = false : null
+        )
       )
       i++
     } while (!unique)
     return id
   }
 
-  private generateName(): string {
+  public generateName(): string {
     let name: string
     let modified: boolean
     this.store.select(selectSpecialtyModified).subscribe(itemModified =>
@@ -123,24 +124,23 @@ export class CartService {
 
   public updateTotal(): void {
     let total: number = 0
-    this.store.select(selectOrderItems).subscribe(items => {
+    this.store.select(selectCartArray).subscribe(items => {
       items.forEach(item =>
-        total += item.subtotal
+        total += item.price
       )
     })
     this.store.dispatch(updateTotal({ total }))
   }
 
-  public removeItem(id: string) {
-    let orderItems: OrderItems = []
-    let currentItems: OrderItems
-    this.store.select(selectOrderItems).subscribe(items =>
-      currentItems = items
+  public removeCartItem(id: string) {
+    // get the current cart item list
+    let orderItemIds: string[]
+    this.store.select(selectCartIds).subscribe(ids =>
+      // and remove the selected id
+      orderItemIds = ids.filter(cartId => cartId != id)
     )
-    currentItems.forEach(item => {
-      if (item.id != id) { orderItems.push(item) }
-    });
-    this.store.dispatch(removeCartItem({ orderItems }))
+    // tell the store
+    this.store.dispatch(removeCartItem({ orderItemIds }))
     // update total
     this.updateTotal()
   }

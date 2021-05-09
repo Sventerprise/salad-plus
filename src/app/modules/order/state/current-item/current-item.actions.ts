@@ -1,12 +1,13 @@
 import { createAction, props } from '@ngrx/store';
-import { IngredientList } from 'src/app/modules/order/models/Ingredient';
+import { IngredientList, Ingredients } from 'src/app/modules/order/models/Ingredient';
 import { ItemGroup } from 'src/app/modules/order/models/ItemGroup';
 import { Specialty } from 'src/app/modules/order/models/Specialty';
+import { OrderItem } from '../../models/Item';
 
 
 export const setItemGroup = createAction(
   '[Specialty] Set Item Group',
-  props<{ selectedItemGroup: ItemGroup }>()
+  props<{ currentItemGroup: ItemGroup }>()
 );
 
 export const updateSpecialtyId = createAction(
@@ -26,7 +27,7 @@ export const updateSpecialtyId = createAction(
 
 export const commitChanges = createAction(
   '[Builder Popup] Commit Temp List Changes to Item',
-  props<{ ingredients: IngredientList }>()
+  props<{ orderItem: OrderItem }>()
 )
 
 export const clearCurrentItem = createAction(
@@ -34,8 +35,7 @@ export const clearCurrentItem = createAction(
 );
 
 
-export const updateCurrentItemIngredients = createAction(
+export const updateIngredients = createAction(
   '[Builder Form] Update ingredients on the current item',
-  props<{ ingredients: IngredientList }>()
+  props<{ ingredients: Ingredients }>()
 );
-

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
 import { updateHeader } from '../../shared/state/shared.actions';
 import { State } from '../state/cart/cart.reducer';
-import { selectCartState, selectOrderTotal } from '../state/cart/cart.selectors';
+import { selectCartState, selectCartTotal } from '../state/cart/cart.selectors';
 
 @Component({
   selector: 'app-order-list',
@@ -27,7 +27,7 @@ export class OrderListComponent implements OnInit {
     this.store.select(selectCartState).subscribe(cart => {
       this.cart = cart
     })
-    this.total = this.store.select(selectOrderTotal)
+    this.total = this.store.select(selectCartTotal)
   }
 
   public openCancelConfirm() {

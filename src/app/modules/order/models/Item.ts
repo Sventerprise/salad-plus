@@ -16,4 +16,7 @@ export interface OrderItem extends Item {
   subtotal: number
 }
 
-export type OrderItems = OrderItem[]
+export interface OrderItems {
+  entities: { [key: string]: OrderItem }
+  ids: string[]
+}

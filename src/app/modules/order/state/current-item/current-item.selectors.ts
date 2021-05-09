@@ -9,16 +9,16 @@ export const selectCurrentItemState = createFeatureSelector<fromCurrentItem.Stat
   fromCurrentItem.currentItemFeatureKey
 );
 
-export const selectSelectedItemGroup = createSelector(
+export const selectCurrentItemGroup = createSelector(
   selectCurrentItemState,
-  (state) => state.selectedItemGroup
+  (state) => state.itemGroup
 )
 
 // returns a list of specialties with the matching group
 // ex: return all sandwiches
 export const selectSpecialtiesOfGroup = createSelector(
   selectSpecialties,
-  selectSelectedItemGroup,
+  selectCurrentItemGroup,
   (specialties: Specialty[], selectedGroup: string): Specialties =>
     specialties.filter(specialty =>
       specialty.itemGroup === selectedGroup)
@@ -48,8 +48,17 @@ export const selectSpecialtyIngredients = createSelector(
 )
 
 export const selectCurrentItemIngredients = createSelector(
+  selectAllIngredients,
   selectCurrentItemState,
-  (state): IngredientList => state.currentItemIngredients
+  (allIngredients, state): IngredientList => {
+    let ingredientList: IngredientList = []
+    for (let ingredientId of state.ingredients) {
+      ingredientList.push(allIngredients.find(ingredient =>
+        ingredient.id === ingredientId)
+      )
+    }
+    return ingredientList
+  }
 )
 
 export const selectCurrentItemIngredientIds = createSelector(
@@ -67,6 +76,17 @@ export const selectCurrentItemPrice = createSelector(
     })
     return totalPrice
   }
+)
+
+export const selectCurrentItemQuantity = createSelector(
+  selectCurrentItemState,
+  (state): number => state.quantity
+)
+
+export const selectCurrentItemSubtotal = createSelector(
+  selectCurrentItemPrice,
+  selectCurrentItemQuantity,
+  (price, quantity): number => price * quantity
 )
 
 export const selectSpecialtyModified = createSelector(

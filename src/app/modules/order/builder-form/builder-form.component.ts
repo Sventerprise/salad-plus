@@ -21,11 +21,11 @@ export class BuilderFormComponent implements OnInit {
   //#endregion flags
 
   //#region Declarations
-  currentItemIngredients$: Observable<IngredientList>
+  ingredients$: Observable<IngredientList>
   specialty$: Observable<Specialty>
   allIngredients: Ingredient[]
   ingredientTypes$: Observable<IngredientTypes>
-  selectedItemGroup$: Observable<string>
+  itemGroup$: Observable<string>
   iType: IngredientTypes
 
   //#region Ingredient Lists
@@ -50,11 +50,11 @@ export class BuilderFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.currentItemIngredients$ = this.store.select(fromCurrentItem.selectCurrentItemIngredients)
+    this.ingredients$ = this.store.select(fromCurrentItem.selectCurrentItemIngredients)
     this.store.select(selectIngredientTypes).subscribe(ingredientType => {
       this.iType = ingredientType
     })
-    this.selectedItemGroup$ = this.store.select(fromCurrentItem.selectSelectedItemGroup)
+    this.itemGroup$ = this.store.select(fromCurrentItem.selectCurrentItemGroup)
 
     //#region select ingredient groups
     this.breads = this.service.getIngredient('Bread')
@@ -122,7 +122,7 @@ export class BuilderFormComponent implements OnInit {
 
   inSelected(typeId: string): boolean {
     let result: boolean = false
-    this.currentItemIngredients$.subscribe(ingredients => {
+    this.ingredients$.subscribe(ingredients => {
       ingredients.forEach(ingredient => {
         if (ingredient.id === typeId) {
           result = true

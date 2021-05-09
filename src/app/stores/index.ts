@@ -1,9 +1,12 @@
-import { Action, ActionReducer, combineReducers, createReducer, MetaReducer, on, ActionReducerMap } from '@ngrx/store';
-import * as OrderActions from './actions/order.actions';
-import * as fromCart from './reducers/cart.reducer';
-import * as fromOrder from './reducers/order.reducer';
+import { Action, ActionReducer, combineReducers, createReducer, MetaReducer, on, ActionReducerMap, StoreModule } from '@ngrx/store';
+import * as OrderActions from '../modules/order/state/order.actions';
+import * as fromCart from 'src/app/modules/order/state/cart/cart.reducer';
+import * as fromOrder from '../modules/order/state/order.reducer';
 import * as fromOrderStaticData from './reducers/order-static-data.reducer';
 import { environment } from 'src/environments/environment';
+import * as fromOrderItems from '../modules/order/state/order-items/order-items.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { OrderItemsEffects } from '../modules/order/state/order-items/order-items.effects';
 
 export const orderFeatureKey = 'order';
 

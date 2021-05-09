@@ -3,10 +3,11 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
-import { OrderItems } from '../models/Item';
+import { OrderItem, OrderItems } from '../models/Item';
 import { removeCartItem, updateTotal } from '../state/cart/cart.actions';
 import { State } from '../state/cart/cart.reducer';
-import { selectCartState, selectOrderItems } from '../state/cart/cart.selectors';
+import { selectCartState } from '../state/cart/cart.selectors';
+import { selectOrderItemArray } from '../state/order-items/order-items.selectors';
 
 @Component({
   selector: 'app-order-form',
@@ -15,8 +16,7 @@ import { selectCartState, selectOrderItems } from '../state/cart/cart.selectors'
 })
 export class OrderFormComponent implements OnInit {
   cart: State
-  items: OrderItems
-  items$: Observable<OrderItems>
+  items$: Observable<OrderItem[]>
 
   view1: boolean = false
 
@@ -29,10 +29,8 @@ export class OrderFormComponent implements OnInit {
   ngOnInit(): void {
     this.store.select(selectCartState).subscribe(cart => {
       this.cart = cart
-      this.items = cart.orderItems
     })
-    // this.cart$ = this.store.select(selectCartState)
-    this.items$ = this.store.select(selectOrderItems)
+    this.items$ = this.store.select(selectOrderItemArray)
   }
 
   public viewDetail() {
@@ -43,8 +41,9 @@ export class OrderFormComponent implements OnInit {
     this.view1 = false
   }
 
-  public removeItem(id: string) {
-    this.cartService.removeItem(id)
+  public removeCartItem(id: string) {
+    this.cartService.removeCartItem(id)
   }
 
 }
+

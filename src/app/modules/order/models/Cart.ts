@@ -1,7 +1,7 @@
-import { OrderItems } from "./Item";
+import { Item, OrderItems } from "./Item";
 
 export interface Cart {
   id: string
-  orderItems: OrderItems
+  orderItemsIds: string[]
   total: number
 }

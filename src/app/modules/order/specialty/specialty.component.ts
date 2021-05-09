@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import {
-  updateCurrentItemIngredients,
+  updateIngredients,
   updateSpecialtyId
 } from 'src/app/modules/order/state/current-item/current-item.actions'
-import { selectSpecialtiesOfGroup, selectSpecialtyIngredients } from 'src/app/modules/order/state/current-item/current-item.selectors';
+import { selectSpecialtiesOfGroup, selectSpecialtyIngredientIds, selectSpecialtyIngredients } from 'src/app/modules/order/state/current-item/current-item.selectors';
 import { selectAllIngredients, selectIngredientTypes } from 'src/app/stores/selectors/order-static-data.selectors';
 import { updateHeader } from '../../shared/state/shared.actions';
-import { IngredientList, IngredientTypes } from '../models/Ingredient';
+import { IngredientList, Ingredients, IngredientTypes } from '../models/Ingredient';
 
 import { Specialties, Specialty } from '../models/Specialty';
 import { CurrentItemService } from '../services/currentItems.service';
@@ -38,21 +38,14 @@ export class SpecialtyComponent implements OnInit {
 
   // find specialty
   public loadSpecialty(selectedSpecialtyId: string): void {
+    let specialtyIngredients: Ingredients
+
     this.store.dispatch(updateSpecialtyId({ selectedSpecialtyId }))
-    let specialtyIngredients: IngredientList
-    this.store.select(selectSpecialtyIngredients).subscribe(ingredients =>
+    this.store.select(selectSpecialtyIngredientIds).subscribe(ingredients =>
       specialtyIngredients = ingredients
     )
-
-
-    // let selectedSpecialty: Specialty = this.service
-    //   .getSelectedSpecialty(selectedSpecialtyId)
-
     // load specialty ingredients to current item
-    this.store.dispatch(updateCurrentItemIngredients({ ingredients: specialtyIngredients }))
-
-
-
+    this.store.dispatch(updateIngredients({ ingredients: specialtyIngredients }))
 
     // this.store.dispatch(updateSpecialty({ selectedSpecialty }))
     // //get specialty ingredient objects
@@ -66,7 +59,6 @@ export class SpecialtyComponent implements OnInit {
     // this.store.dispatch(setItemIngredientsFromSpecialty(
     //   { initialIngredients: specialtyIngredients }
     // ))
-
   }
 
   public calculateSpecialtyPrice(specialty: Specialty): string {

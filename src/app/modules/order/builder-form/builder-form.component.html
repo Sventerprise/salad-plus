@@ -1,4 +1,4 @@
-<ng-container *ngIf="selectedItemGroup$ |async as group">
+<ng-container *ngIf="itemGroup$ |async as group">
 
   <div class="bread typeContainer" *ngIf="group=='sandwich'">
     <div class="ingredient-header" (click)="editIngredients('Bread')">

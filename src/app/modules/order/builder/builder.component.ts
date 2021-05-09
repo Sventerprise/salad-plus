@@ -8,12 +8,14 @@ import { Ingredient, IngredientList } from '../models/Ingredient';
 import * as fromItemEdit from 'src/app/modules/order/state/item-edit/item-edit.selectors'
 import * as fromItemEditActions from 'src/app/modules/order/state/item-edit/item-edit.actions'
 import { CurrentItemService } from '../services/currentItems.service';
-import { commitChanges } from 'src/app/modules/order/state/current-item/current-item.actions';
+import { commitChanges, updateIngredients } from 'src/app/modules/order/state/current-item/current-item.actions';
 import { updateHeader } from '../../shared/state/shared.actions';
 import { CartService } from 'src/app/services/cart.service';
 import { OrderItem, OrderItems } from '../models/Item';
-import { addCartItem, updateTotal } from '../state/cart/cart.actions';
-import { selectOrderItems, } from '../state/cart/cart.selectors';
+import { addOrderItem } from '../state/order-items/order-items.actions';
+import { selectCurrentItemIngredientIds, selectCurrentItemPrice, selectCurrentItemQuantity, selectCurrentItemState, selectCurrentItemSubtotal, selectCurrentItemGroup } from '../state/current-item/current-item.selectors';
+import { ItemGroup } from '../models/ItemGroup';
+import { State } from '../state/current-item/current-item.reducer';
 
 @Component({
   selector: 'app-builder',
@@ -26,6 +28,7 @@ export class BuilderComponent implements OnInit {
   confirmFlag: boolean = false
   ingredientsOfType: Observable<Ingredient[]>
   selectedIngredients: IngredientList
+  currentItem: OrderItem
 
   constructor(
     private store: Store<{}>,
@@ -40,11 +43,14 @@ export class BuilderComponent implements OnInit {
     // ensure page starts with popup closed
     this.store.dispatch(closeIngredientSelectorPopup())
     this.selectorFlag = this.store.select(selectSelectorFlag)
+
     // returns the ingredients currently on the item of the chosen type
     // used to pre-select items on the ingredient selector popup:
     this.store.select(fromItemEdit.selectSelectedIngredientsOfType)
       .subscribe(ingredients => this.selectedIngredients = ingredients)
     this.ingredientsOfType = this.store.select(selectAllIngredientsOfType)
+    this.store.select(selectCurrentItemState).subscribe(item =>
+      this.currentItem = item)
   }
 
   // #region Methods
@@ -60,69 +66,116 @@ export class BuilderComponent implements OnInit {
   }
 
   submit() {
-    let newItem: OrderItem
-    let currentItems: OrderItems
-    let orderItems: OrderItems = []
+    // either add new item or add modified item
+    // if itemId == null, add new item
+    // replace itemId & name
+    // addNewCartItem()
 
-    // add the new order item
-    newItem = this.cartService.buildOrderItem()
-    orderItems.push(newItem)
-    // add the current order items
-    this.store.select(selectOrderItems).subscribe(items =>
-      currentItems = items
+    // if itemId != null, add existing item
+    // insert item to Cart
+
+
+    // build item... probably delete (done in reducer)
+    let currentIngredients: string[]
+    let group: ItemGroup
+    let price, quantity, subtotal: number
+    this.store.select(selectCurrentItemIngredientIds).subscribe(ids =>
+      currentIngredients = ids
     )
-    orderItems.push(...currentItems)
-    // update cart
-    this.store.dispatch(addCartItem(
-      { orderItems }
-    ))
-    this.cartService.updateTotal()
+    this.store.select(selectCurrentItemGroup).subscribe(thisGroup =>
+      group = thisGroup
+    )
+    this.store.select(selectCurrentItemPrice).subscribe(thisPrice =>
+      price = thisPrice
+    ),
+      this.store.select(selectCurrentItemQuantity).subscribe(thisQuantity =>
+        quantity = thisQuantity
+      )
+    this.store.select(selectCurrentItemSubtotal).subscribe(thisSubtotal =>
+      subtotal = thisSubtotal
+    )
 
+    let orderItem: OrderItem
+    orderItem = Object.assign({},
+      {
+        id: this.cartService.generateId(),
+        name: this.cartService.generateName(),
+        ingredients: currentIngredients,
+        itemGroup: group,
+        price: price,
+        quantity: quantity,
+        subtotal: subtotal
+      }
+    )
+
+    this.store.dispatch(addOrderItem({ orderItem }))
   }
   //#region Popups
 
   //#region Select Ingredient
-  public selectIngredient(ingredient: Ingredient) {
-    let ingredients: IngredientList
-    // update ingredient type for commit list filter
-    this.store.dispatch(fromItemEditActions.updateEditIngredientType(
-      { ingredientType: ingredient.type }
-    ))
-
-    if (this.isSelected(ingredient.id)) {
-      // remove the item from selected list
-      ingredients = this.service.removeSelectedIngredient(ingredient)
-      this.store.dispatch(fromItemEditActions.removeSelectedIngredient(
-        { ingredients }
-      ))
-    } else {
-      // if selectType "multiple" 1+ can be selected
-      if (this.service.ingredientMultiSelectType(ingredient.type) === 'multiple') {
-        //  add the new ingredient
-        ingredients = this.service.addSelectedIngredient(ingredient)
-        this.store.dispatch(fromItemEditActions.addSelectedIngredient(
-          { ingredients }
-        ))
+  public selectIngredient(selectedIngredientId: string) {
+    let ingredients: string[]
+    this.store.select(selectCurrentItemIngredientIds).subscribe(currentIngredientIds => {
+      if (currentIngredientIds.includes(selectedIngredientId)) {
+        ingredients = currentIngredientIds.filter(id =>
+          id != selectedIngredientId)
       } else {
-        //  remove all
-        this.store.dispatch(fromItemEditActions.clearSelectedIngredients())
-        // add the new ingredient
-        ingredients = this.service.addSelectedIngredient(ingredient)
-        this.store.dispatch(fromItemEditActions.addSelectedIngredient(
-          { ingredients }
-        ))
+        ingredients = Object.assign([], currentIngredientIds)
+        ingredients.push(selectedIngredientId)
       }
-    }
+    })
+
+    this.store.dispatch(updateIngredients({ ingredients }))
+
+
+
+
+    // let ingredients: IngredientList
+    // // update ingredient type for commit list filter
+    // this.store.dispatch(fromItemEditActions.updateEditIngredientType(
+    //   { ingredientType: ingredient.type }
+    // ))
+
+    // if (this.isSelected(ingredient.id)) {
+    //   // remove the item from selected list
+    //   ingredients = this.service.removeSelectedIngredient(ingredient)
+    //   this.store.dispatch(fromItemEditActions.removeSelectedIngredient(
+    //     { ingredients }
+    //   ))
+    // } else {
+    //   // if selectType "multiple" 1+ can be selected
+    //   if (this.service.ingredientMultiSelectType(ingredient.type) === 'multiple') {
+    //     //  add the new ingredient
+    //     ingredients = this.service.addSelectedIngredient(ingredient)
+    //     this.store.dispatch(fromItemEditActions.addSelectedIngredient(
+    //       { ingredients }
+    //     ))
+    //   } else {
+    //     //  remove all
+    //     this.store.dispatch(fromItemEditActions.clearSelectedIngredients())
+    //     // add the new ingredient
+    //     ingredients = this.service.addSelectedIngredient(ingredient)
+    //     this.store.dispatch(fromItemEditActions.addSelectedIngredient(
+    //       { ingredients }
+    //     ))
+    //   }
+    // }
   }
 
   public closeSelectIngredient() {
-    this.commitSelections()
+    // this.commitSelections()
     this.store.dispatch(closeIngredientSelectorPopup())
   }
 
   private commitSelections() {
     let ingredients: IngredientList = this.service.commitIngredientChanges()
-    this.store.dispatch(commitChanges({ ingredients }))
+    let orderItem: State
+    this.store.select(selectCurrentItemState).subscribe(item =>
+      orderItem = item)
+    this.store.dispatch(commitChanges({ orderItem }))
+
+
+
   }
   //#endregion Select Ingredient
 

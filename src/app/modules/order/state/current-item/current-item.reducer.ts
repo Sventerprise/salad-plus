@@ -1,21 +1,25 @@
 import { createReducer, on } from '@ngrx/store';
 import { IngredientList } from 'src/app/modules/order/models/Ingredient';
 import { Specialty } from 'src/app/modules/order/models/Specialty';
+import { OrderItem } from '../../models/Item';
 import { ItemGroup } from '../../models/ItemGroup';
 import * as CurrentItemActions from './current-item.actions';
 
 export const currentItemFeatureKey = 'currentItem';
 
-export interface State {
-  selectedItemGroup: ItemGroup,
+export interface State extends OrderItem {
   selectedSpecialtyId: string,
-  currentItemIngredients: IngredientList
 }
 
 export const initialState: State = {
-  selectedItemGroup: null,
+  id: '',
+  name: '',
+  itemGroup: null,
+  quantity: 1,
+  price: 0,
+  subtotal: 0,
   selectedSpecialtyId: null,
-  currentItemIngredients: [],
+  ingredients: [],
 };
 
 
@@ -24,28 +28,28 @@ export const reducer = createReducer(
 
   on(CurrentItemActions.setItemGroup,
     (state, action) => (
-      { ...state, selectedItemGroup: action.selectedItemGroup })
+      { ...state, itemGroup: action.currentItemGroup })
   ),
   on(CurrentItemActions.updateSpecialtyId,
     (state, action) => (
       { ...state, selectedSpecialtyId: action.selectedSpecialtyId }
     )
   ),
-  on(CurrentItemActions.updateCurrentItemIngredients,
+  on(CurrentItemActions.updateIngredients,
     (state, action) => (
-      { ...state, currentItemIngredients: action.ingredients })
+      { ...state, ingredients: action.ingredients })
   ),
   on(CurrentItemActions.commitChanges,
     (state, action) => (
-      { ...state, currentItemIngredients: action.ingredients })
+      { ...state, orderItem: action.orderItem })
   ),
   on(CurrentItemActions.clearCurrentItem,
     (state) => (
       {
         ...state,
-        selectedItemGroup: null,
+        currentItemGroup: null,
         selectedSpecialtyId: null,
-        currentItemIngredients: []
+        ingredients: []
       })
   ),
 

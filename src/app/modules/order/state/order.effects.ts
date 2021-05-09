@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, concatMap } from 'rxjs/operators';
 import { EMPTY, of } from 'rxjs';
 
-import * as OrderActions from '../actions/order.actions';
+import * as OrderActions from './order.actions';
 
 
 
@@ -11,7 +11,7 @@ import * as OrderActions from '../actions/order.actions';
 export class OrderEffects {
 
   loadOrders$ = createEffect(() => {
-    return this.actions$.pipe( 
+    return this.actions$.pipe(
 
       ofType(OrderActions.loadOrders),
       concatMap(() =>
@@ -25,6 +25,6 @@ export class OrderEffects {
 
 
 
-  constructor(private actions$: Actions) {}
+  constructor(private actions$: Actions) { }
 
 }

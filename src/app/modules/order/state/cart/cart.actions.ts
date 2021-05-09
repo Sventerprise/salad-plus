@@ -8,7 +8,7 @@ export const addCartItem = createAction(
 
 export const removeCartItem = createAction(
   '[Builder] Remove Cart Item',
-  props<{ orderItems: OrderItems }>()
+  props<{ orderItemIds: string[] }>()
 );
 
 export const updateTotal = createAction(

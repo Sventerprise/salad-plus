@@ -1,17 +1,15 @@
 import { createReducer, on } from '@ngrx/store';
-import { OrderItems } from '../../models/Item';
 import * as CartActions from './cart.actions';
-import { selectOrderItems } from './cart.selectors';
 
 export const cartFeatureKey = 'cart';
 
 export interface State {
-  orderItems: OrderItems
+  orderItemIds: string[]
   total: number
 }
 
 export const initialState: State = {
-  orderItems: [],
+  orderItemIds: [],
   total: 0,
 };
 
@@ -25,7 +23,7 @@ export const reducer = createReducer(
   })),
   on(CartActions.removeCartItem, (state, action) => ({
     ...state,
-    orderItems: action.orderItems
+    orderItemIds: action.orderItemIds
   })),
   on(CartActions.updateTotal, (state, action) => ({
     ...state, total: action.total
