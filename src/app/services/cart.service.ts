@@ -6,13 +6,14 @@ import { IngredientList, Ingredients, IngredientTypes } from '../modules/order/m
 import { Item, OrderItem, OrderItems } from '../modules/order/models/Item';
 import { ItemGroup } from '../modules/order/models/ItemGroup';
 import { Specialty } from '../modules/order/models/Specialty';
-import { removeCartItem, updateTotal } from '../modules/order/state/cart/cart.actions';
+import { addCartItem, removeCartItem, updateTotal } from '../modules/order/state/cart/cart.actions';
 import { State } from '../modules/order/state/cart/cart.reducer';
-import { selectCartArray, selectCartIds, selectCartState } from '../modules/order/state/cart/cart.selectors';
-import { selectCurrentItemIngredientIds, selectCurrentItemIngredients, selectCurrentItemPrice, selectCurrentItemState, selectCurrentItemGroup, selectSelectedSpecialty, selectSelectedSpecialtyId, selectSpecialtyIngredients, selectSpecialtyModified } from '../modules/order/state/current-item/current-item.selectors';
+import { selectCartIds, selectCartState, selectCartTotal } from '../modules/order/state/cart/cart.selectors';
+import { selectCurrentItemIngredientIds, selectCurrentItemIngredients, selectCurrentItemPrice, selectCurrentItemState, selectCurrentItemGroup, selectSelectedSpecialty, selectSelectedSpecialtyId, selectSpecialtyIngredients, selectSpecialtyModified, selectCurrentItemQuantity, selectCurrentItemSubtotal } from '../modules/order/state/current-item/current-item.selectors';
 import { selectAllIngredients, selectIngredientTypes } from '../stores/selectors/order-static-data.selectors';
 import * as _ from 'lodash'
 import { selectOrderItemArray, selectOrderItemEntities } from '../modules/order/state/order-items/order-items.selectors';
+import { addOrderItem } from '../modules/order/state/order-items/order-items.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -124,15 +125,17 @@ export class CartService {
 
   public updateTotal(): void {
     let total: number = 0
-    this.store.select(selectCartArray).subscribe(items => {
-      items.forEach(item =>
-        total += item.price
-      )
-    })
+    // this.store.select(selectCartArray).subscribe(items => {
+    //   items.forEach(item =>
+    //     total += item.price
+    //   )
+    // })
+    this.store.select(selectCartTotal).subscribe(cartTotal =>
+      total = cartTotal)
     this.store.dispatch(updateTotal({ total }))
   }
 
-  public removeCartItem(id: string) {
+  public removeCartItem(id: string): void {
     // get the current cart item list
     let orderItemIds: string[]
     this.store.select(selectCartIds).subscribe(ids =>
@@ -144,4 +147,49 @@ export class CartService {
     // update total
     this.updateTotal()
   }
+
+  public addOrderItem(): void {
+    // build item... probably delete (done in reducer)
+    let currentIngredients: string[]
+    let group: ItemGroup
+    let price, quantity, subtotal: number
+    this.store.select(selectCurrentItemIngredientIds).subscribe(ids =>
+      currentIngredients = ids
+    )
+    this.store.select(selectCurrentItemGroup).subscribe(thisGroup =>
+      group = thisGroup
+    )
+    this.store.select(selectCurrentItemPrice).subscribe(thisPrice =>
+      price = thisPrice
+    ),
+      this.store.select(selectCurrentItemQuantity).subscribe(thisQuantity =>
+        quantity = thisQuantity
+      )
+    this.store.select(selectCurrentItemSubtotal).subscribe(thisSubtotal =>
+      subtotal = thisSubtotal
+    )
+
+    let orderItem: OrderItem
+    orderItem = Object.assign({},
+      {
+        id: this.generateId(),
+        name: this.generateName(),
+        ingredients: currentIngredients,
+        itemGroup: group,
+        price: price,
+        quantity: quantity,
+        subtotal: subtotal
+      }
+    )
+    this.store.dispatch(addOrderItem({ orderItem }))
+
+    this.addCartItem(orderItem.id)
+
+  }
+
+  public addCartItem(id): void {
+    this.store.dispatch(addCartItem({ id }))
+  }
+
+
 }

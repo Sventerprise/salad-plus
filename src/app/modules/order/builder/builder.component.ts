@@ -17,6 +17,7 @@ import { selectCurrentItemIngredientIds, selectCurrentItemPrice, selectCurrentIt
 import { ItemGroup } from '../models/ItemGroup';
 import { State } from '../state/current-item/current-item.reducer';
 import { selectAllIngredients } from 'src/app/stores/selectors/order-static-data.selectors';
+import { updateTotal } from '../state/cart/cart.actions';
 
 @Component({
   selector: 'app-builder',
@@ -71,40 +72,8 @@ export class BuilderComponent implements OnInit {
   }
 
   submit() {
-    // build item... probably delete (done in reducer)
-    let currentIngredients: string[]
-    let group: ItemGroup
-    let price, quantity, subtotal: number
-    this.store.select(selectCurrentItemIngredientIds).subscribe(ids =>
-      currentIngredients = ids
-    )
-    this.store.select(selectCurrentItemGroup).subscribe(thisGroup =>
-      group = thisGroup
-    )
-    this.store.select(selectCurrentItemPrice).subscribe(thisPrice =>
-      price = thisPrice
-    ),
-      this.store.select(selectCurrentItemQuantity).subscribe(thisQuantity =>
-        quantity = thisQuantity
-      )
-    this.store.select(selectCurrentItemSubtotal).subscribe(thisSubtotal =>
-      subtotal = thisSubtotal
-    )
-
-    let orderItem: OrderItem
-    orderItem = Object.assign({},
-      {
-        id: this.cartService.generateId(),
-        name: this.cartService.generateName(),
-        ingredients: currentIngredients,
-        itemGroup: group,
-        price: price,
-        quantity: quantity,
-        subtotal: subtotal
-      }
-    )
-
-    this.store.dispatch(addOrderItem({ orderItem }))
+    this.cartService.addOrderItem()
+    this.cartService.updateTotal()
   }
   //#region Popups
 

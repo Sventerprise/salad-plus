@@ -3,7 +3,7 @@ import { OrderItems } from '../../models/Item';
 
 export const addCartItem = createAction(
   '[Builder] Add Cart Item',
-  props<{ orderItems: OrderItems }>()
+  props<{ id: string }>()
 );
 
 export const removeCartItem = createAction(

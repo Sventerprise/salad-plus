@@ -19,7 +19,7 @@ export const selectOrderItemEntities = createSelector(
 export const selectOrderItemArray = createSelector(
   selectOrderItemEntities,
   (entities): OrderItem[] => {
-    let orderItems: OrderItem[]
+    let orderItems: OrderItem[] = []
     for (let key in entities) {
       orderItems[key] = entities[key]
     }

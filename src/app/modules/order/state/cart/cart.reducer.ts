@@ -17,10 +17,13 @@ export const initialState: State = {
 export const reducer = createReducer(
   initialState,
 
-  on(CartActions.addCartItem, (state, action) => ({
-    ...state,
-    orderItems: action.orderItems
-  })),
+  on(CartActions.addCartItem, (state, action) => {
+    let ids = state.orderItemIds.slice(0)
+    ids.push(action.id)
+    return {
+      ...state, orderItemIds: ids
+    }
+  }),
   on(CartActions.removeCartItem, (state, action) => ({
     ...state,
     orderItemIds: action.orderItemIds
