@@ -14,6 +14,7 @@ export type Items = Item[]
 export interface OrderItem extends Item {
   quantity: number
   subtotal: number
+  viewDetail: boolean
 }
 
 export interface OrderItems {

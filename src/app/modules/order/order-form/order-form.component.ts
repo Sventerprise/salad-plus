@@ -7,7 +7,8 @@ import { OrderItem, OrderItems } from '../models/Item';
 import { removeCartItem, updateTotal } from '../state/cart/cart.actions';
 import { State } from '../state/cart/cart.reducer';
 import { selectCartItemArray, selectCartState } from '../state/cart/cart.selectors';
-import { selectOrderItemArray } from '../state/order-items/order-items.selectors';
+import { toggleDetail } from '../state/order-items/order-items.actions';
+import { selectOrderItemArray, selectOrderItemEntities } from '../state/order-items/order-items.selectors';
 
 @Component({
   selector: 'app-order-form',
@@ -35,12 +36,8 @@ export class OrderFormComponent implements OnInit {
       console.log(items))
   }
 
-  public viewDetail() {
-    this.view1 = true
-  }
-
-  public hideDetail() {
-    this.view1 = false
+  public toggleDetail(id: string) {
+    this.store.dispatch(toggleDetail({ id }))
   }
 
   public removeCartItem(id: string) {

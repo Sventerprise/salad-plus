@@ -30,3 +30,7 @@ export const loadCartsFailure = createAction(
   '[Cart] Load Carts Failure',
   props<{ error: any }>()
 );
+
+export const clearCart = createAction(
+  '[Cart] Clear Cart'
+);

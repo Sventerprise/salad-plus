@@ -6,7 +6,7 @@
       <label class="item form-control sm">{{item.name}}</label>
 
       <!-- repeating item detail container-->
-      <ng-container *ngIf="view1">
+      <ng-container *ngIf="item.viewDetail">
         <div class="ingredient-list">
             <ng-container *ngFor="let ingredient of item.ingredients">
               <label class="form-control ingredient">
@@ -30,11 +30,11 @@
       </div>
       <!-- item buttons -->
       <button class="edit btn btn-primary">Edit</button>
-      <ng-container *ngIf="!view1">
-        <button class="view btn btn-warning" (click)="viewDetail()">View</button>
+      <ng-container *ngIf="!item.viewDetail">
+        <button class="view btn btn-warning" (click)="toggleDetail(item.id)">View</button>
       </ng-container>
-      <ng-container *ngIf="view1">
-        <button class="view btn btn-warning" (click)="hideDetail()">Collapse</button>
+      <ng-container *ngIf="item.viewDetail">
+        <button class="view btn btn-warning" (click)="toggleDetail(item.id)">Collapse</button>
       </ng-container>
       <button class="remove btn btn-danger"
       (click)="removeCartItem(item.id)">Remove</button>

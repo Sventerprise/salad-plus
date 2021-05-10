@@ -20,6 +20,7 @@ export const initialState: State = {
   subtotal: 0,
   selectedSpecialtyId: null,
   ingredients: [],
+  viewDetail: false
 };
 
 

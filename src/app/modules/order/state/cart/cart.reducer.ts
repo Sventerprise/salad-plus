@@ -31,9 +31,8 @@ export const reducer = createReducer(
   on(CartActions.updateTotal, (state, action) => ({
     ...state, total: action.total
   })),
-  // on(CartActions.updateQuantity, (state, action) => (
-  //   {...state, orderItems[]}
-  // )
+  on(CartActions.clearCart,
+    () => (initialState))
 
 );
 

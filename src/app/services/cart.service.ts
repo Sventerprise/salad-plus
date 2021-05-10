@@ -83,7 +83,8 @@ export class CartService {
       itemGroup: itemGroup,
       price: price,
       subtotal: price,
-      quantity: 1
+      quantity: 1,
+      viewDetail: false
     }
     return orderItem
   }
@@ -178,7 +179,8 @@ export class CartService {
         itemGroup: group,
         price: price,
         quantity: quantity,
-        subtotal: subtotal
+        subtotal: subtotal,
+        viewDetail: false
       }
     )
     this.store.dispatch(addOrderItem({ orderItem }))

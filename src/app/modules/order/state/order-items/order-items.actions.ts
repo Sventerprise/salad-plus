@@ -15,6 +15,10 @@ export const deleteOrderItem = createAction(
   props<{ id: string }>()
 );
 
+export const toggleDetail = createAction(
+  '[OrderItems] Toggle Order Item Detail View',
+  props<{ id: string }>()
+)
 
-
-
+export const clearOrderItems = createAction(
+  '[Cart] Clear all order items')
