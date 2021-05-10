@@ -1,4 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { selectAllIngredients } from 'src/app/stores/selectors/order-static-data.selectors';
 import { OrderItem } from '../../models/Item';
 import * as fromOrderItems from './order-items.reducer';
 
@@ -24,5 +25,29 @@ export const selectOrderItemArray = createSelector(
       orderItems.push(entities[key])
     }
     return orderItems
+  }
+)
+
+export const selectOrderItemNames = createSelector(
+  selectAllIngredients,
+  selectOrderItemEntities,
+  (allIngredients, orderItems) => {
+    let ingredientNames: Array<{ [id: string]: string[] }> = []
+    let item: { [id: string]: string[] } = {}
+    // loop through each order item ingredient list (by id)
+    // for each ingredient id ...
+    // look up the name in allIngredients
+    // set id as the index set name as the value
+    for (let itemId in orderItems) {
+      let nameList: string[] = []
+      // get list of ingredients from the item
+      orderItems[itemId].ingredients.forEach(ingredientId => {
+        nameList.push(allIngredients.find(ingredient =>
+          ingredient.id == ingredientId).name)
+      })
+      item[itemId] = nameList
+      ingredientNames.push(item)
+    }
+    return ingredientNames
   }
 )
