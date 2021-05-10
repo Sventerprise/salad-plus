@@ -6,7 +6,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { OrderItem, OrderItems } from '../models/Item';
 import { removeCartItem, updateTotal } from '../state/cart/cart.actions';
 import { State } from '../state/cart/cart.reducer';
-import { selectCartState } from '../state/cart/cart.selectors';
+import { selectCartItemArray, selectCartState } from '../state/cart/cart.selectors';
 import { selectOrderItemArray } from '../state/order-items/order-items.selectors';
 
 @Component({
@@ -30,7 +30,9 @@ export class OrderFormComponent implements OnInit {
     this.store.select(selectCartState).subscribe(cart => {
       this.cart = cart
     })
-    this.items$ = this.store.select(selectOrderItemArray)
+    this.items$ = this.store.select(selectCartItemArray)
+    this.items$.subscribe(items =>
+      console.log(items))
   }
 
   public viewDetail() {

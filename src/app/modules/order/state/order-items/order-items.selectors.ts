@@ -21,7 +21,7 @@ export const selectOrderItemArray = createSelector(
   (entities): OrderItem[] => {
     let orderItems: OrderItem[] = []
     for (let key in entities) {
-      orderItems[key] = entities[key]
+      orderItems.push(entities[key])
     }
     return orderItems
   }

@@ -12,24 +12,18 @@ export const selectCartIds = createSelector(
   (state): string[] => state.orderItemIds
 );
 
-// export const selectCartArray = createSelector(
-// selectOrderItemArray,
-// (orderItemArray): OrderItem[] => {
-//   let orderItems: OrderItem[] = []
-//   for (let item of orderItemArray) {
-//     orderItems.push(item)
-//   }
-//   return orderItems
-// }
-//   selectOrderItemEntities,
-//   (orderEntities): OrderItemArray =>
+export const selectCartItemArray = createSelector(
+  selectOrderItemEntities,
+  selectCartIds,
+  (orderEntities, ids): OrderItem[] => {
+    let orderItems: OrderItem[] = []
+    for (let id of ids) { orderItems.push(orderEntities[id]) }
+    return orderItems
+  }
 
-
-// );
+);
 
 export const selectCartTotal = createSelector(
-  // selectCartState,
-  // (state): number => state.total
   selectOrderItemEntities,
   selectCartIds,
   (orderItems, cartIds): number => {
