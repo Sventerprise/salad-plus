@@ -13,7 +13,7 @@ import { updateHeader } from '../../shared/state/shared.actions';
 import { CartService } from 'src/app/services/cart.service';
 import { OrderItem, OrderItems } from '../models/Item';
 import { addOrderItem } from '../state/order-items/order-items.actions';
-import { selectCurrentItemIngredientIds, selectCurrentItemPrice, selectCurrentItemQuantity, selectCurrentItemState, selectCurrentItemSubtotal, selectCurrentItemGroup } from '../state/current-item/current-item.selectors';
+import { selectCurrentItemIngredientIds, selectCurrentItemPrice, selectCurrentItemQuantity, selectCurrentItemState, selectCurrentItemSubtotal, selectCurrentItemGroup, selectCurrentItemIngredients } from '../state/current-item/current-item.selectors';
 import { ItemGroup } from '../models/ItemGroup';
 import { State } from '../state/current-item/current-item.reducer';
 
@@ -27,7 +27,7 @@ export class BuilderComponent implements OnInit {
   selectorFlag: Observable<boolean>
   confirmFlag: boolean = false
   ingredientsOfType: Observable<Ingredient[]>
-  selectedIngredients: IngredientList
+  popupIngredientList: IngredientList
   currentItem: OrderItem
 
   constructor(
@@ -47,7 +47,7 @@ export class BuilderComponent implements OnInit {
     // returns the ingredients currently on the item of the chosen type
     // used to pre-select items on the ingredient selector popup:
     this.store.select(fromItemEdit.selectSelectedIngredientsOfType)
-      .subscribe(ingredients => this.selectedIngredients = ingredients)
+      .subscribe(ingredients => this.popupIngredientList = ingredients)
     this.ingredientsOfType = this.store.select(selectAllIngredientsOfType)
     this.store.select(selectCurrentItemState).subscribe(item =>
       this.currentItem = item)
@@ -56,25 +56,20 @@ export class BuilderComponent implements OnInit {
   // #region Methods
 
   public isSelected(id: string): boolean {
+    let ingredientIds: string[]
+    this.store.select(selectCurrentItemIngredientIds).subscribe(
+      currentIngredientIds => ingredientIds = currentIngredientIds
+    )
     // this.counter += 1
     // console.log("I've run " + this.counter + " times.")
-    if (this.selectedIngredients) {
-      return this.selectedIngredients.find(ingredient =>
-        ingredient.id === id) ? true : false
+    if (this.popupIngredientList) {
+      return ingredientIds.find(ingredientId =>
+        ingredientId === id) ? true : false
     } else
       return false
   }
 
   submit() {
-    // either add new item or add modified item
-    // if itemId == null, add new item
-    // replace itemId & name
-    // addNewCartItem()
-
-    // if itemId != null, add existing item
-    // insert item to Cart
-
-
     // build item... probably delete (done in reducer)
     let currentIngredients: string[]
     let group: ItemGroup
@@ -115,67 +110,23 @@ export class BuilderComponent implements OnInit {
   //#region Select Ingredient
   public selectIngredient(selectedIngredientId: string) {
     let ingredients: string[]
+    // deselect if selected
     this.store.select(selectCurrentItemIngredientIds).subscribe(currentIngredientIds => {
       if (currentIngredientIds.includes(selectedIngredientId)) {
         ingredients = currentIngredientIds.filter(id =>
           id != selectedIngredientId)
       } else {
+        // select if not selected
         ingredients = Object.assign([], currentIngredientIds)
         ingredients.push(selectedIngredientId)
       }
     })
 
     this.store.dispatch(updateIngredients({ ingredients }))
-
-
-
-
-    // let ingredients: IngredientList
-    // // update ingredient type for commit list filter
-    // this.store.dispatch(fromItemEditActions.updateEditIngredientType(
-    //   { ingredientType: ingredient.type }
-    // ))
-
-    // if (this.isSelected(ingredient.id)) {
-    //   // remove the item from selected list
-    //   ingredients = this.service.removeSelectedIngredient(ingredient)
-    //   this.store.dispatch(fromItemEditActions.removeSelectedIngredient(
-    //     { ingredients }
-    //   ))
-    // } else {
-    //   // if selectType "multiple" 1+ can be selected
-    //   if (this.service.ingredientMultiSelectType(ingredient.type) === 'multiple') {
-    //     //  add the new ingredient
-    //     ingredients = this.service.addSelectedIngredient(ingredient)
-    //     this.store.dispatch(fromItemEditActions.addSelectedIngredient(
-    //       { ingredients }
-    //     ))
-    //   } else {
-    //     //  remove all
-    //     this.store.dispatch(fromItemEditActions.clearSelectedIngredients())
-    //     // add the new ingredient
-    //     ingredients = this.service.addSelectedIngredient(ingredient)
-    //     this.store.dispatch(fromItemEditActions.addSelectedIngredient(
-    //       { ingredients }
-    //     ))
-    //   }
-    // }
   }
 
   public closeSelectIngredient() {
-    // this.commitSelections()
     this.store.dispatch(closeIngredientSelectorPopup())
-  }
-
-  private commitSelections() {
-    let ingredients: IngredientList = this.service.commitIngredientChanges()
-    let orderItem: State
-    this.store.select(selectCurrentItemState).subscribe(item =>
-      orderItem = item)
-    this.store.dispatch(commitChanges({ orderItem }))
-
-
-
   }
   //#endregion Select Ingredient
 

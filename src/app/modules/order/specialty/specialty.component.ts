@@ -46,19 +46,6 @@ export class SpecialtyComponent implements OnInit {
     )
     // load specialty ingredients to current item
     this.store.dispatch(updateIngredients({ ingredients: specialtyIngredients }))
-
-    // this.store.dispatch(updateSpecialty({ selectedSpecialty }))
-    // //get specialty ingredient objects
-    // let specialtyIngredients: IngredientList = this.service
-    //   .getSpecialtyIngredientsList(selectedSpecialty.ingredients)
-    // // load to store for use by builder
-    // this.store.dispatch(loadSpecialtyIngredients({ specialtyIngredients }))
-
-    // set specialty ingredients to item ingredients (in case they change)
-
-    // this.store.dispatch(setItemIngredientsFromSpecialty(
-    //   { initialIngredients: specialtyIngredients }
-    // ))
   }
 
   public calculateSpecialtyPrice(specialty: Specialty): string {
