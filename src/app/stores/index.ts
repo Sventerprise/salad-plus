@@ -5,20 +5,20 @@ import * as fromOrder from '../modules/order/state/order.reducer';
 import * as fromOrderStaticData from './reducers/order-static-data.reducer';
 import { environment } from 'src/environments/environment';
 import * as fromOrderItems from '../modules/order/state/order-items/order-items.reducer';
-import { EffectsModule } from '@ngrx/effects';
-import { OrderItemsEffects } from '../modules/order/state/order-items/order-items.effects';
 
 export const orderFeatureKey = 'order';
 
 export interface AppState {
 
   [fromCart.cartFeatureKey]: fromCart.State;
+  [fromOrderItems.orderItemsFeatureKey]: fromOrderItems.State;
   [fromOrder.orderFeatureKey]: fromOrder.State;
   [fromOrderStaticData.orderStaticDataFeatureKey]: fromOrderStaticData.State;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
   [fromCart.cartFeatureKey]: fromCart.reducer,
+  [fromOrderItems.orderItemsFeatureKey]: fromOrderItems.reducer,
   [fromOrder.orderFeatureKey]: fromOrder.reducer,
   [fromOrderStaticData.orderStaticDataFeatureKey]: fromOrderStaticData.reducer
 };

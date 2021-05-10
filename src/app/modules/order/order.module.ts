@@ -19,6 +19,7 @@ import { OrderEffects } from './state/order.effects';
 import { OrderStaticDataEffects } from '../../stores/effects/order-static-data.effects';
 import * as fromCurrentItem from './state/current-item/current-item.reducer';
 import * as fromItemEdit from './state/item-edit/item-edit.reducer';
+import * as fromOrderItems from './state/order-items/order-items.reducer';
 
 
 
@@ -39,6 +40,7 @@ import * as fromItemEdit from './state/item-edit/item-edit.reducer';
     //#region Store
     EffectsModule.forFeature([CartEffects, OrderEffects, OrderStaticDataEffects]),
     StoreModule.forFeature(fromCart.cartFeatureKey, fromCart.reducer),
+    StoreModule.forFeature(fromOrderItems.orderItemsFeatureKey, fromOrderItems.reducer),
     StoreModule.forFeature(fromOrder.orderFeatureKey, fromOrder.reducer),
     StoreModule.forFeature(fromStaticOrderData.orderStaticDataFeatureKey, fromStaticOrderData.reducer),
     StoreModule.forFeature(fromCurrentItem.currentItemFeatureKey, fromCurrentItem.reducer),

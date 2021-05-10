@@ -4,7 +4,7 @@ import * as OrderItemsActions from './order-items.actions';
 
 export const orderItemsFeatureKey = 'orderItems';
 
-export interface State extends OrderItems {
+export interface State {
   entities: { [key: string]: OrderItem }
   ids: string[]
 }

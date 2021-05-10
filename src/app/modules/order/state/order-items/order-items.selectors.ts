@@ -13,7 +13,7 @@ export const selectOrderItemIds = createSelector(
 
 export const selectOrderItemEntities = createSelector(
   selectOrderItemsState,
-  (state) => state.entities
+  (state): { [key: string]: OrderItem } => state.entities
 )
 
 export const selectOrderItemArray = createSelector(
