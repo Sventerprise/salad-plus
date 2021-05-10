@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { IngredientList } from 'src/app/modules/order/models/Ingredient';
+import { IngredientList, Ingredients } from 'src/app/modules/order/models/Ingredient';
 import { selectAllIngredients } from 'src/app/stores/selectors/order-static-data.selectors';
 import * as fromItemEdit from './item-edit.reducer';
 
@@ -33,5 +33,16 @@ export const selectSelectedIngredientsOfType = createSelector(
 export const selectSelectorFlag = createSelector(
   selectItemEditState,
   (state): boolean => state.selectorFlag
+)
+
+export const selectSelectedIngredientsOfTypeIds = createSelector(
+  selectAllIngredientsOfType,
+  (state): Ingredients => {
+    let ids: string[] = []
+    for (let ingredient of state) {
+      ids.push(ingredient.id)
+    }
+    return ids
+  }
 )
 

@@ -4,6 +4,7 @@ import * as fromCurrentItem from './current-item.reducer';
 import { selectAllIngredients, selectIngredientTypes, selectSpecialties } from '../../../../stores/selectors/order-static-data.selectors';
 import { IngredientList, Ingredients } from '../../models/Ingredient';
 import { Item, OrderItem } from '../../models/Item';
+import { selectIngredientType, selectSelectedIngredientsOfType } from '../item-edit/item-edit.selectors';
 
 export const selectCurrentItemState = createFeatureSelector<fromCurrentItem.State>(
   fromCurrentItem.currentItemFeatureKey
@@ -104,4 +105,10 @@ export const selectSpecialtyModified = createSelector(
     }
     return false // no, not modified
   }
+)
+
+export const selectSelectedIngredientSelectType = createSelector(
+  selectIngredientTypes,
+  selectIngredientType,
+  (types, type): string => types[type].selectType
 )

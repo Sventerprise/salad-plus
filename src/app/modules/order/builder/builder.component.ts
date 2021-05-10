@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { closeIngredientSelectorPopup } from 'src/app/modules/order/state/item-edit/item-edit.actions';
 import { selectAllIngredientsOfType, selectSelectorFlag } from 'src/app/modules/order/state/item-edit/item-edit.selectors';
-import { Ingredient, IngredientList } from '../models/Ingredient';
+import { Ingredient, IngredientList, Ingredients, IngredientTypes } from '../models/Ingredient';
 import * as fromItemEdit from 'src/app/modules/order/state/item-edit/item-edit.selectors'
 import * as fromItemEditActions from 'src/app/modules/order/state/item-edit/item-edit.actions'
 import { CurrentItemService } from '../services/currentItems.service';
@@ -13,9 +13,10 @@ import { updateHeader } from '../../shared/state/shared.actions';
 import { CartService } from 'src/app/services/cart.service';
 import { OrderItem, OrderItems } from '../models/Item';
 import { addOrderItem } from '../state/order-items/order-items.actions';
-import { selectCurrentItemIngredientIds, selectCurrentItemPrice, selectCurrentItemQuantity, selectCurrentItemState, selectCurrentItemSubtotal, selectCurrentItemGroup, selectCurrentItemIngredients } from '../state/current-item/current-item.selectors';
+import { selectCurrentItemIngredientIds, selectCurrentItemPrice, selectCurrentItemQuantity, selectCurrentItemState, selectCurrentItemSubtotal, selectCurrentItemGroup, selectCurrentItemIngredients, selectSelectedIngredientSelectType } from '../state/current-item/current-item.selectors';
 import { ItemGroup } from '../models/ItemGroup';
 import { State } from '../state/current-item/current-item.reducer';
+import { selectAllIngredients } from 'src/app/stores/selectors/order-static-data.selectors';
 
 @Component({
   selector: 'app-builder',
@@ -109,14 +110,36 @@ export class BuilderComponent implements OnInit {
 
   //#region Select Ingredient
   public selectIngredient(selectedIngredientId: string) {
+    // (1) deselect if selected
+    //else
+    // (2.1) if single-select type, deselect any from the popup list from current selected
+    // (2.2) select if not selected
+
     let ingredients: string[]
-    // deselect if selected
+    // (1)
     this.store.select(selectCurrentItemIngredientIds).subscribe(currentIngredientIds => {
       if (currentIngredientIds.includes(selectedIngredientId)) {
         ingredients = currentIngredientIds.filter(id =>
           id != selectedIngredientId)
       } else {
-        // select if not selected
+        // (2.1)
+        let selectType: string
+        let popupIngredientIds: Ingredients
+
+        this.store.select(selectSelectedIngredientSelectType).subscribe(type =>
+          selectType = type
+        )
+        this.store.select(fromItemEdit.selectSelectedIngredientsOfTypeIds).subscribe(ids =>
+          popupIngredientIds = ids
+        )
+
+        if (selectType === 'single') {
+          // remove all popup ingredients from current item (clear list of type)
+          currentIngredientIds = currentIngredientIds.filter(ingredientId =>
+            !popupIngredientIds.includes(ingredientId)
+          )
+        }
+        // (2.2)
         ingredients = Object.assign([], currentIngredientIds)
         ingredients.push(selectedIngredientId)
       }
