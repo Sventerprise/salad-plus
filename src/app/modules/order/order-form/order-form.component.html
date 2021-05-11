@@ -21,7 +21,7 @@
        <!-- qty, price, subtotal -->
       <div class="mods">
         <div class="qty-lbl mod">Qty:</div>
-        <input type="number" class="qty form-control sm" placeholder="{{item.quantity}}">
+        <input type="number" class="qty form-control sm" placeholder="{{item.quantity}}" (change)="updateQuantityAndSubtotal($event.target,item.id)">
 
         <div class="price-lbl mod">@</div>
         <label class="price form-control sm">${{item.price | number:'1.2' }}</label>

@@ -16,10 +16,10 @@ export const updateTotal = createAction(
   props<{ total: number }>()
 );
 
-export const updateQuantity = createAction(
-  '[Order List] Update Quantity',
-  props<{ quantity: number }>()
-)
+// export const updateQuantity = createAction(
+//   '[Order List] Update Quantity',
+//   props<{ quantity: number }>()
+// )
 
 export const loadCartsSuccess = createAction(
   '[Cart] Load Carts Success',

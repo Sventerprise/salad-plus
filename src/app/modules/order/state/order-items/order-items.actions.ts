@@ -15,6 +15,11 @@ export const deleteOrderItem = createAction(
   props<{ id: string }>()
 );
 
+export const updateQuantityAndSubtotal = createAction(
+  '[OrderItems Form] Update Quantity and Subtotal',
+  props<{ quantity: number, id: string }>()
+);
+
 export const toggleDetail = createAction(
   '[OrderItems] Toggle Order Item Detail View',
   props<{ id: string }>()

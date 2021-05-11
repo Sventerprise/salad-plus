@@ -126,11 +126,6 @@ export class CartService {
 
   public updateTotal(): void {
     let total: number = 0
-    // this.store.select(selectCartArray).subscribe(items => {
-    //   items.forEach(item =>
-    //     total += item.price
-    //   )
-    // })
     this.store.select(selectCartTotal).subscribe(cartTotal =>
       total = cartTotal)
     this.store.dispatch(updateTotal({ total }))

@@ -34,7 +34,6 @@ export class BuilderComponent implements OnInit {
 
   constructor(
     private store: Store<{}>,
-    private service: CurrentItemService,
     private cartService: CartService,
     private router: Router
   ) { }
@@ -62,8 +61,6 @@ export class BuilderComponent implements OnInit {
     this.store.select(selectCurrentItemIngredientIds).subscribe(
       currentIngredientIds => ingredientIds = currentIngredientIds
     )
-    // this.counter += 1
-    // console.log("I've run " + this.counter + " times.")
     if (this.popupIngredientList) {
       return ingredientIds.find(ingredientId =>
         ingredientId === id) ? true : false

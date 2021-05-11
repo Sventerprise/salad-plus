@@ -1,16 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
-import { selectAllIngredients } from 'src/app/stores/selectors/order-static-data.selectors';
-import { IngredientList } from '../models/Ingredient';
-import { OrderItem, OrderItems } from '../models/Item';
-import { removeCartItem, updateTotal } from '../state/cart/cart.actions';
+import { OrderItem } from '../models/Item';
 import { State } from '../state/cart/cart.reducer';
 import { selectCartItemArray, selectCartState } from '../state/cart/cart.selectors';
-import { toggleDetail } from '../state/order-items/order-items.actions';
-import { selectOrderItemArray, selectOrderItemEntities, selectOrderItemNames } from '../state/order-items/order-items.selectors';
+import { toggleDetail, updateQuantityAndSubtotal } from '../state/order-items/order-items.actions';
+import { selectOrderItemNames } from '../state/order-items/order-items.selectors';
 
 @Component({
   selector: 'app-order-form',
@@ -46,18 +42,10 @@ export class OrderFormComponent implements OnInit {
     this.cartService.removeCartItem(id)
   }
 
-  // public getIngredientList(list: string): string[] {
-  //   let ingredientList: IngredientList
-  //   this.store.select(selectAllIngredients).subscribe(ingredients =>
-  //     ingredientList = ingredients.filter(ingredient =>
-  //       list.includes(ingredient.id)
-  //     )
-  //   )
-  //   let ingredientNames: string[]
-  //   for (let ingredient of ingredientList) {
-  //     ingredientNames.push(ingredient.name)
-  //   }
-  //   return ingredientNames
-  // }
+  public updateQuantityAndSubtotal(e: any, id: string) {
+    let quantity = e.value
+    this.store.dispatch(updateQuantityAndSubtotal({ quantity, id }))
+    this.cartService.updateTotal()
+  }
 
 }

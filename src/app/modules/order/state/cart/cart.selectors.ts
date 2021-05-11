@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { OrderItem, OrderItems } from '../../models/Item';
-import { selectOrderItemArray, selectOrderItemEntities } from '../order-items/order-items.selectors';
+import { OrderItem } from '../../models/Item';
+import { selectOrderItemEntities } from '../order-items/order-items.selectors';
 import * as fromCart from './cart.reducer';
 
 export const selectCartState = createFeatureSelector<fromCart.State>(
@@ -29,7 +29,7 @@ export const selectCartTotal = createSelector(
   (orderItems, cartIds): number => {
     let total: number = 0
     cartIds.forEach(cartId =>
-      total += orderItems[cartId].price
+      total += orderItems[cartId].subtotal
     )
     return total
   }
