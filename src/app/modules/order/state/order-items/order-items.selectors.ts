@@ -31,9 +31,9 @@ export const selectOrderItemArray = createSelector(
 export const selectOrderItemNames = createSelector(
   selectAllIngredients,
   selectOrderItemEntities,
-  (allIngredients, orderItems) => {
-    let ingredientNames: Array<{ [id: string]: string[] }> = []
-    let item: { [id: string]: string[] } = {}
+  (allIngredients, orderItems): { [key: string]: string[] } => {
+    // let ingredientNames: Array<{ [id: string]: string[] }> = []
+    let item: { [key: string]: string[] } = {}
     // loop through each order item ingredient list (by id)
     // for each ingredient id ...
     // look up the name in allIngredients
@@ -46,8 +46,8 @@ export const selectOrderItemNames = createSelector(
           ingredient.id == ingredientId).name)
       })
       item[itemId] = nameList
-      ingredientNames.push(item)
+      // ingredientNames.push(item)
     }
-    return ingredientNames
+    return item
   }
 )

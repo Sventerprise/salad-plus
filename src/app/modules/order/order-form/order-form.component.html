@@ -8,13 +8,13 @@
       <!-- repeating item detail container-->
       <ng-container *ngIf="item.viewDetail">
         <div class="ingredient-list">
-            <ng-container *ngFor="let items of ingredientsByName$ |async">
-                <ng-container *ngFor="let name of items[item.id]">
+            <!-- <ng-container *ngFor="ingredientsByName$ |async"> -->
+                <ng-container *ngFor="let ingredient of item.ingredientDetails">
                   <label class="form-control ingredient">
-                    {{name}}
+                    {{ingredient.name}}
                   </label>
                 </ng-container>
-            </ng-container>
+            <!-- </ng-container> -->
         </div>
       </ng-container> <!-- /item detail -->
 

@@ -21,3 +21,7 @@ export interface OrderItems {
   entities: { [key: string]: OrderItem }
   ids: string[]
 }
+
+export interface OrderItemDetailed extends OrderItem {
+  ingredientDetails: IngredientList
+}
