@@ -10,6 +10,7 @@ export const selectCurrentItemState = createFeatureSelector<fromCurrentItem.Stat
   fromCurrentItem.currentItemFeatureKey
 );
 
+// ------- ITEM PROPERTIES -------
 export const selectCurrentItemGroup = createSelector(
   selectCurrentItemState,
   (state) => state.itemGroup
@@ -23,29 +24,6 @@ export const selectSpecialtiesOfGroup = createSelector(
   (specialties: Specialty[], selectedGroup: string): Specialties =>
     specialties.filter(specialty =>
       specialty.itemGroup === selectedGroup)
-)
-
-export const selectSelectedSpecialtyId = createSelector(
-  selectCurrentItemState,
-  (state): string => state.selectedSpecialtyId
-)
-
-export const selectSelectedSpecialty = createSelector(
-  selectSelectedSpecialtyId,
-  selectSpecialties,
-  (id, specialties): Specialty => specialties.find(specialty =>
-    specialty.id === id)
-)
-
-export const selectSpecialtyIngredientIds = createSelector(
-  selectSelectedSpecialty,
-  (specialty): Ingredients => specialty.ingredients
-)
-
-export const selectSpecialtyIngredients = createSelector(
-  selectSpecialtyIngredientIds,
-  selectAllIngredients,
-  (specialtyIds, allIngredients): IngredientList => allIngredients.filter(ingredient => specialtyIds.includes(ingredient.id))
 )
 
 export const selectCurrentItemIngredients = createSelector(
@@ -62,9 +40,16 @@ export const selectCurrentItemIngredients = createSelector(
   }
 )
 
+// ------- INGREDIENTS -------
 export const selectCurrentItemIngredientIds = createSelector(
   selectCurrentItemIngredients,
   (state): Ingredients => state.map(ingredient => ingredient.id)
+)
+
+export const selectSelectedIngredientSelectType = createSelector(
+  selectIngredientTypes,
+  selectIngredientType,
+  (types, type): string => types[type].selectType
 )
 
 export const selectCurrentItemPrice = createSelector(
@@ -90,6 +75,31 @@ export const selectCurrentItemSubtotal = createSelector(
   (price, quantity): number => price * quantity
 )
 
+
+// ------- ORIGIN INFO: SPECIALTY -------
+export const selectSelectedSpecialtyId = createSelector(
+  selectCurrentItemState,
+  (state): string => state.selectedSpecialtyId
+)
+
+export const selectSelectedSpecialty = createSelector(
+  selectSelectedSpecialtyId,
+  selectSpecialties,
+  (id, specialties): Specialty => specialties.find(specialty =>
+    specialty.id === id)
+)
+
+export const selectSpecialtyIngredientIds = createSelector(
+  selectSelectedSpecialty,
+  (specialty): Ingredients => specialty.ingredients
+)
+
+export const selectSpecialtyIngredients = createSelector(
+  selectSpecialtyIngredientIds,
+  selectAllIngredients,
+  (specialtyIds, allIngredients): IngredientList => allIngredients.filter(ingredient => specialtyIds.includes(ingredient.id))
+)
+
 export const selectSpecialtyModified = createSelector(
   selectCurrentItemIngredientIds,
   selectSpecialtyIngredientIds,
@@ -105,10 +115,4 @@ export const selectSpecialtyModified = createSelector(
     }
     return false // no, not modified
   }
-)
-
-export const selectSelectedIngredientSelectType = createSelector(
-  selectIngredientTypes,
-  selectIngredientType,
-  (types, type): string => types[type].selectType
 )

@@ -32,23 +32,26 @@ export const selectCartItemsWithIngredientInfo = createSelector(
   (orderItems, allIngredients): OrderItemDetailed[] => {
     let orderItemDetailed: OrderItemDetailed
     let orderItemDetailList: OrderItemDetailed[] = []
-    let ingredientList: IngredientList = []
-    let newItem: OrderItemDetailed
-
-    // for each item's...
     orderItems.forEach(orderItem => {
-      // ingredient list (ids only)
+      let ingredientList: IngredientList = []
       orderItem.ingredients.forEach(ingredientId =>
-        // return the full ingredient object to the ingredientList
         ingredientList.push(allIngredients.find(ingredient =>
           ingredient.id === ingredientId
         ))
       )
-      // create a new object with the ingredientList (array of objects)
-      newItem.ingredientDetails = ingredientList
-      // combine that into a 'detailed' order item object
+      let newItem = {
+        id: '',
+        name: '',
+        itemGroup: null,
+        quantity: 1,
+        price: 0,
+        subtotal: 0,
+        selectedSpecialtyId: null,
+        ingredients: [],
+        viewDetail: false,
+        ingredientDetails: ingredientList
+      };
       orderItemDetailed = Object.assign({}, newItem, orderItem)
-      // add that object to an array of objects
       orderItemDetailList.push(orderItemDetailed)
     })
     return orderItemDetailList

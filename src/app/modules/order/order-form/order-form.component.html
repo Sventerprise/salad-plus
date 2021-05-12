@@ -31,7 +31,7 @@
         <!-- /qty, price, subtotal -->
       </div>
       <!-- item buttons -->
-      <button class="edit btn btn-primary">Edit</button>
+      <button class="edit btn btn-primary" (click)="editItem(item.id)">Edit</button>
       <ng-container *ngIf="!item.viewDetail">
         <button class="view btn btn-warning" (click)="toggleDetail(item.id)">View</button>
       </ng-container>

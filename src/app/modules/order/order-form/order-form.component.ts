@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
 import { OrderItem, OrderItemDetailed } from '../models/Item';
+import { removeCartItem } from '../state/cart/cart.actions';
 import { State } from '../state/cart/cart.reducer';
 import { selectCartItemArray, selectCartItemsWithIngredientInfo, selectCartState } from '../state/cart/cart.selectors';
+import { loadItemToBuilder } from '../state/current-item/current-item.actions';
 import { toggleDetail, updateQuantityAndSubtotal } from '../state/order-items/order-items.actions';
-import { selectOrderItemNames } from '../state/order-items/order-items.selectors';
+import { selectOrderItemEntities, selectOrderItemNames } from '../state/order-items/order-items.selectors';
 
 @Component({
   selector: 'app-order-form',
@@ -20,7 +23,8 @@ export class OrderFormComponent implements OnInit {
 
   constructor(
     private store: Store<{}>,
-    private cartService: CartService
+    private cartService: CartService,
+    private router: Router
   ) { }
 
 
@@ -32,18 +36,27 @@ export class OrderFormComponent implements OnInit {
     // )
   }
 
-  public toggleDetail(id: string) {
+  public toggleDetail(id: string): void {
     this.store.dispatch(toggleDetail({ id }))
   }
 
-  public removeCartItem(id: string) {
+  public removeCartItem(id: string): void {
     this.cartService.removeCartItem(id)
   }
 
-  public updateQuantityAndSubtotal(e: any, id: string) {
+  public updateQuantityAndSubtotal(e: any, id: string): void {
     let quantity = e.value
     this.store.dispatch(updateQuantityAndSubtotal({ quantity, id }))
     this.cartService.updateTotal()
+  }
+
+  public editItem(id: string): void {
+    this.store.select(selectOrderItemEntities).subscribe(entities =>
+      this.store.dispatch(loadItemToBuilder({ orderItem: entities[id] }))
+    )
+    this.cartService.removeCartItem(id)
+
+    this.router.navigate(['order/builder'])
   }
 
 }

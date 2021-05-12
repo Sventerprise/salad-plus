@@ -40,9 +40,20 @@ export const reducer = createReducer(
     (state, action) => (
       { ...state, ingredients: action.ingredients })
   ),
-  on(CurrentItemActions.commitChanges,
+  on(CurrentItemActions.loadItemToBuilder,
     (state, action) => (
-      { ...state, orderItem: action.orderItem })
+      {
+        ...state,
+        id: action.orderItem.id,
+        name: action.orderItem.name,
+        itemGroup: action.orderItem.itemGroup,
+        quantity: action.orderItem.quantity,
+        price: action.orderItem.price,
+        subtotal: action.orderItem.subtotal,
+        selectedSpecialtyId: null,
+        ingredients: action.orderItem.ingredients,
+        viewDetail: false
+      })
   ),
   on(CurrentItemActions.clearCurrentItem,
     (state) => (

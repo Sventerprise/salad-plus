@@ -4,20 +4,13 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { closeIngredientSelectorPopup } from 'src/app/modules/order/state/item-edit/item-edit.actions';
 import { selectAllIngredientsOfType, selectSelectorFlag } from 'src/app/modules/order/state/item-edit/item-edit.selectors';
-import { Ingredient, IngredientList, Ingredients, IngredientTypes } from '../models/Ingredient';
+import { Ingredient, IngredientList, Ingredients } from '../models/Ingredient';
 import * as fromItemEdit from 'src/app/modules/order/state/item-edit/item-edit.selectors'
-import * as fromItemEditActions from 'src/app/modules/order/state/item-edit/item-edit.actions'
-import { CurrentItemService } from '../services/currentItems.service';
-import { commitChanges, updateIngredients } from 'src/app/modules/order/state/current-item/current-item.actions';
+import { updateIngredients } from 'src/app/modules/order/state/current-item/current-item.actions';
 import { updateHeader } from '../../shared/state/shared.actions';
 import { CartService } from 'src/app/services/cart.service';
-import { OrderItem, OrderItems } from '../models/Item';
-import { addOrderItem } from '../state/order-items/order-items.actions';
-import { selectCurrentItemIngredientIds, selectCurrentItemPrice, selectCurrentItemQuantity, selectCurrentItemState, selectCurrentItemSubtotal, selectCurrentItemGroup, selectCurrentItemIngredients, selectSelectedIngredientSelectType } from '../state/current-item/current-item.selectors';
-import { ItemGroup } from '../models/ItemGroup';
-import { State } from '../state/current-item/current-item.reducer';
-import { selectAllIngredients } from 'src/app/stores/selectors/order-static-data.selectors';
-import { updateTotal } from '../state/cart/cart.actions';
+import { OrderItem } from '../models/Item';
+import { selectCurrentItemIngredientIds, selectCurrentItemState, selectSelectedIngredientSelectType } from '../state/current-item/current-item.selectors';
 
 @Component({
   selector: 'app-builder',

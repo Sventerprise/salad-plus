@@ -1,5 +1,4 @@
 import { createAction, props } from '@ngrx/store';
-import { OrderItems } from '../../models/Item';
 
 export const addCartItem = createAction(
   '[Builder] Add Cart Item',
@@ -16,11 +15,6 @@ export const updateTotal = createAction(
   props<{ total: number }>()
 );
 
-// export const updateQuantity = createAction(
-//   '[Order List] Update Quantity',
-//   props<{ quantity: number }>()
-// )
-
 export const loadCartsSuccess = createAction(
   '[Cart] Load Carts Success',
   props<{ data: any }>()
@@ -34,3 +28,4 @@ export const loadCartsFailure = createAction(
 export const clearCart = createAction(
   '[Cart] Clear Cart'
 );
+

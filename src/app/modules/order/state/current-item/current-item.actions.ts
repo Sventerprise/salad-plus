@@ -14,7 +14,7 @@ export const updateSpecialtyId = createAction(
   props<{ selectedSpecialtyId: string }>()
 )
 
-export const commitChanges = createAction(
+export const loadItemToBuilder = createAction(
   '[Builder Popup] Commit Temp List Changes to Item',
   props<{ orderItem: OrderItem }>()
 )
