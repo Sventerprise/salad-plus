@@ -5,6 +5,7 @@ import { selectAllIngredients, selectIngredientTypes, selectSpecialties } from '
 import { IngredientList, Ingredients } from '../../models/Ingredient';
 import { Item, OrderItem } from '../../models/Item';
 import { selectIngredientType, selectSelectedIngredientsOfType } from '../item-edit/item-edit.selectors';
+import { selectOrderItemArray } from '../order-items/order-items.selectors';
 
 export const selectCurrentItemState = createFeatureSelector<fromCurrentItem.State>(
   fromCurrentItem.currentItemFeatureKey
@@ -79,31 +80,44 @@ export const selectCurrentItemSubtotal = createSelector(
 // ------- ORIGIN INFO: SPECIALTY -------
 export const selectSelectedSpecialtyId = createSelector(
   selectCurrentItemState,
-  (state): string => state.selectedSpecialtyId
+  (state): string | undefined => {
+    return !state.selectedSpecialtyId
+      ? undefined
+      : state.selectedSpecialtyId
+  }
 )
 
 export const selectSelectedSpecialty = createSelector(
   selectSelectedSpecialtyId,
   selectSpecialties,
-  (id, specialties): Specialty => specialties.find(specialty =>
-    specialty.id === id)
+  (id, specialties): Specialty | undefined => {
+    return !specialties
+      ? undefined
+      : specialties.find(specialty => specialty.id === id)
+  }
 )
 
 export const selectSpecialtyIngredientIds = createSelector(
   selectSelectedSpecialty,
-  (specialty): Ingredients => specialty.ingredients
+  (specialty): Ingredients | undefined => {
+    return !specialty
+      ? undefined
+      : specialty.ingredients
+  }
 )
 
 export const selectSpecialtyIngredients = createSelector(
   selectSpecialtyIngredientIds,
   selectAllIngredients,
-  (specialtyIds, allIngredients): IngredientList => allIngredients.filter(ingredient => specialtyIds.includes(ingredient.id))
+  (specialtyIds, allIngredients): IngredientList | undefined => allIngredients.filter(ingredient => specialtyIds.includes(ingredient.id))
 )
 
 export const selectSpecialtyModified = createSelector(
   selectCurrentItemIngredientIds,
   selectSpecialtyIngredientIds,
   (current, specialty): boolean => {
+    // check for specialty should never run (see dependency selectCurrentItemName), but just in case...
+    if (specialty === undefined) { return true }
     // check: same # of ingredients
     if (current.length != specialty.length) {
       return true // yes, modified
@@ -114,5 +128,48 @@ export const selectSpecialtyModified = createSelector(
       )
     }
     return false // no, not modified
+  }
+)
+
+export const selectCurrentItemId = createSelector(
+  selectOrderItemArray,
+  selectCurrentItemGroup,
+  selectCurrentItemState,
+  (orderItems, group, currentItem): string => {
+    // if there's already an id, just return that
+    if (currentItem.id) { return currentItem.id } else {
+      let unique: boolean
+      let i: number = 1
+      let id: string
+      do {
+        unique = true
+        id = group + "-" + i
+        orderItems.find(existingItem =>
+          existingItem.id === id ? unique = false : null
+        )
+        i++
+      } while (!unique)
+      return id
+    }
+  }
+)
+
+export const selectCurrentItemName = createSelector(
+  selectSpecialtyModified,
+  selectSelectedSpecialty,
+  selectCurrentItemGroup,
+  selectCurrentItemState,
+  (modified, specialty, group, currentItem): string => {
+    // if there's already a name, just return that
+    if (currentItem.name) { return currentItem.name } else {
+      // TODO: check to ensure specialties are properly cleared
+      let name: string =
+        specialty
+          ? modified
+            ? 'Custom ' + specialty.name
+            : specialty.name
+          : 'Custom ' + group
+      return name
+    }
   }
 )

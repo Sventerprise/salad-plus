@@ -40,12 +40,12 @@ export class SpecialtyComponent implements OnInit {
   public loadSpecialty(selectedSpecialtyId: string): void {
     let specialtyIngredients: Ingredients
 
+    // update store with specialty id
     this.store.dispatch(updateSpecialtyId({ selectedSpecialtyId }))
+    // load specialty ingredients to the current item
     this.store.select(selectSpecialtyIngredientIds).subscribe(ingredients =>
-      specialtyIngredients = ingredients
-    )
-    // load specialty ingredients to current item
-    this.store.dispatch(updateIngredients({ ingredients: specialtyIngredients }))
+      this.store.dispatch(updateIngredients({ ingredients })
+      ))
   }
 
   public calculateSpecialtyPrice(specialty: Specialty): string {

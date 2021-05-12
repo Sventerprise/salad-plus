@@ -1,3 +1,4 @@
+import { state } from '@angular/animations';
 import { createReducer, on } from '@ngrx/store';
 import { IngredientList } from 'src/app/modules/order/models/Ingredient';
 import { Specialty } from 'src/app/modules/order/models/Specialty';
@@ -56,13 +57,27 @@ export const reducer = createReducer(
       })
   ),
   on(CurrentItemActions.clearCurrentItem,
-    (state) => (
-      {
-        ...state,
-        currentItemGroup: null,
-        selectedSpecialtyId: null,
-        ingredients: []
-      })
+    () => (
+      { ...initialState })
+  ),
+  on(CurrentItemActions.updateCurrentItemId,
+    (state, action) => ({
+      ...state,
+      id: action.id
+    })
+  ),
+  on(CurrentItemActions.updateCurrentItemName,
+    (state, action) => ({
+      ...state,
+      name: action.name
+    })
+  ),
+  on(CurrentItemActions.updateCurrentItemPriceAndSubtotal,
+    (state, action) => ({
+      ...state,
+      price: action.price,
+      subtotal: action.price * state.quantity
+    })
   ),
 
 );

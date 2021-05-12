@@ -6,11 +6,12 @@ import { closeIngredientSelectorPopup } from 'src/app/modules/order/state/item-e
 import { selectAllIngredientsOfType, selectSelectorFlag } from 'src/app/modules/order/state/item-edit/item-edit.selectors';
 import { Ingredient, IngredientList, Ingredients } from '../models/Ingredient';
 import * as fromItemEdit from 'src/app/modules/order/state/item-edit/item-edit.selectors'
-import { updateIngredients } from 'src/app/modules/order/state/current-item/current-item.actions';
+import { updateCurrentItemId, updateCurrentItemName, updateCurrentItemPriceAndSubtotal, updateIngredients } from 'src/app/modules/order/state/current-item/current-item.actions';
 import { updateHeader } from '../../shared/state/shared.actions';
 import { CartService } from 'src/app/services/cart.service';
 import { OrderItem } from '../models/Item';
-import { selectCurrentItemIngredientIds, selectCurrentItemState, selectSelectedIngredientSelectType } from '../state/current-item/current-item.selectors';
+import { selectCurrentItemId, selectCurrentItemIngredientIds, selectCurrentItemName, selectCurrentItemPrice, selectSelectedIngredientSelectType } from '../state/current-item/current-item.selectors';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-builder',
@@ -18,10 +19,9 @@ import { selectCurrentItemIngredientIds, selectCurrentItemState, selectSelectedI
   styleUrls: ['./builder.component.scss']
 })
 export class BuilderComponent implements OnInit {
-  categoryFlag: boolean = false
-  selectorFlag: Observable<boolean>
+  selectorFlag$: Observable<boolean>
   confirmFlag: boolean = false
-  ingredientsOfType: Observable<Ingredient[]>
+  ingredientsOfType$: Observable<Ingredient[]>
   popupIngredientList: IngredientList
   currentItem: OrderItem
 
@@ -36,15 +36,27 @@ export class BuilderComponent implements OnInit {
 
     // ensure page starts with popup closed
     this.store.dispatch(closeIngredientSelectorPopup())
-    this.selectorFlag = this.store.select(selectSelectorFlag)
+    this.selectorFlag$ = this.store.select(selectSelectorFlag)
 
     // returns the ingredients currently on the item of the chosen type
     // used to pre-select items on the ingredient selector popup:
     this.store.select(fromItemEdit.selectSelectedIngredientsOfType)
       .subscribe(ingredients => this.popupIngredientList = ingredients)
-    this.ingredientsOfType = this.store.select(selectAllIngredientsOfType)
-    this.store.select(selectCurrentItemState).subscribe(item =>
-      this.currentItem = item)
+    this.ingredientsOfType$ = this.store.select(selectAllIngredientsOfType)
+
+    // clear the id/name (if any)
+    this.store.select(selectCurrentItemId).pipe(take(1)).subscribe(id =>
+      this.store.dispatch(updateCurrentItemId({ id }))
+    )
+    this.store.select(selectCurrentItemName).pipe(take(1)).subscribe(name =>
+      this.store.dispatch(updateCurrentItemName({ name }))
+    )
+    // update price
+    this.store.select(selectCurrentItemPrice).pipe(take(1)).subscribe(price =>
+      this.store.dispatch(updateCurrentItemPriceAndSubtotal({ price }))
+    )
+
+    // update the name/id
   }
 
   // #region Methods
@@ -109,6 +121,9 @@ export class BuilderComponent implements OnInit {
 
   public closeSelectIngredient() {
     this.store.dispatch(closeIngredientSelectorPopup())
+    this.store.select(selectCurrentItemPrice).pipe(take(1)).subscribe(price =>
+      this.store.dispatch(updateCurrentItemPriceAndSubtotal({ price }))
+    )
   }
   //#endregion Select Ingredient
 

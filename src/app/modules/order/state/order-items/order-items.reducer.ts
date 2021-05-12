@@ -18,7 +18,9 @@ export const initialState: State = {
 export const reducer = createReducer(
   initialState,
 
-  on(OrderItemsActions.loadOrderItems, state => state),
+  on(OrderItemsActions.loadOrderItems,
+    (state) => state
+  ),
   on(OrderItemsActions.addOrderItem,
     (state, action) => {
       let ids = state.ids.slice(0)

@@ -55,7 +55,6 @@ export class OrderFormComponent implements OnInit {
       this.store.dispatch(loadItemToBuilder({ orderItem: entities[id] }))
     )
     this.cartService.removeCartItem(id)
-
     this.router.navigate(['order/builder'])
   }
 

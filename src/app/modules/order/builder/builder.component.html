@@ -17,11 +17,11 @@
   <!-- POPUPS -->
 
   <!-- INGREDIENT SELECTOR -->
-  <div class="popup-screen-cover" *ngIf="selectorFlag | async">
+  <div class="popup-screen-cover" *ngIf="selectorFlag$ | async">
     <div class="popup-window">
 
       <div class="popup-contents">
-        <ng-container *ngFor="let ingredient of ingredientsOfType | async">
+        <ng-container *ngFor="let ingredient of ingredientsOfType$ | async">
           <button
           (click)="selectIngredient(ingredient.id)"
           class="ingredient btn" [class.selected]="isSelected(ingredient.id)"
