@@ -17,8 +17,12 @@ export interface OrderItem extends Item {
   viewDetail: boolean
 }
 
+export interface OrderItemEntity {
+  [key: string]: OrderItem
+}
+
 export interface OrderItems {
-  entities: { [key: string]: OrderItem }
+  entities: OrderItemEntity
   ids: string[]
 }
 

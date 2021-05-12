@@ -32,10 +32,12 @@ export const selectCurrentItemIngredients = createSelector(
   selectCurrentItemState,
   (allIngredients, state): IngredientList => {
     let ingredientList: IngredientList = []
-    for (let ingredientId of state.ingredients) {
-      ingredientList.push(allIngredients.find(ingredient =>
-        ingredient.id === ingredientId)
-      )
+    if (state.ingredients) {
+      for (let ingredientId of state.ingredients) {
+        ingredientList.push(allIngredients.find(ingredient =>
+          ingredient.id === ingredientId)
+        )
+      }
     }
     return ingredientList
   }

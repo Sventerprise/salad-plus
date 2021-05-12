@@ -42,6 +42,7 @@ export class OrderFormComponent implements OnInit {
 
   public removeCartItem(id: string): void {
     this.cartService.removeCartItem(id)
+    this.cartService.removeOrderItem(id)
   }
 
   public updateQuantityAndSubtotal(e: any, id: string): void {

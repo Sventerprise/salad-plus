@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { OrderItem } from '../../models/Item';
+import { OrderItem, OrderItemEntity, OrderItems } from '../../models/Item';
 
 export const loadOrderItems = createAction(
   '[OrderItems] Load OrderItems'
@@ -10,9 +10,9 @@ export const addOrderItem = createAction(
   props<{ orderItem: OrderItem }>()
 );
 
-export const deleteOrderItem = createAction(
+export const removeOrderItem = createAction(
   '[OrderItems] Delete OrderItem',
-  props<{ id: string }>()
+  props<{ ids: string[], entities: OrderItemEntity }>()
 );
 
 export const updateQuantityAndSubtotal = createAction(

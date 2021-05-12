@@ -35,6 +35,13 @@ export const reducer = createReducer(
       }
     }
   ),
+  on(OrderItemsActions.removeOrderItem,
+    (state, action) => ({
+      ...state,
+      ids: action.ids,
+      entities: action.entities
+    })
+  ),
   on(OrderItemsActions.toggleDetail,
     (state, action) => {
       let ids = state.ids.slice(0)
