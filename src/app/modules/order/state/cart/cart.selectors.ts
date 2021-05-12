@@ -4,6 +4,7 @@ import { IngredientList } from '../../models/Ingredient';
 import { OrderItem, OrderItemDetailed } from '../../models/Item';
 import { selectOrderItemEntities } from '../order-items/order-items.selectors';
 import * as fromCart from './cart.reducer';
+import * as _ from 'lodash'
 
 export const selectCartState = createFeatureSelector<fromCart.State>(
   fromCart.cartFeatureKey
@@ -33,26 +34,30 @@ export const selectCartItemsWithIngredientInfo = createSelector(
     let orderItemDetailed: OrderItemDetailed
     let orderItemDetailList: OrderItemDetailed[] = []
     orderItems.forEach(orderItem => {
-      let ingredientList: IngredientList = []
-      orderItem.ingredients.forEach(ingredientId =>
-        ingredientList.push(allIngredients.find(ingredient =>
-          ingredient.id === ingredientId
-        ))
-      )
-      let newItem = {
-        id: '',
-        name: '',
-        itemGroup: null,
-        quantity: 1,
-        price: 0,
-        subtotal: 0,
-        selectedSpecialtyId: null,
-        ingredients: [],
-        viewDetail: false,
-        ingredientDetails: ingredientList
-      };
-      orderItemDetailed = Object.assign({}, newItem, orderItem)
-      orderItemDetailList.push(orderItemDetailed)
+      if (!orderItem) {
+        orderItemDetailList = []
+      } else {
+        let ingredientList: IngredientList = []
+        orderItem.ingredients.forEach(ingredientId =>
+          ingredientList.push(allIngredients.find(ingredient =>
+            ingredient.id === ingredientId
+          ))
+        )
+        let newItem = {
+          id: '',
+          name: '',
+          itemGroup: null,
+          quantity: 1,
+          price: 0,
+          subtotal: 0,
+          selectedSpecialtyId: null,
+          ingredients: [],
+          viewDetail: false,
+          ingredientDetails: ingredientList
+        };
+        orderItemDetailed = Object.assign({}, newItem, orderItem)
+        orderItemDetailList.push(orderItemDetailed)
+      }
     })
     return orderItemDetailList
   }
@@ -63,9 +68,13 @@ export const selectCartTotal = createSelector(
   selectCartIds,
   (orderItems, cartIds): number => {
     let total: number = 0
-    cartIds.forEach(cartId =>
-      total += orderItems[cartId].subtotal
-    )
+    if (cartIds.length == 0 || _.size(orderItems) == 0) {
+      total = 0
+    } else {
+      cartIds.forEach(cartId =>
+        total += orderItems[cartId].subtotal
+      )
+    }
     return total
   }
 );

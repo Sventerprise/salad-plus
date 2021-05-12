@@ -3,8 +3,11 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
 import { updateHeader } from '../../shared/state/shared.actions';
+import { clearCart } from '../state/cart/cart.actions';
 import { State } from '../state/cart/cart.reducer';
 import { selectCartState, selectCartTotal } from '../state/cart/cart.selectors';
+import { clearCurrentItem } from '../state/current-item/current-item.actions';
+import { clearOrderItems } from '../state/order-items/order-items.actions';
 
 @Component({
   selector: 'app-order-list',
@@ -14,8 +17,7 @@ import { selectCartState, selectCartTotal } from '../state/cart/cart.selectors';
 export class OrderListComponent implements OnInit {
   confirmFlag: boolean = false
   popupFlag: boolean = false
-  cart: State
-  total: Observable<number>
+  total$: Observable<number>
 
   constructor(
     private store: Store<{}>,
@@ -24,10 +26,7 @@ export class OrderListComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(updateHeader({ header: 'Review & Order More' }))
-    this.store.select(selectCartState).subscribe(cart => {
-      this.cart = cart
-    })
-    this.total = this.store.select(selectCartTotal)
+    this.total$ = this.store.select(selectCartTotal)
   }
 
   public openCancelConfirm() {
@@ -36,6 +35,9 @@ export class OrderListComponent implements OnInit {
   }
 
   public confirmCancel() {
+    this.store.dispatch(clearOrderItems())
+    this.store.dispatch(clearCurrentItem())
+    this.store.dispatch(clearCart())
   }
 
   public closePopup() {

@@ -34,41 +34,6 @@ export class CartService {
       this.group = itemGroup)
   }
 
-  // public generateId(): string {
-  //   let unique: boolean
-  //   let i: number = 1
-  //   let id: string
-  //   do {
-  //     unique = true
-  //     id = this.group + "-" + i
-  //     this.store.select(selectOrderItemArray).subscribe(orderItems =>
-  //       orderItems.find(existingItem =>
-  //         existingItem.id === id ? unique = false : null
-  //       )
-  //     )
-  //     i++
-  //   } while (!unique)
-  //   return id
-  // }
-
-  // public generateName(): string {
-  //   let name: string
-  //   let modified: boolean
-  //   this.store.select(selectSpecialtyModified).subscribe(itemModified =>
-  //     modified = itemModified)
-  //   // TODO: check to ensure specialties are properly cleared
-  //   if (this.specialty) {
-  //     if (modified) {
-  //       name = 'Custom ' + this.specialty.name
-  //     } else {
-  //       name = this.specialty.name
-  //     }
-  //   } else {
-  //     name = 'Custom ' + this.group
-  //   }
-  //   return name
-  // }
-
   public updateTotal(): void {
     let total: number = 0
     this.store.select(selectCartTotal).subscribe(cartTotal =>

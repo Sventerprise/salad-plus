@@ -1,5 +1,5 @@
 <div class="order-list-wrap">
-  <label class="total form-control">${{total |async | number: '1.2'}}</label>
+  <label class="total form-control">${{total$ |async | number: '1.2'}}</label>
   <app-order-form class="order-form "></app-order-form>
   <button type="button" class="pay btn btn-success"
   routerLink="../../payment">Pay</button>
@@ -16,7 +16,6 @@
 
       <ng-container *ngIf="confirmFlag">
         <div class="popup-contents">
-          // TODO: reduce .msg & .popup-contents
           <div class="contents">
             <div class="cancel-pop">
               <div class="msg">Do you <em>really</em> want to cancel this order?
