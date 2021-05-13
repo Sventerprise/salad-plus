@@ -1,15 +1,34 @@
-import { FormGroup } from '@angular/forms';
 import { createAction, props } from '@ngrx/store';
 
-
-export const updatePaymentForm = createAction(
+export const updateCCInfo = createAction(
   '[Payment] Update Payment Form',
-  props<{ paymentForm: FormGroup }>()
+  props<{ name: string, number: string, csv: string, exp: string }>()
+);
+export const updateName = createAction(
+  '[Payment] Update Payment Form',
+  props<{ name: string }>()
 );
 
 export const clearCCInfo = createAction(
   '[Payment] Clear CC Info'
 );
+
+export const postPayment = createAction(
+  '[Payment] Payment to Server',
+  props<{ data: any }>()
+);
+
+export const postPaymentSuccess = createAction(
+  '[Payment] Payment Success',
+  props<{ data: any }>()
+);
+
+export const postPaymentFailure = createAction(
+  '[Payment] Payment Failure',
+  props<{ error: any }>()
+);
+
+
 
 // boilerplate
 
