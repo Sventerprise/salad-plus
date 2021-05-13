@@ -22,21 +22,21 @@ export class PayComponent implements OnInit {
       Validators.required,
       Validators.pattern("[0-9]{10}")
     ]],
-    csv: ['', [Validators.required, Validators.pattern("[0-9]{3}")]],
+    csv: ['', [
+      Validators.required,
+      Validators.pattern("[0-9]{3}")
+    ]],
     exp: ['', [Validators.required]]
   })
-  isValid: boolean
 
   constructor(
     private store: Store<{}>,
-    private fb: FormBuilder,
-    private router: Router
+    private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
     this.store.dispatch(updateHeader({ header: 'Payment' }))
     this.total$ = this.store.select(selectCartTotal)
-    this.isValid = this.paymentForm.valid
   }
 
   public openCancelConfirm() {
