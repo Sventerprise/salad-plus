@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectAllIngredients, selectIngredientTypes } from 'src/app/stores/selectors/order-static-data.selectors';
-import { Ingredient, IngredientList, IngredientTypes } from '../models/Ingredient';
-import { Specialty } from '../models/Specialty';
+import { Ingredient, IngredientList, IngredientTypes } from '../../models/Ingredient';
+import { Specialty } from '../../models/Specialty';
 import * as fromCurrentItem from 'src/app/modules/order/state/current-item/current-item.selectors'
 import * as fromItemEdit from 'src/app/modules/order/state/item-edit/item-edit.actions'
-import { CurrentItemService } from '../services/currentItems.service';
+import { CurrentItemService } from '../../services/currentItems.service';
 
 
 @Component({

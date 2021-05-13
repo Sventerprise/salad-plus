@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { updateHeader } from '../../shared/state/shared.actions';
+import { updateHeader } from '../../../shared/state/shared.actions';
 
 @Component({
   selector: 'app-post-pay',

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PayComponent } from './pay.component';
+import { SsselctorComponent } from '../ssselctor/ssselctor.component';
 
-describe('PayComponent', () => {
-  let component: PayComponent;
-  let fixture: ComponentFixture<PayComponent>;
+describe('SsselctorComponent', () => {
+  let component: SsselctorComponent;
+  let fixture: ComponentFixture<SsselctorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PayComponent ]
+      declarations: [SsselctorComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PayComponent);
+    fixture = TestBed.createComponent(SsselctorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

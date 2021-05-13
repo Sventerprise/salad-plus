@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
-import { updateHeader } from '../../shared/state/shared.actions';
-import { clearCart } from '../state/cart/cart.actions';
-import { State } from '../state/cart/cart.reducer';
-import { selectCartState, selectCartTotal } from '../state/cart/cart.selectors';
-import { clearCurrentItem } from '../state/current-item/current-item.actions';
-import { clearOrderItems } from '../state/order-items/order-items.actions';
+import { updateHeader } from '../../../shared/state/shared.actions';
+import { clearCart } from '../../state/cart/cart.actions';
+import { State } from '../../state/cart/cart.reducer';
+import { selectCartState, selectCartTotal } from '../../state/cart/cart.selectors';
+import { clearCurrentItem } from '../../state/current-item/current-item.actions';
+import { clearOrderItems } from '../../state/order-items/order-items.actions';
 
 @Component({
   selector: 'app-order-list',

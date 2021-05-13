@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SsselctorComponent } from './ssselctor.component';
+import { OrderFormComponent } from '../order-form/order-form.component';
 
-describe('SsselctorComponent', () => {
-  let component: SsselctorComponent;
-  let fixture: ComponentFixture<SsselctorComponent>;
+describe('OrderFormComponent', () => {
+  let component: OrderFormComponent;
+  let fixture: ComponentFixture<OrderFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SsselctorComponent ]
+      declarations: [OrderFormComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SsselctorComponent);
+    fixture = TestBed.createComponent(OrderFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PostPayComponent } from './post-pay.component';
+import { BuilderComponent } from '../builder/builder.component';
 
-describe('PostPayComponent', () => {
-  let component: PostPayComponent;
-  let fixture: ComponentFixture<PostPayComponent>;
+describe('BuilderComponent', () => {
+  let component: BuilderComponent;
+  let fixture: ComponentFixture<BuilderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PostPayComponent ]
+      declarations: [BuilderComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PostPayComponent);
+    fixture = TestBed.createComponent(BuilderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

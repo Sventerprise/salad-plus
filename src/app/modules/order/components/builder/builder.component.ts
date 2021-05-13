@@ -4,13 +4,13 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { closeIngredientSelectorPopup } from 'src/app/modules/order/state/item-edit/item-edit.actions';
 import { selectAllIngredientsOfType, selectSelectorFlag } from 'src/app/modules/order/state/item-edit/item-edit.selectors';
-import { Ingredient, IngredientList, Ingredients } from '../models/Ingredient';
+import { Ingredient, IngredientList, Ingredients } from '../../models/Ingredient';
 import * as fromItemEdit from 'src/app/modules/order/state/item-edit/item-edit.selectors'
 import { updateCurrentItemId, updateCurrentItemName, updateCurrentItemPriceAndSubtotal, updateIngredients } from 'src/app/modules/order/state/current-item/current-item.actions';
-import { updateHeader } from '../../shared/state/shared.actions';
+import { updateHeader } from '../../../shared/state/shared.actions';
 import { CartService } from 'src/app/services/cart.service';
-import { OrderItem } from '../models/Item';
-import { selectCurrentItemId, selectCurrentItemIngredientIds, selectCurrentItemName, selectCurrentItemPrice, selectSelectedIngredientSelectType } from '../state/current-item/current-item.selectors';
+import { OrderItem } from '../../models/Item';
+import { selectCurrentItemId, selectCurrentItemIngredientIds, selectCurrentItemName, selectCurrentItemPrice, selectSelectedIngredientSelectType } from '../../state/current-item/current-item.selectors';
 import { take } from 'rxjs/operators';
 
 @Component({

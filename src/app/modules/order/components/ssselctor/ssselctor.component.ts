@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { clearCurrentItem, setItemGroup } from 'src/app/modules/order/state/current-item/current-item.actions';
-import { updateHeader } from '../../shared/state/shared.actions';
-import { ItemGroup } from '../models/ItemGroup';
+import { updateHeader } from '../../../shared/state/shared.actions';
+import { ItemGroup } from '../../models/ItemGroup';
 
 @Component({
   selector: 'app-ssselctor',

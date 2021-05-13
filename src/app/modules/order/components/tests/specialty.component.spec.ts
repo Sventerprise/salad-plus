@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SpecialtyComponent } from './specialty.component';
+import { SpecialtyComponent } from '../specialty/specialty.component';
 
 describe('SpecialtyComponent', () => {
   let component: SpecialtyComponent;

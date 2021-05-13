@@ -7,11 +7,11 @@ import {
 } from 'src/app/modules/order/state/current-item/current-item.actions'
 import { selectSpecialtiesOfGroup, selectSpecialtyIngredientIds, selectSpecialtyIngredients } from 'src/app/modules/order/state/current-item/current-item.selectors';
 import { selectAllIngredients, selectIngredientTypes } from 'src/app/stores/selectors/order-static-data.selectors';
-import { updateHeader } from '../../shared/state/shared.actions';
-import { IngredientList, Ingredients, IngredientTypes } from '../models/Ingredient';
+import { updateHeader } from '../../../shared/state/shared.actions';
+import { IngredientList, Ingredients, IngredientTypes } from '../../models/Ingredient';
 
-import { Specialties, Specialty } from '../models/Specialty';
-import { CurrentItemService } from '../services/currentItems.service';
+import { Specialties, Specialty } from '../../models/Specialty';
+import { CurrentItemService } from '../../services/currentItems.service';
 
 @Component({
   selector: 'app-specialty',

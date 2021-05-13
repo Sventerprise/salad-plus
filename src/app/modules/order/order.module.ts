@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SsselctorComponent } from './ssselctor/ssselctor.component';
-import { BuilderComponent } from './builder/builder.component';
-import { BuilderFormComponent } from './builder-form/builder-form.component';
-import { OrderListComponent } from './order-list/order-list.component';
-import { OrderFormComponent } from './order-form/order-form.component';
-import { SpecialtyComponent } from './specialty/specialty.component';
+import { SsselctorComponent } from './components/ssselctor/ssselctor.component';
+import { BuilderComponent } from './components/builder/builder.component';
+import { BuilderFormComponent } from './components/builder-form/builder-form.component';
+import { OrderListComponent } from './components/order-list/order-list.component';
+import { OrderFormComponent } from './components/order-form/order-form.component';
+import { SpecialtyComponent } from './components/specialty/specialty.component';
 import { OrderComponent } from './order.component';
 import { RouterModule } from '@angular/router';
 import { OrderRoutingModule } from './order-routing.module';

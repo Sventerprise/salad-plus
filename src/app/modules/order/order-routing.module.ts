@@ -1,10 +1,10 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { BuilderComponent } from "./builder/builder.component";
-import { OrderListComponent } from "./order-list/order-list.component";
+import { BuilderComponent } from "./components/builder/builder.component";
+import { OrderListComponent } from "./components/order-list/order-list.component";
 import { OrderComponent } from "./order.component";
-import { SpecialtyComponent } from "./specialty/specialty.component";
-import { SsselctorComponent } from "./ssselctor/ssselctor.component";
+import { SpecialtyComponent } from "./components/specialty/specialty.component";
+import { SsselctorComponent } from "./components/ssselctor/ssselctor.component";
 
 const routes: Routes = [
   {

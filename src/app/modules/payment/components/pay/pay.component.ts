@@ -3,9 +3,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectCartTotal } from '../../order/state/cart/cart.selectors';
-import { updateHeader } from '../../shared/state/shared.actions';
-import { clearCCInfo, updateCCInfo } from '../state/payment.actions';
+import { selectCartTotal } from '../../../order/state/cart/cart.selectors';
+import { updateHeader } from '../../../shared/state/shared.actions';
+import { clearCCInfo, updateCCInfo } from '../../state/payment.actions';
 
 @Component({
   selector: 'app-pay',

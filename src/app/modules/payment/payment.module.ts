@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PayComponent } from './pay/pay.component';
-import { PostPayComponent } from './post-pay/post-pay.component';
+import { PayComponent } from './components/pay/pay.component';
+import { PostPayComponent } from './components/post-pay/post-pay.component';
 import { PaymentComponent } from './payment.component';
 import { PaymentRoutingModule } from './payment-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
