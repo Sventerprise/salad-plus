@@ -1,15 +1,15 @@
-<div class="paywrap">
+<div [formGroup]=paymentForm class="paywrap">
   <button type="button" class="edit btn btn-primary btn-lg"
-  routerLink="/order/order-list">Edit Order</button>
-  <label class="total form-control" >$total</label>
+  routerLink="/order/order-list">Edit/View Order</button>
+  <label class="total form-control" >${{total$ |async |number: '1.2'}}</label>
   <form class="form">
-    <input type="text" placeholder="Name" class="form-control">
-    <input type="number" placeholder="Credit Card #"class="form-control">
-    <input type="number" placeholder="3-Digit Security Code" class="form-control">
-    <input type="date" placeholder="Exp Date"class="form-control">
+    <input formControlName="ccName" type="text" placeholder="Name" class="form-control">
+    <input formControlName="ccNumber" type="number" placeholder="Credit Card #"class="form-control">
+    <input formControlName="ccCsv" type="number" placeholder="3-Digit Security Code" class="form-control">
+    <input formControlName="ccExp" type="date" placeholder="Exp Date"class="form-control">
   </form>
-  <button type="button" class="submit btn btn-success btn-lg"
-  routerLink="../post-pay">Submit</button>
+  <button type="submit" class="submit btn btn-success btn-lg"
+  routerLink="../post-pay" (click)="submit()">Pay ${{total$ |async |number: '1.2'}}</button>
   <hr>
   <button type="button" class="cancel-btn btn btn-danger btn-lg" (click)="openCancelConfirm()">Cancel</button>
 
