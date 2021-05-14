@@ -1,4 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
+import { trxnResult } from '../models/TrxnResult';
 import * as PaymentActions from './payment.actions';
 
 export const paymentFeatureKey = 'payment';
@@ -6,50 +7,31 @@ export const paymentFeatureKey = 'payment';
 export interface State {
   name: string,
   number: string,
-  csv: string,
+  cvv: string,
   exp: string,
-  isValid: boolean
-  // result: {
-  //   id: string,
-  //   status: string
-  // }
-  // error: any
+  amount: number,
+  result: trxnResult
 }
 
 export const initialState: State = {
   name: null,
   number: null,
-  csv: null,
+  cvv: null,
   exp: null,
-  isValid: false,
-  // result: {
-  //   id: '',
-  //   status: 'incomplete'
-  // },
-  // error: undefined
+  amount: null,
+  result: undefined
 };
 
 
 export const reducer = createReducer(
   initialState,
-
-  // on(PaymentActions.updatePaymentForm,
-  //   (state, action) => ({
-  //     ...state,
-  // Name: action.paymentForm.controls['Name'].value,
-  //   Number: action.paymentForm.controls['Number'].value,
-  //   Csv: action.paymentForm.controls['Csv'].value,
-  //   Exp: action.paymentForm.controls['Exp'].value,
-  //   isValid: action.paymentForm.valid
-  // })
-  // ),
   on(PaymentActions.updateCCInfo,
     (state, action) => ({
       ...state,
-      name: action.name,
-      number: action.number,
-      exp: action.exp,
-      csv: action.csv
+      name: action.data.name,
+      number: action.data.number,
+      exp: action.data.exp,
+      cvv: action.data.cvv
     })
   ),
   on(PaymentActions.clearCCInfo,
@@ -59,7 +41,8 @@ export const reducer = createReducer(
     (state, action) => ({ ...state, result: action.data })
   ),
   on(PaymentActions.postPaymentFailure,
-    (state, action) => ({ ...state, error: action.error }))
+    (state, action) => ({ ...state, error: action.error })
+  )
 
 );
 

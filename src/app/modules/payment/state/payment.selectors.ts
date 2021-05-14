@@ -5,3 +5,7 @@ export const selectPaymentState = createFeatureSelector<fromPayment.State>(
   fromPayment.paymentFeatureKey
 );
 
+export const selectPayResult = createSelector(
+  selectPaymentState,
+  (state) => state.result
+)

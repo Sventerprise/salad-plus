@@ -11,6 +11,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { OrderStaticDataEffects } from './stores/effects/order-static-data.effects';
 import { HttpClientModule } from '@angular/common/http';
+import { AppMockInterceptors } from './barrels/app-mocks';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { HttpClientModule } from '@angular/common/http';
     EffectsModule.forRoot([OrderStaticDataEffects]),
     StoreRouterConnectingModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    ...(environment.useMocking ? AppMockInterceptors : [])
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

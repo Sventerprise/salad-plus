@@ -5,7 +5,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectCartTotal } from '../../../order/state/cart/cart.selectors';
 import { updateHeader } from '../../../shared/state/shared.actions';
-import { clearCCInfo, updateCCInfo } from '../../state/payment.actions';
+import { ccData } from '../../models/CCData';
+import { clearCCInfo, postPayment, updateCCInfo } from '../../state/payment.actions';
 
 @Component({
   selector: 'app-pay',
@@ -22,7 +23,7 @@ export class PayComponent implements OnInit {
       Validators.required,
       Validators.pattern("[0-9]{10}")
     ]],
-    csv: ['', [
+    cvv: ['', [
       Validators.required,
       Validators.pattern("[0-9]{3}")
     ]],
@@ -55,13 +56,20 @@ export class PayComponent implements OnInit {
 
   public submit() {
     // this.store.dispatch(updatePaymentForm({ paymentForm: this.paymentForm }))
-    // let formData: CCData = {}
-    this.store.dispatch(updateCCInfo({
+    let amount: number
+    this.store.select(selectCartTotal).subscribe(total =>
+      amount = total
+    )
+    let ccInfo: ccData = {
       name: this.paymentForm.controls['name'].value,
       number: this.paymentForm.controls['number'].value,
-      csv: this.paymentForm.controls['csv'].value,
+      cvv: this.paymentForm.controls['cvv'].value,
       exp: this.paymentForm.controls['exp'].value,
-    }))
+      amount: amount
+    }
+    this.store.dispatch(updateCCInfo({ data: ccInfo }))
+    console.log('calling postPayment')
+    this.store.dispatch(postPayment({ data: ccInfo }))
   }
 
 }

@@ -1,8 +1,9 @@
 import { createAction, props } from '@ngrx/store';
+import { ccData } from '../models/CCData';
 
 export const updateCCInfo = createAction(
   '[Payment] Update Payment Form',
-  props<{ name: string, number: string, csv: string, exp: string }>()
+  props<{ data: ccData }>()
 );
 export const updateName = createAction(
   '[Payment] Update Payment Form',
