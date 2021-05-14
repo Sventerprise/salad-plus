@@ -12,7 +12,7 @@ const routes: Routes = [
       .then(m => m.OrderModule)
   },
   {
-    path: 'payment', component: PayComponent,
+    path: 'pay', component: PayComponent,
     loadChildren: () => import('./modules/payment/payment.module')
       .then(m => m.PaymentModule)
   },

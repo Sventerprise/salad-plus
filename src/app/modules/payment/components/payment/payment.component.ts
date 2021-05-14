@@ -68,7 +68,6 @@ export class PaymentComponent implements OnInit {
       amount: amount
     }
     this.store.dispatch(updateCCInfo({ data: ccInfo }))
-    console.log('calling postPayment')
     this.store.dispatch(postPayment({ data: ccInfo }))
   }
 

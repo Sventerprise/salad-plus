@@ -6,11 +6,11 @@ import { PayTxResultComponent } from './components/pay-tx-result/pay-tx-result.c
 
 const routes: Routes = [
   {
-    path: 'payment', component: PayComponent,
+    path: 'pay', component: PayComponent,
     children: [
-      { path: 'pay', component: PaymentComponent },
+      { path: 'payment', component: PaymentComponent },
       { path: 'post-pay', component: PayTxResultComponent },
-      { path: '', redirectTo: 'pay', pathMatch: 'full' },
+      { path: '', redirectTo: 'payment', pathMatch: 'full' },
     ]
   }
 ];

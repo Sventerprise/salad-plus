@@ -14,7 +14,6 @@ export class PaymentService {
 
 
   public getPayResultsDB(data): Observable<trxnResult> {
-    console.log('Made it to the payment service')
     const url = this.baseUrl + 'api/pay'
     return this.http.get<trxnResult>(url)
   }

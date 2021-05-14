@@ -25,7 +25,6 @@ export class MockPaymentInterceptor implements HttpInterceptor {
     let rand = Math.round(Math.random() * 10000).toFixed(0)
     let transactionId = 'abc' + rand
 
-    console.log('Made it to the interceptor')
     return randResult
       ? {
         transactionId: transactionId,

@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { OrderItemDetailed } from 'src/app/modules/order/models/Item';
+import { selectCartItemsWithIngredientInfo } from 'src/app/modules/order/state/cart/cart.selectors';
 import { updateHeader } from '../../../shared/state/shared.actions';
+import { trxnResult } from '../../models/TrxnResult';
+import { selectPayResult } from '../../state/payment.selectors';
 
 @Component({
   selector: 'app-pay-tx-result',
@@ -8,22 +14,35 @@ import { updateHeader } from '../../../shared/state/shared.actions';
   styleUrls: ['./pay-tx-result.component.scss']
 })
 export class PayTxResultComponent implements OnInit {
-  items = [
-    { qty: 1, description: "custom sandwich 1", price: 68.80, subtotal: 68.80 },
-    { qty: 30, description: "Sourdough Ham Sandwich", price: 268.88, subtotal: 268.88 },
-  ]
+  items$: Observable<OrderItemDetailed[]>
+  payResult$: Observable<trxnResult>
+  result: trxnResult
+
   paySuccessFlag: boolean = false;
   confirmFlag: boolean = false
   popupFlag: boolean = false
 
+
   constructor(
-    private store: Store<{}>
+    private store: Store<{}>,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.paySuccessFlag
-      ? this.store.dispatch(updateHeader({ header: 'Success!' }))
-      : this.store.dispatch(updateHeader({ header: 'Oops!' }))
+    this.payResult$ = this.store.select(selectPayResult)
+    this.payResult$.subscribe(result =>
+      this.paySuccessFlag = result.status == 'approved'
+        ? true
+        : false
+    )
+    if (this.result == undefined) {
+      this.router.navigate(['/pay'])
+    } else {
+      this.result.status === 'approved'
+        ? this.store.dispatch(updateHeader({ header: 'Success!' }))
+        : this.store.dispatch(updateHeader({ header: 'Oops!' }))
+    }
+    this.items$ = this.store.select(selectCartItemsWithIngredientInfo)
   }
 
   public openCancelConfirm() {
