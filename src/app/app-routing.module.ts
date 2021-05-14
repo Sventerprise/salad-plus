@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { OrderComponent } from './modules/order/order.component';
 import { HomeComponent } from './modules/pages/home/home.component';
-import { PaymentComponent } from './modules/payment/components/core/payment.component';
+import { PayComponent } from './modules/payment/components/pay/pay.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -12,7 +12,7 @@ const routes: Routes = [
       .then(m => m.OrderModule)
   },
   {
-    path: 'payment', component: PaymentComponent,
+    path: 'payment', component: PayComponent,
     loadChildren: () => import('./modules/payment/payment.module')
       .then(m => m.PaymentModule)
   },
