@@ -1,3 +1,60 @@
-.form-control {
+.order-form {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 96%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.receipt-data {
   display: inline-block;
+  margin: 1vmin 0;
+  padding: 0 1vmin;
+  font-family: monospace;
+}
+.order-num {
+  width: 40vmin;
+}
+.date {
+  width: 30vmin;
+  float: right;
+}
+
+.order-items {
+  display: flex;
+  flex-flow: column nowrap;
+}
+.qty-price {
+  width: 20vmin;
+}
+.description {
+  width: 56vmin;
+}
+.subtotal {
+  width: 20vmin;
+  text-align: left;
+}
+.total {
+  float: right;
+  font-weight: bold;
+  width: 20vmin;
+  margin-right: 2vmin;
+  text-align: left;
+}
+
+.post-msg {
+  display: flex;
+  width: 96vmin;
+  height: 20vmin;
+  font-weight: bold;
+  background-color: whitesmoke;
+  margin: 3vmin 2vmin;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  // text-justify: center;
+}
+button {
+  margin: 3vmin auto;
+  display: block;
+  width: 90%;
 }

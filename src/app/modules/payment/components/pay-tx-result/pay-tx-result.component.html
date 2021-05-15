@@ -1,50 +1,51 @@
-<div class="post-pay-wrap">
+<div class="post-pay-wrap" *ngIf="payResult$ |async as result">
   <!-- SUCCESS -->
   <ng-container *ngIf="paySuccessFlag">
-      <div class="result">
-        <img src="./assets/images/thanks.png" alt="">
+    <div class="result">
+      <img src="./assets/images/thanks.png" alt="">
+    </div>
+    <div class="order-form">
+      <div class="order-meta">
+        <div class="order-num receipt-data"><b>Order#: </b>{{result.transactionId}}</div>
+        <div class="date receipt-data"><b>Date:</b> {{result.dateTime }} </div>
       </div>
-      <div class="order-form">
-        <div class="order-meta">
-          <label class="order-num form-control">Order#: #####</label>
-          <label class="date form-control">Date: dd/mm/yyyy</label>
-        </div>
-        <div>
-          <ng-container *ngFor="let item of items$ |async">
-            <div>
-              <label class="form-control qty-price">{{item.quantity}} @ ${{item.price}}</label>
-              <label class="form-control description">{{item.name}}</label>
-                <label class="form-control subtotal">
-                  ${{item.subtotal}}
-                  </label>
-              </div>
-          </ng-container>
-        </div>
-      </div> <!-- order form -->
-      <label class="total form-control">$total</label>
-      <label class="post-msg">Pick it up around: <br>
-      now + 10m</label>
-      <button type="button" class="btn1 btn btn-primary btn-lg">Email me my receipt</button>
-      <button type="button" class="btn2 btn btn-success btn-lg"
+      <div class="order-items">
+        <ng-container *ngFor="let item of items$ |async">
+          <div>
+            <div class="receipt-data qty-price">{{item.quantity}} @ ${{item.price |number: '1.2'}}</div>
+            <div class="receipt-data description">{{item.name}}</div>
+              <div class="receipt-data subtotal">
+                ${{item.subtotal}}
+                </div>
+            </div>
+        </ng-container>
+      </div>
+    </div> <!-- order form -->
+    <label class="total receipt-data">${{result.amount | number: '1.2'}}</label>
+    <div class="post-msg">Pick it up around: <br>
+    now + 10m</div>
+    <button type="button" class="btn1 btn btn-primary btn-lg">Email me my receipt</button>
+    <button type="button" class="btn2 btn btn-success btn-lg"
       routerLink="/">Done</button>
-    </ng-container> <!-- /success-->
+  </ng-container> <!-- /success-->
 
     <!-- FAIL -->
-    <ng-container *ngIf="result.status !== 'approved'">
+  <ng-container *ngIf="!paySuccessFlag">
       <div class="result">
         <img src="./assets/images/transaction_fail.png" alt="">
       </div>
       <div class="order-form">
         <div class="order-meta">
-          <label class="order-num form-control">Transaction Id: {{result.transactionId}} </label>
-          <label class="date form-control">Date: dd/mm/yyyy</label>
+          <div class="order-num receipt-data"><b>Transaction Id:</b> {{result.transactionId}} </div>
+          <div class="date receipt-data"><b>Date:</b> {{result.dateTime}}</div>
         </div>
 
       </div> <!-- order form -->
-      <label class="total form-control">$total</label>
-      <label class="post-msg failed">Payment Incomplete!</label>
+      <div class="total receipt-data">${{result.amount}}</div>
+      <div class="post-msg failed">Payment Incomplete!</div>
       <button type="button" class="btn1 btn btn-success btn-lg"
-      routerLink="/pay">Try Again</button>
+      (click)="flipResults()"
+      routerLink="/post-pay">Try Again</button>
       <button type="button" class="btn2 btn btn-danger btn-lg"
       (click)="openCancelConfirm()">Cancel</button>
     </ng-container>
