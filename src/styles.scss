@@ -1,45 +1,35 @@
 @import  '~bootstrap/scss/bootstrap.scss';
 
-.bord-1 {
-  border: 1px solid blue;
-}
-
-.bord-2 {
-  border: 1px solid red;
-}
-
-.bord-3 {
-  border: 1px solid green;
-}
-
-.bord-4 {
-  border: 1px solid purple;
-}
-
-.bord-5 {
-  border: 1px solid orange;
-}
-
 .btn-success {
-  border-color: green;
-  color: rgb(48, 48, 48);
-  background-color: lightgreen;
+  border-color: #647609;
+  color: #101302;
+  background-color: #f3fac6;
+}
+
+.btn-success:disabled {
+  border-color: #101302;
+  color: #647609;
+  background-color: #dcf17e;
 }
 
 .btn-danger {
-  background-color: rgb(255, 168, 168);
-  color: rgb(48, 48, 48);
-  border-color: rgb(255, 0, 0);
+  background-color: #fbcfc5;
+  color: #130501;
+  border-color: #6f1a07;
 }
 
 .btn-warning {
-  border-color: rgb(199, 159, 29);
-  background-color: #ebd291;
+  border-color: #504416;
   color: rgb(48, 48, 48);
+  background-color: #f3edce;
 }
 
 .btn-primary {
-  border-color: darkblue;
-  background-color: lightblue;
-  color: rgb(48, 48, 48);
+  border-color: #2b2118;
+  color: #0d0a07;
+  background-color: #eae0d7;
+}
+
+.btn.focus {
+  box-shadow: #0d0a0736;
 }

@@ -12,7 +12,7 @@
     [btns-s] "edit view remove" 4vh [btns-e]
     [spc3-s] ". . ." 0.5vh [spc3-e]
     / 1fr 1fr 1fr;
-  background-color: lightgray;
+  background-color: #f8f5f2;
   border-radius: 5px;
   padding: 1vw;
   margin: 1px;
@@ -20,7 +20,7 @@
 
 .item {
   grid-area: item;
-  background-color: rgb(243, 219, 188);
+  background-color: #b9c7cb;
   font-weight: bold;
 }
 
@@ -36,7 +36,7 @@
   line-height: 1;
   width: 98%;
   // TODO: base background color on category
-  background-color: rgb(242, 236, 201);
+  background-color: #e8ecee;
 }
 
 .edit {
