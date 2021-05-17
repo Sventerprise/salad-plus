@@ -34,7 +34,7 @@ export const reducer = createReducer(
       cvv: action.data.cvv
     })
   ),
-  on(PaymentActions.clearCCInfo,
+  on(PaymentActions.clearPaymentInfo,
     () => ({ ...initialState })
   ),
   on(PaymentActions.postPaymentSuccess,

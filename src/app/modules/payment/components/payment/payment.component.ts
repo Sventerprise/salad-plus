@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
 import { selectCartTotal } from '../../../order/state/cart/cart.selectors';
 import { updateHeader } from '../../../shared/state/shared.actions';
 import { ccData } from '../../models/CCData';
-import { clearCCInfo, postPayment, updateCCInfo } from '../../state/payment.actions';
+import { clearPaymentInfo, postPayment, updateCCInfo } from '../../state/payment.actions';
+import { selectPaymentState } from '../../state/payment.selectors';
 
 @Component({
   selector: 'app-payment',
@@ -38,6 +39,20 @@ export class PaymentComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(updateHeader({ header: 'Payment' }))
     this.total$ = this.store.select(selectCartTotal)
+    this.store.select(selectPaymentState).subscribe(state => {
+      if (state.name) {
+        this.paymentForm.controls['name'].setValue(state.name)
+      }
+      if (state.number) {
+        this.paymentForm.controls['number'].setValue(state.number)
+      }
+      if (state.cvv) {
+        this.paymentForm.controls['cvv'].setValue(state.cvv)
+      }
+      if (state.exp) {
+        this.paymentForm.controls['exp'].setValue(state.exp)
+      }
+    })
   }
 
   public openCancelConfirm() {
@@ -46,7 +61,7 @@ export class PaymentComponent implements OnInit {
   }
 
   public confirmCancel() {
-    this.store.dispatch(clearCCInfo())
+    this.store.dispatch(clearPaymentInfo())
   }
 
   public closePopup() {

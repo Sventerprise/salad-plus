@@ -1,3 +1,4 @@
+import { state } from '@angular/animations';
 import { createReducer, on } from '@ngrx/store';
 import { OrderItem, OrderItems } from '../../models/Item';
 import * as OrderItemsActions from './order-items.actions';
@@ -59,7 +60,11 @@ export const reducer = createReducer(
     }
   ),
   on(OrderItemsActions.clearOrderItems,
-    () => (initialState)
+    () => ({
+      ...state,
+      ids: [],
+      entities: {}
+    })
   ),
   on(OrderItemsActions.updateQuantityAndSubtotal,
     (state, action) => {

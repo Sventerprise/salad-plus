@@ -10,8 +10,8 @@ export const updateName = createAction(
   props<{ name: string }>()
 );
 
-export const clearCCInfo = createAction(
-  '[Payment] Clear CC Info'
+export const clearPaymentInfo = createAction(
+  '[Payment Results] Clear All Payment Info'
 );
 
 export const postPayment = createAction(

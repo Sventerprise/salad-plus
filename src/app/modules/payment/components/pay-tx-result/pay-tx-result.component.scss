@@ -4,19 +4,25 @@
   width: 96%;
   margin-left: auto;
   margin-right: auto;
-}
-.receipt-data {
-  display: inline-block;
-  margin: 1vmin 0;
-  padding: 0 1vmin;
   font-family: monospace;
 }
+.order-meta {
+  display: flex;
+  justify-content: space-between;
+}
+div.receipt-data {
+  display: table;
+  margin: 1vmin 0;
+  padding: 0 1vmin;
+}
 .order-num {
-  width: 40vmin;
+  display: inline-block;
+}
+.order-id {
+  display: inline-block;
 }
 .date {
-  width: 30vmin;
-  float: right;
+  display: inline-block;
 }
 
 .order-items {
@@ -29,16 +35,20 @@
 .description {
   width: 56vmin;
 }
-.subtotal {
-  width: 20vmin;
-  text-align: left;
+.dollar {
+  width: 3vmin;
+  text-align: right;
+  text-justify: right;
+}
+.amount {
+  width: 15vmin;
+  text-align: right;
+  text-justify: right;
 }
 .total {
-  float: right;
-  font-weight: bold;
-  width: 20vmin;
-  margin-right: 2vmin;
-  text-align: left;
+  justify-content: right;
+  text-align: right;
+  width: 56vmin;
 }
 
 .post-msg {
@@ -57,4 +67,72 @@ button {
   margin: 3vmin auto;
   display: block;
   width: 90%;
+}
+
+// POPUPS
+
+// SCREEN COVER (prevents unwanted button presses)
+.popup-screen-cover {
+  display: flex;
+  position: absolute;
+  width: 100vw;
+  height: 90vh;
+  border: 2px solid rgb(39, 39, 39);
+  background-color: rgb(248, 248, 248);
+  padding: 3vh 3vw;
+  left: 0;
+  top: 10vh;
+}
+
+.popup-window {
+  display: grid;
+  grid-template:
+    [s-s] ". . ." 2fr [s-e]
+    [msg-s] ". contents ." 60fr [msg-e]
+    [spc1-s] ". . ." 2fr [spc1-e]
+    [yes-s] ". cancel_btn ." 6fr [yes-e]
+    [spc2-s] ". . ." 6fr [spc2-e]
+    [close-s] ". close_btn ." 6fr [close-e]
+    [e-s] ". . ." 6fr [e-e]
+    / 2fr 96fr 2fr;
+  place-self: center stretch;
+  width: 100%;
+  height: 90vh;
+}
+
+// CONFIRM CANCEL
+.popup-contents {
+  grid-area: contents;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3vh 3vw;
+  background-color: rgb(248, 248, 248);
+  overflow: scroll;
+  flex-direction: column;
+}
+
+.msg {
+  grid-area: msg;
+  display: flex;
+  flex-flow: column;
+  // place-self: center;
+  justify-items: center;
+  align-items: center;
+  background-color: whitesmoke;
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+
+.cancel {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.cancel-btn {
+  grid-area: cancel_btn;
+}
+
+.close-btn {
+  grid-area: close_btn;
 }
