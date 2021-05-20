@@ -107,3 +107,17 @@
   display: flex;
   flex-flow: column wrap;
 }
+
+@media only screen and (min-width: 768px) {
+  .button-holder {
+    display: grid;
+    grid-area: buttons;
+    max-width: 1200px;
+    width: 100%;
+    grid-template:
+      [row1-start] ". " 2% [row1-end]
+      [row2-start] " button1 . button2 . button3 . button4" 8% [row2-end]
+      [row9-start] "." 2% [row9-end]
+      / 2% 10% 2% 10% 2% 10% 2% 10% 2%;
+  }
+}

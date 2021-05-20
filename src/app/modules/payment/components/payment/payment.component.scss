@@ -14,22 +14,18 @@
 
 .edit {
   grid-area: edit; // paywrap
-  font-size: 5vmin;
-  font-weight: bold;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
 }
 
 .total {
   grid-area: total; // paywrap
   margin-bottom: 0;
-  height: 6vh;
-  font-size: 1.55rem;
+  height: 6vmin;
+  font-size: 4vmin;
   font-weight: bold;
-  line-height: 1.5;
+  line-height: 4vmin;
   text-align: center;
   vertical-align: middle;
-  padding: 0.5rem;
+  padding: 0;
 }
 
 .form {

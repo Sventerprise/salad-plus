@@ -19,7 +19,9 @@ export class SsselctorComponent implements OnInit {
 
   ngOnInit(): void {
     this.clearCurrentSpecialty()
-    this.store.dispatch(updateHeader({ header: 'Specialty or BYO?' }))
+    setTimeout(() => {
+      this.store.dispatch(updateHeader({ header: 'Specialty or BYO?' }))
+    })
   }
 
   //#region Methods

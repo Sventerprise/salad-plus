@@ -31,7 +31,9 @@ export class SpecialtyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(updateHeader({ header: 'Specialty Selector' }))
+    setTimeout(() => {
+      this.store.dispatch(updateHeader({ header: 'Specialty Selector' }))
+    })
   }
   // before exiting use the selected ID to load the
   // specialty as the current item

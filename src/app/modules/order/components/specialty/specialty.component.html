@@ -4,10 +4,10 @@
       <div class="fill">
         <img class="fill" src="{{ recipe.img }}" alt="">
       </div>
-      <button class="btn btn-success"
+      <button class= "btn-success"
       type="button" (click)="loadSpecialty(recipe.id)"
       routerLink="../builder"> {{ recipe.name }}</button>
-      <div class="description bord-3">
+      <div class="description">
         <div class="price">$ {{calculateSpecialtyPrice(recipe)}}</div>
         {{ recipe.description }}
       </div>

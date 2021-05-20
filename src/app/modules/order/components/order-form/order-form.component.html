@@ -31,18 +31,18 @@
         <!-- /qty, price, subtotal -->
       </div>
       <!-- item buttons -->
-      <button class="edit btn btn-primary" (click)="editItem(item.id)">Edit</button>
+      <button class="edit btn-primary" (click)="editItem(item.id)">Edit</button>
       <ng-container *ngIf="!item.viewDetail">
-        <button class="view btn btn-warning" (click)="toggleDetail(item.id)">View</button>
+        <button class="view btn-warning" (click)="toggleDetail(item.id)">View</button>
       </ng-container>
       <ng-container *ngIf="item.viewDetail">
-        <button class="view btn btn-warning" (click)="toggleDetail(item.id)">Collapse</button>
+        <button class="view btn-warning" (click)="toggleDetail(item.id)">Collapse</button>
       </ng-container>
-      <button class="remove btn btn-danger"
+      <button class="remove btn-danger"
       (click)="removeCartItem(item.id)">Remove</button>
        <!-- /item buttons -->
     </div>
   </ng-container>  <!-- /item -->
-  <button class="add-more btn btn-success"
+  <button class="add-more btn-success"
   routerLink="/order">+ More Items</button>
 </div>

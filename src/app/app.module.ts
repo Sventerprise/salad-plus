@@ -12,6 +12,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { OrderStaticDataEffects } from './stores/effects/order-static-data.effects';
 import { HttpClientModule } from '@angular/common/http';
 import { AppMockInterceptors } from './barrels/app-mocks';
+import { reducers, metaReducers } from './stores';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { AppMockInterceptors } from './barrels/app-mocks';
     ...AppModules,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(reducers, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([OrderStaticDataEffects]),
     StoreRouterConnectingModule.forRoot()

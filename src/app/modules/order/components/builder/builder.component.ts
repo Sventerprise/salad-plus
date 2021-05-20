@@ -32,7 +32,9 @@ export class BuilderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.store.dispatch(updateHeader({ header: 'Customize!' }))
+    setTimeout(() => {
+      this.store.dispatch(updateHeader({ header: 'Customize!' }))
+    })
 
     // ensure page starts with popup closed
     this.store.dispatch(closeIngredientSelectorPopup())

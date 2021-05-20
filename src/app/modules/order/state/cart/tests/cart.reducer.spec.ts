@@ -1,4 +1,4 @@
-import { reducer, initialState } from './cart.reducer';
+import { reducer, initialState } from '../cart.reducer';
 
 describe('Cart Reducer', () => {
   describe('an unknown action', () => {

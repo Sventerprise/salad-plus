@@ -25,7 +25,9 @@ export class OrderListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.store.dispatch(updateHeader({ header: 'Review & Order More' }))
+    setTimeout(() => {
+      this.store.dispatch(updateHeader({ header: 'Review & Order More' }))
+    });
     this.total$ = this.store.select(selectCartTotal)
   }
 

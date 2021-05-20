@@ -1,4 +1,4 @@
-import { reducer, initialState } from './shared.reducer';
+import { reducer, initialState } from '../shared.reducer';
 
 describe('Shared Reducer', () => {
   describe('an unknown action', () => {

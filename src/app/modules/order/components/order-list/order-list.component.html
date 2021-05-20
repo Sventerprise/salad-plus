@@ -1,12 +1,12 @@
 <div class="order-list-wrap">
   <label class="total form-control">${{total$ |async | number: '1.2'}}</label>
   <app-order-form class="order-form "></app-order-form>
-  <button type="button" class="pay btn btn-success"
+  <button type="button" class="pay btn-success"
   routerLink="/pay">Pay</button>
   <div class="divider">
     <hr>
   </div>
-  <button type="button" class="cancel btn btn-danger"
+  <button type="button" class="cancel btn-danger"
   (click)="openCancelConfirm()">Cancel</button>
 
 
@@ -23,7 +23,7 @@
             </div>
           </div>
         </div>
-        <button type="button" class="cancel-btn-pop btn btn-danger btn-lg"
+        <button type="button" class="cancel-btn-pop btn-danger btn-lg"
         (click)="confirmCancel()"
         routerLink="/">
           Cancel Order
@@ -31,7 +31,7 @@
       </ng-container> <!-- confirm popup -->
 
       <!-- CLOSE BUTTON-->
-      <button (click)="closePopup()" class="btn btn-primary close-btn btn-lg">
+      <button (click)="closePopup()" class= " btn-primary close-btn btn-lg">
         Close
       </button><!-- POPUP: CLOSE BUTTON -->
     </div> <!-- popup window -->

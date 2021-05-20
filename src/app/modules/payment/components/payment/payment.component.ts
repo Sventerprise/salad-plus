@@ -37,7 +37,9 @@ export class PaymentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.store.dispatch(updateHeader({ header: 'Payment' }))
+    setTimeout(() => {
+      this.store.dispatch(updateHeader({ header: 'Payment' }))
+    })
     this.total$ = this.store.select(selectCartTotal)
     this.store.select(selectPaymentState).subscribe(state => {
       if (state.name) {

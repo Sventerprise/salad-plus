@@ -51,6 +51,13 @@
   grid-area: remove;
 }
 
+.edit,
+.view,
+.remove {
+  font-size: 3vmin;
+  line-height: 6vmin;
+}
+
 .mods {
   grid-area: mods;
   display: grid;
@@ -62,8 +69,9 @@
 .mod {
   display: grid;
   place-self: center right;
-  font-size: 1rem;
   margin-inline: 0.25rem;
+  font-size: 3vmin;
+  line-height: 6vmin;
 }
 
 .qty-lbl {
@@ -93,24 +101,15 @@
   margin: 1px auto;
 }
 
-button {
-  font-weight: bold;
-  margin: 1px 2vw;
-  padding: 1px 2vw;
-}
-
-button.item-list {
-  padding: 0.5rem 2vw;
-}
-
 .sm {
-  margin: 0;
-  padding: 0.25rem 0.5rem;
-  height: 1.5rem;
-  line-height: 1;
+  height: 6vmin;
+  line-height: 6vmin;
+  font-size: 4vmin;
 }
 
 div.mods > input,
 div.mods > label {
   text-align: center;
+  font-size: 4vmin;
+  padding: 0;
 }

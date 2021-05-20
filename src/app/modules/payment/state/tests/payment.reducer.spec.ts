@@ -1,4 +1,4 @@
-import { reducer, initialState } from './payment.reducer';
+import { reducer, initialState } from '../payment.reducer';
 
 describe('Payment Reducer', () => {
   describe('an unknown action', () => {

@@ -37,9 +37,11 @@ export class PayTxResultComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.paySuccessFlag
-      ? this.store.dispatch(updateHeader({ header: 'Success!' }))
-      : this.store.dispatch(updateHeader({ header: 'Oops!' }))
+    setTimeout(() => {
+      this.paySuccessFlag
+        ? this.store.dispatch(updateHeader({ header: 'Success!' }))
+        : this.store.dispatch(updateHeader({ header: 'Oops!' }))
+    })
 
     this.payResult$ = this.store.select(selectPayResult)
     this.payResult$.subscribe(result => {
