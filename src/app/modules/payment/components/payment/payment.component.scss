@@ -3,13 +3,16 @@
   grid-template:
     [r0-s] ". . ." 10vh [r0-e]
     [r1-s] "edit . total" 6vh [r1-e]
+    [r-s] ". . ." 3vh [r-e]
     [r2-s] " form form form" 36vh [r2-s]
     [r3-s] ". . ." 6vh [r3-e]
     [r4-s] "submit submit submit" 6vh [r4-e]
     [r5-s] "hr hr hr" 6vh [r5-e]
     [r6-s] "cancel cancel cancel" 6vh [r6-e]
     / 40fr 15fr 30fr;
-  margin: 0 2vw;
+  width: 96vw;
+  max-width: 768px;
+  margin: auto;
 }
 
 .edit {
@@ -18,12 +21,14 @@
 
 .total {
   grid-area: total; // paywrap
+  display: flex;
   margin-bottom: 0;
   height: 6vmin;
   font-size: 4vmin;
   font-weight: bold;
   line-height: 4vmin;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
   vertical-align: middle;
   padding: 0;
 }
@@ -44,6 +49,7 @@ hr {
 
 input {
   margin: 0;
+  margin-bottom: 1vmin;
 }
 
 .cancel-btn {
@@ -53,6 +59,7 @@ input {
 form > input {
   margin-top: 3vh;
   height: 6vh;
+  font-size: 3vmin;
 }
 
 // POPUPS
@@ -122,4 +129,23 @@ form > input {
 .close-btn {
   grid-area: btn2; // popup-window
   // margin: 1vh auto;
+}
+
+@media screen and (min-width: 768px) {
+  .paywrap {
+    display: grid;
+    grid-template:
+      [r0-s] ". . ." 10vh [r0-e]
+      [r1-s] "edit . total" 6vh [r1-e]
+      [r-s] ". . ." 3vh [r-e]
+      [r2-s] " form form form" 36vh [r2-s]
+      [hr-s] "hr hr hr" 3vh [hr-e]
+      [r3-s] ". . ." 6vh [r3-e]
+      [r4-s] "submit . cancel" 6vh [r4-e]
+      / 30fr 15fr 30fr;
+    margin: 0 2vw;
+    width: 96vw;
+    max-width: 768px;
+    margin: auto;
+  }
 }

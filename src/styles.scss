@@ -1,4 +1,10 @@
 @import  '~bootstrap/scss/bootstrap.scss';
+$border-med: #647609;
+$border-dark: #101302;
+$border-light: #f3fac6;
+$bg-dark: #647609;
+$bg-light: #f3fac6;
+$bg-very-light: #fbfdec;
 
 .btn-success {
   border-color: #647609;
@@ -37,7 +43,7 @@
 button {
   font-weight: bold;
   font-size: 4vmin;
-  padding: 0 0.5vmin;
+  padding: 0 5%;
   display: inline-block;
   text-align: center;
   vertical-align: middle;
@@ -45,7 +51,7 @@ button {
   user-select: none;
   border: 1px solid;
   padding: 0 0.5 vmin;
-  line-height: 6vmin;
+  line-height: 1;
 
   border-radius: 0.25rem;
   transition: color 0.15;

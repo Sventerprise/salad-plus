@@ -1,10 +1,15 @@
+@import "/src/styles.scss";
+
 .specialty-wrapper {
   display: grid;
   grid-template:
     [s1] ". . ." 2vh [e1]
     [s2] ". item-wrap ." 26vh [e2]
     [s3] ". . ." 2vh [e3]
-    / 2vw 96vw 2vw;
+    / 2% 96% 2%;
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
 }
 
 .recipe-wrap {
@@ -31,8 +36,9 @@
   grid-area: description;
   padding: 0.75vmin;
   z-index: 1;
-  background-color: rgba($color: #fff, $alpha: 0.8);
+  background-color: rgba($color: #fbfdec, $alpha: 0.8);
   font-size: 2.5vmin;
+  overflow-y: scroll;
 }
 
 .fill {
@@ -41,7 +47,7 @@
   overflow: hidden;
   align-items: center;
   justify-content: center;
-  border: 1px solid darkgreen;
+  border: 1px solid $border-med;
 }
 
 .fill img {

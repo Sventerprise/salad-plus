@@ -1,13 +1,18 @@
+@import "/src/styles.scss";
+
 .ssselector-wrap {
   display: grid;
+  max-width: 1200px;
+  place-content: center;
   gap: 2%;
   grid-template:
     [salad-start] "salad" 26fr [salad-end]
     [sandwich-start] "sandwich" 26fr [sandwich-end]
     [other-start] "other" 26fr [other-end]
-    / 96vw;
+    / 100%;
   height: 100%;
-  margin-inline: 2%;
+  margin-inline: auto;
+  width: 96%;
 }
 
 .salad {
@@ -17,7 +22,7 @@
     [r1-s] ". . . . ." 18vh [r1-e]
     [r1-st] ". btn1 . btn2 ." 6vh [r1-e]
     [r1-s] ". . . . ." 2vh [r1-e]
-    / 2vw 44vw 4vw 44vw 2vw;
+    / 2% 46% 4% 46% 2%;
 }
 
 .sandwich {
@@ -27,7 +32,7 @@
     [img-start] ". . . . ." 18vh [img-end]
     [img-start] ". btn1 . btn2 ." 6vh [img-end]
     [spc-start] ". . . . ." 2vh [spc-end]
-    / 2vw 44vw 4vw 44vw 2vw;
+    / 2% 46% 4% 46% 2%;
 }
 
 .other {
@@ -41,7 +46,7 @@
     [spc-start] ". . ." 2vh [spc-end]
     [img-start] ". btn3 ." 6vh [img-end]
     [spc-start] ". . ." 2vh [spc-end]
-    / 50vw 44vw 2vw;
+    / 52% 46% 2%;
 }
 
 .fill {

@@ -1,20 +1,26 @@
 <div [formGroup]=paymentForm class="paywrap">
-  <button type="button" class="edit btn-primary btn-lg"
+  <button type="button" class="edit btn-primary  "
   routerLink="/order/order-list">Edit/View Order</button>
   <label class="total form-control" >${{total$ |async |number: '1.2'}}</label>
-  <form class="form">
-    <input formControlName="name" type="text" placeholder="Name" class="form-control">
-    <input formControlName="number" type="text" placeholder="Credit Card #"class="form-control">
-    <input formControlName="cvv" type="text" placeholder="3-Digit Security Code" class="form-control">
-    <input formControlName="exp" type="date" placeholder="Exp Date"class="form-control">
+  <form class="form container">
+      <div class="row">
+        <div class="col-md-6">
+          <input formControlName="name" type="text" placeholder="Name" class="form-control col">
+          <input formControlName="number" type="text" placeholder="Credit Card #"class="form-control col">
+        </div>
+        <div class="col-md-6">
+          <input formControlName="cvv" type="text" placeholder="3-Digit Security Code" class="form-control col">
+          <input formControlName="exp" type="date" placeholder="Exp Date"class="form-control col">
+        </div>
+      </div>
   </form>
-  <button type="submit" class="submit btn-success btn-lg"
+  <button type="submit" class="submit btn-success  "
   (click)="submit()" [disabled]="!paymentForm.valid"
   routerLink="../post-pay">
     Pay ${{total$ |async |number: '1.2'}}
   </button>
   <hr>
-  <button type="button" class="cancel-btn btn-danger btn-lg"
+  <button type="button" class="cancel-btn btn-danger  "
   (click)="openCancelConfirm()">
     Cancel
   </button>
@@ -32,7 +38,7 @@
             <div class="cancel">Do you <em>really</em> want to cancel this transaction?</div>
           </div>
         </div>
-        <button type="button" class="cancel-btn-pop btn-danger btn-lg"
+        <button type="button" class="cancel-btn-pop btn-danger  "
         (click)="confirmCancel()"
         routerLink="/order/order-list">
           Cancel Payment
@@ -41,7 +47,7 @@
 
 
       <!-- CLOSE BUTTON-->
-      <button (click)="closePopup()" class= " btn-primary close-btn btn-lg">
+      <button (click)="closePopup()" class= " btn-primary close-btn  ">
         Close
       </button><!-- POPUP: CLOSE BUTTON -->
     </div> <!-- popup window -->

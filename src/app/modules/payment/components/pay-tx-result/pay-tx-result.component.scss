@@ -1,3 +1,14 @@
+.post-pay-wrap {
+  width: 96vw;
+  max-width: 600px;
+  margin: auto;
+}
+
+.result {
+  display: flex;
+  justify-content: center;
+}
+
 .order-form {
   display: flex;
   flex-flow: column nowrap;
@@ -10,6 +21,7 @@
   display: flex;
   justify-content: space-between;
 }
+
 div.receipt-data {
   display: table;
   margin: 1vmin 0;
@@ -20,6 +32,7 @@ div.receipt-data {
 }
 .order-id {
   display: inline-block;
+  text-align: right;
 }
 .date {
   display: inline-block;
@@ -53,9 +66,10 @@ div.receipt-data {
 
 .post-msg {
   display: flex;
-  width: 96vmin;
+  width: 96%;
   height: 20vmin;
   font-weight: bold;
+  font-size: 5vmin;
   background-color: whitesmoke;
   margin: 3vmin 2vmin;
   text-align: center;
@@ -67,6 +81,7 @@ button {
   margin: 3vmin auto;
   display: block;
   width: 90%;
+  max-width: 500px;
 }
 
 // POPUPS

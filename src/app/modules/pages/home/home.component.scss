@@ -7,7 +7,7 @@
     [store_img-start] "store_img store_img store_img" 40vh [store_img-end]
     [quote-start] ". quote ." 3vh [quote-end]
     [profile-start] ". profile ." 45vh [profile-end]
-    / 2vw 96vw 2vw;
+    / 2% 96% 2%;
 }
 
 .background-img-area {
@@ -15,6 +15,7 @@
   padding: 0;
   grid-area: img;
   border-bottom: 2px solid #444444;
+  max-width: 1200px;
 }
 
 .splash-img {
@@ -81,43 +82,81 @@
   display: grid;
   border: 1px solid black;
   background-color: darkgrey;
+  max-width: 768px;
   grid-area: profile;
   grid-template:
     [profile-start] "profile_img profile_copy" 45vh [profile-end]
-    / 55% 45%;
+    / 1fr 1fr;
 }
 
 .profile-img-area {
   grid-area: profile_img;
-  padding: 1rem;
+  margin: 1rem 0.5rem 1rem 1rem;
   display: flex;
 }
 
 .profile-img {
   border: 2px solid rgb(67, 66, 66);
   object-fit: scale-down;
-  height: 100%;
+  margin: auto;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 .profile-copy {
   grid-area: profile_copy;
-  margin: 1rem 1rem 1rem 0;
+  margin: auto 1rem auto 0.5rem;
   padding: 1rem;
   background-color: whitesmoke;
   display: flex;
   flex-flow: column wrap;
+  overflow-y: scroll;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 @media only screen and (min-width: 768px) {
+  .home-wrap {
+    display: grid;
+    place-items: center;
+    height: 180vh;
+    grid-template:
+      [img-start] "img img img" 60vh [img-end]
+      [buttons-start] ". buttons ." 30vh [buttons-end]
+      [store_img-start] "store_img store_img store_img" 40vh [store_img-end]
+      [quote-start] ". quote ." 3vh [quote-end]
+      [profile-start] ". profile ." 45vh [profile-end]
+      / 2% 96% 2%;
+  }
+
+  .background-img-area {
+    height: 100%;
+    padding: 0;
+    grid-area: img;
+    border-bottom: 2px solid #444444;
+    max-width: 1200px;
+    overflow-x: hidden;
+  }
+
+  .splash-img {
+    // min-height: 100%;
+    // width: inherit;
+    display: block;
+    object-fit: cover;
+    padding-bottom: 12vh;
+  }
+
   .button-holder {
     display: grid;
     grid-area: buttons;
     max-width: 1200px;
     width: 100%;
     grid-template:
-      [row1-start] ". " 2% [row1-end]
-      [row2-start] " button1 . button2 . button3 . button4" 8% [row2-end]
-      [row9-start] "." 2% [row9-end]
-      / 2% 10% 2% 10% 2% 10% 2% 10% 2%;
+      [row1-start] ". . ." 8vh [row1-end]
+      [row2-start] " button1 . button2" 6vh[row2-end]
+      [row1-start] ". . ." 8vh [row1-end]
+      [row2-start] "button3 . button4" 6vh[row2-end]
+      [row9-start] ". . ." 8vh [row9-end]
+      / 48% 4% 48%;
   }
 }

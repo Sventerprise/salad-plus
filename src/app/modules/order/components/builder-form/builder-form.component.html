@@ -1,8 +1,8 @@
 <ng-container *ngIf="itemGroup$ |async as group">
 
-  <div class="bread typeContainer" *ngIf="group=='sandwich'">
-    <div class="ingredient-header" (click)="editIngredients('Bread')">
-      Bread @ ${{iType['Bread'].price}}
+  <div class="bread typeContainer" *ngIf="group=='sandwich'"
+  (click)="editIngredients('Bread')">
+    <div class="ingredient-header">Bread<br>@ ${{iType['Bread'].price}}
     </div> <!-- breads header -->
     <div class="ingredient-list">
       <ng-container *ngFor="let bread of breads">
@@ -15,14 +15,15 @@
     </div> <!-- ingredient list -->
   </div> <!-- breads -->
 
-  <div class="green typeContainer" *ngIf="group=='salad'">
-    <div class="ingredient-header" (click)="editIngredients('Greens')">
-      Greens @ ${{iType['Greens'].price}} each
+  <div class="green typeContainer" *ngIf="group=='salad'"
+  (click)="editIngredients('Greens')">
+    <div class="ingredient-header">Greens<br>
+      @ ${{iType['Greens'].price}}
     </div> <!-- greens header -->
     <div class="ingredient-list">
       <ng-container *ngFor="let green of greens">
         <ng-container *ngIf="inSelected(green.id)">
-          <div class="greens ingredient" (click)="editIngredients('Greens')">
+          <div class="greens ingredient">
                 {{green.name}}
           </div>
         </ng-container>
@@ -30,14 +31,14 @@
     </div> <!-- ingredient list -->
   </div> <!-- greens -->
 
-  <div class="meat typeContainer">
-    <div class="ingredient-header" (click)="editIngredients('Meat')">
-      Meats @ ${{iType['Meat'].price}} each
+  <div class="meat typeContainer" (click)="editIngredients('Meat')">
+    <div class="ingredient-header">Meats<br
+      >@ ${{iType['Meat'].price}} each
     </div> <!-- meat header -->
     <div class="ingredient-list">
       <ng-container *ngFor="let meat of meats">
         <ng-container *ngIf="inSelected(meat.id)">
-          <div class="meats ingredient" (click)="editIngredients('Meat')">
+          <div class="meats ingredient">
             {{meat.name}}
           </div>
         </ng-container>
@@ -45,14 +46,14 @@
     </div> <!-- ingredient list -->
   </div> <!-- meats-->
 
-  <div class="cheese typeContainer">
-    <div class="ingredient-header" (click)="editIngredients('Cheese')">
-      Cheeses @ ${{iType['Cheese'].price}} each
+  <div class="cheese typeContainer" (click)="editIngredients('Cheese')">
+    <div class="ingredient-header">Cheeses<br
+      >@ ${{iType['Cheese'].price}} each
     </div> <!-- cheeses header -->
     <div class="ingredient-list">
       <ng-container *ngFor="let cheese of cheeses">
         <ng-container *ngIf="inSelected(cheese.id)">
-          <div class="cheeses ingredient" (click)="editIngredients('Cheese')">
+          <div class="cheeses ingredient">
                 {{cheese.name}}
           </div>
         </ng-container>
@@ -60,29 +61,30 @@
     </div> <!-- ingredient list -->
   </div> <!-- cheeses-->
 
-  <div class="veggie typeContainer">
-    <div class="ingredient-header" (click)="editIngredients('Veggies')">
-      Veggies @ ${{iType['Veggies'].price}} each
+  <div class="veggie typeContainer" (click)="editIngredients('Veggies')">
+    <div class="ingredient-header">Veggies<br>
+      @ ${{iType['Veggies'].price}} each
     </div>  <!-- veggie header -->
     <div class="ingredient-list">
       <ng-container *ngFor="let veggie of veggies">
         <ng-container *ngIf="inSelected(veggie.id)">
-          <div class="veggies ingredient" (click)="editIngredients('Veggies')">
-                {{veggie.name}}
+          <div class="veggies ingredient">
+            {{veggie.name}}
           </div>
         </ng-container>
       </ng-container>
     </div> <!-- ingredient list -->
   </div> <!-- veggies-->
 
-  <div class="nuts-fruit typeContainer" *ngIf="group=='salad'">
-    <div class="ingredient-header" (click)="editIngredients('Nuts/Fruit')">
-      Nuts/Fruits @ ${{iType['Nuts/Fruit'].price}} each
+  <div class="nuts-fruit typeContainer" *ngIf="group=='salad'"
+  (click)="editIngredients('Nuts/Fruit')">
+    <div class="ingredient-header">Nuts/Fruits<br>
+      @ ${{iType['Nuts/Fruit'].price}} each
     </div>  <!-- nuts/fruit header -->
     <div class="ingredient-list">
       <ng-container *ngFor="let nutsFruit of nutsFruits">
         <ng-container *ngIf="inSelected(nutsFruit.id)">
-          <div class="nuts-fruits ingredient" (click)="editIngredients('Nuts/Fruit')">
+          <div class="nuts-fruits ingredient">
                 {{nutsFruit.name}}
           </div>
         </ng-container>
@@ -90,14 +92,15 @@
     </div> <!-- ingredient list -->
   </div> <!-- nuts & fruits -->
 
-  <div class="condiment typeContainer" *ngIf="group=='sandwich'">
-    <div class="ingredient-header" (click)="editIngredients('Condiments')">
-      Condiments @ ${{iType['Condiments'].price}} each
+  <div class="condiment typeContainer" *ngIf="group=='sandwich'"
+  (click)="editIngredients('Condiments')">
+    <div class="ingredient-header">Condiments<br>
+      @ ${{iType['Condiments'].price}} each
     </div> <!-- condiment header -->
     <div class="ingredient-list">
       <ng-container *ngFor="let condiment of condiments">
         <ng-container *ngIf="inSelected(condiment.id)">
-          <div class="condiments ingredient" (click)="editIngredients('Condiments')">
+          <div class="condiments ingredient">
                 {{condiment.name}}
           </div>
         </ng-container>
@@ -105,15 +108,17 @@
     </div> <!-- ingredient list -->
   </div> <!-- condiments -->
 
-  <div class="condiment typeContainer" *ngIf="group=='salad'">
-    <div class="ingredient-header" (click)="editIngredients('Dressings')">
-      Dressings @ ${{iType['Dressings'].price}} each
+  <div class="dressing typeContainer" *ngIf="group=='salad'"
+  (click)="editIngredients('Dressings')">
+    <div class="ingredient-header">
+      Dressings<br>
+      @ ${{iType['Dressings'].price}} each
     </div> <!-- dressing header -->
     <div class="ingredient-list">
       <ng-container *ngFor="let dressing of dressings">
         <ng-container *ngIf="inSelected(dressing.id)">
-          <div class="dressings ingredient" (click)="editIngredients('Dressings')">
-                {{dressing.name}}
+          <div class="dressings ingredient">
+            {{dressing.name}}
           </div>
         </ng-container>
       </ng-container>
@@ -121,3 +126,4 @@
   </div> <!-- dressings -->
 
 </ng-container>  <!-- view model -->
+

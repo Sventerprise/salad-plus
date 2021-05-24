@@ -1,115 +1,145 @@
+@import "/src/styles.scss";
+
 .order-form-wrap {
 }
 
 .item-list {
-  display: grid;
-  grid-template:
-    [spc1-s] ". . ." 0.5vh [spc1-e]
-    [item-s] "item item item" 4vh [item-e]
-    [detail-s] "ingredient ingredient ingredient" auto [detail-e]
-    [spc2-s] ". . ." 1vh [spc2-e]
-    [mods-s] "mods mods mods" 4vh [mods-e]
-    [btns-s] "edit view remove" 4vh [btns-e]
-    [spc3-s] ". . ." 0.5vh [spc3-e]
-    / 1fr 1fr 1fr;
+  // display: grid;
+  // grid-template:
+  //   [spc1-s] ". . ." 0.5vh [spc1-e]
+  //   [item-s] "item item item" 4vh [item-e]
+  //   [detail-s] "ingredient ingredient ingredient" auto [detail-e]
+  //   [spc2-s] ". . ." 1vh [spc2-e]
+  //   [mods-s] "mods mods mods" 4vh [mods-e]
+  //   [btns-s] "btns btns btns" 4vh [btns-e]
+  //   [spc3-s] ". . ." 0.5vh [spc3-e]
+  //   / 1fr 1fr 1fr;
+  // padding: 1vw;
+  // margin: 1px;
+
+  display: flex;
+  flex-flow: column;
+  width: 96%;
   background-color: #f8f5f2;
-  border-radius: 5px;
-  padding: 1vw;
-  margin: 1px;
+  border-radius: 0.5rem;
+  padding: 1%;
+  margin: 1%;
 }
 
 .item {
-  grid-area: item;
   background-color: #b9c7cb;
   font-weight: bold;
+  height: calc(4vmin + 2vmin);
+  line-height: 1;
+  font-size: 4vmin;
+  padding: 1vmin 6vmin;
+  margin-bottom: 0;
 }
 
 .ingredient-list {
-  grid-area: ingredient;
-  display: inline-block;
+  width: 96%;
+  padding: 1%;
+  margin: 0 1%;
+  display: block;
 }
 
 .ingredient {
-  margin: 0 0 0 2%;
-  padding: 0.25rem 0.5rem;
-  height: 1.5rem;
+  // display: block; (inherited)
+  font-size: 3vmin;
+  width: 96%;
+  margin: 1%;
+  padding: 1vmin 1%;
+  height: calc(3vmin + 2vmin);
   line-height: 1;
-  width: 98%;
-  // TODO: base background color on category
   background-color: #e8ecee;
 }
 
-.edit {
-  grid-area: edit;
+.item-meta {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  width: 100%;
+  margin: 1vmin 0;
 }
 
-.view {
-  grid-area: view;
-}
-
-.remove {
-  grid-area: remove;
-}
-
-.edit,
-.view,
-.remove {
+.item-meta * {
+  line-height: 1;
+  margin: 0 1%;
   font-size: 3vmin;
-  line-height: 6vmin;
+  height: 4vmin;
+  text-align: center;
+  text-justify: center;
+  justify-items: center;
+  vertical-align: center;
+  align-items: center;
+  border-radius: 0.25rem;
 }
 
-.mods {
-  grid-area: mods;
-  display: grid;
-  grid-template:
-    [s-s] "qty_lbl qty price_lbl price subtotal_lbl subtotal" 4vh [s-e]
-    / 2fr 3fr 3fr 3fr 4fr 3fr;
+.item-meta-1 {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  width: 50%;
+}
+.item-meta-1 div {
+  display: flex;
+  align-items: center;
 }
 
-.mod {
-  display: grid;
-  place-self: center right;
-  margin-inline: 0.25rem;
-  font-size: 3vmin;
-  line-height: 6vmin;
+.item-meta-1 > input {
+  display: flex;
+  padding: 0 3%;
+  width: 20%;
+  border: 1px solid $border-dark;
 }
 
-.qty-lbl {
-  grid-area: qty_lbl;
+.item-meta-1 > label {
+  display: flex;
+  padding: 0 5%;
+  margin: 0 1%;
+  width: 40%;
+  border: 1px solid $border-dark;
+  background-color: white;
+  justify-content: center;
 }
-.qty {
-  grid-area: qty;
-}
-
-.price-lbl {
-  grid-area: price_lbl;
-}
-
-.price {
-  grid-area: price;
-}
-
-.subtotal-lbl {
-  grid-area: subtotal_lbl;
-}
-
 .subtotal {
-  grid-area: subtotal;
+  display: flex;
+  justify-items: flex-end;
+  flex-flow: row nowrap;
+  width: 50%;
+}
+
+.subtotal > * {
+  display: flex;
+  padding: 0 5%;
+}
+
+.subtotal > div {
+  justify-content: right;
+}
+
+.subtotal > label {
+  width: 60%;
+  border: 1px solid $border-dark;
+  background-color: white;
+  justify-content: center;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.actions * {
+  height: 5vmin;
+  font-size: 4vmin;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
 }
 
 .add-more {
   margin: 1px auto;
-}
-
-.sm {
   height: 6vmin;
-  line-height: 6vmin;
-  font-size: 4vmin;
-}
-
-div.mods > input,
-div.mods > label {
-  text-align: center;
-  font-size: 4vmin;
-  padding: 0;
 }
