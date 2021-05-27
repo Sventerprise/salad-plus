@@ -11,7 +11,7 @@ export class MockPaymentInterceptor implements HttpInterceptor {
 
   public intercept(req: HttpRequest<any>, next: HttpHandler):
     Observable<HttpEvent<any>> {
-    if (req.method === 'GET' && req.url == 'http://localhose:3000/api/pay') {
+    if (req.method === 'GET' && req.url == 'http://localhost:3000/api/pay') {
       const result = this.getPayResultsMockData()
       const response = new HttpResponse({
         body: result

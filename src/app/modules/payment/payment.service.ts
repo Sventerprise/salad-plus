@@ -9,7 +9,7 @@ import { trxnResult } from "./models/TrxnResult";
 
 export class PaymentService {
   constructor(private http: HttpClient) { }
-  baseUrl = 'http://localhose:3000/'
+  baseUrl = 'https://localhost:3000/'
 
 
 
